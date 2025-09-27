@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JTech - ຂາຍຄອມພິວເຕີ ແລະ ອຸປະກອນໄອທີ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Lao', 'Phetsarath OT', 'Segoe UI', sans-serif;
+        }
+        
+        :root {
+            --primary: #1a365d;
+            --primary-dark: #2d3748;
+            --secondary: #f6ad55;
+            --accent: #e53e3e;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --gray: #718096;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            background-color: #f7fafc;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            color: var(--secondary);
+            font-size: 32px;
+        }
+        
+        .search-bar {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px 0 0 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+        }
+        
+        .search-bar button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .user-actions a {
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        nav {
+            background: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: #ed8936;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Categories Section */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-img {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            background: #f1f5f9;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            padding: 15px;
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.05);
+        }
+        
+        .category-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        /* Products Section */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            background: #f1f5f9;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            padding: 15px;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            height: 60px;
+            overflow: hidden;
+            color: var(--primary);
+        }
+        
+        .product-price {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .product-rating {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .wishlist {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .wishlist:hover {
+            background: #f1f5f9;
+            border-color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+                margin: 10px 0;
+                order: 3;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            /* ปรับ Categories Section สำหรับมือถือ */
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+            
+            .category-card {
+                margin-bottom: 0;
+            }
+            
+            .category-img {
+                height: 120px;
+            }
+            
+            .category-content {
+                padding: 15px 10px;
+            }
+            
+            .category-content h3 {
+                font-size: 1rem;
+                margin-bottom: 5px;
+            }
+            
+            .category-content p {
+                font-size: 0.85rem;
+            }
+            
+            /* ปรับ Featured Products Section สำหรับมือถือ */
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+            
+            .product-card {
+                margin-bottom: 0;
+            }
+            
+            .product-img {
+                height: 150px;
+            }
+            
+            .product-content {
+                padding: 15px 10px;
+            }
+            
+            .product-content h3 {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+                height: 45px;
+            }
+            
+            .product-content p {
+                font-size: 0.8rem;
+                margin-bottom: 8px;
+            }
+            
+            .product-price {
+                font-size: 1.1rem;
+                margin: 8px 0;
+            }
+            
+            .product-rating {
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .add-to-cart, .wishlist {
+                width: 100%;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .wishlist {
+                width: 100%;
+            }
+            
+            .badge {
+                font-size: 10px;
+                padding: 3px 8px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .categories, .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* View Mode Indicator */
+        .view-mode-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .view-mode-indicator.mobile {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .view-mode-indicator.desktop {
+                display: block;
+            }
+        }
+        
+        /* เพิ่มสไตล์ใหม่สำหรับความทันสมัย */
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .discount-price {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- View Mode Indicator -->
+    <div class="view-mode-indicator mobile">📱 ໂໝດມືຖື</div>
+    <div class="view-mode-indicator desktop">💻 ໂໝດ PC</div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop"></i>
+                    <span>JTech</span>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="ຄົ້ນຫາສິນຄ້າ...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> ເຂົ້າສູ່ລະບົບ</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i> ກະຕ່າ</a>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="#">ໜ້າຫຼັກ</a></li>
+                    <li><a href="#">ໂນ໊ດບຸກ</a></li>
+                    <li><a href="#">ຄອມພິວເຕີຕັ້ງໂຕະ</a></li>
+                    <li><a href="#">ອຸປະກອນ</a></li>
+                    <li><a href="#">ບໍລິການ</a></li>
+                    <li><a href="#">ຕິດຕໍ່ພວກເຮົາ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>ຄອມພິວເຕີ ແລະ ອຸປະກອນໄອທີທີ່ຄົບວົງຈອນ</h1>
+            <p>ພົບກັບຄອມພິວເຕີ ແລະ ອຸປະກອນໄອທີຄຸນນະພາບສູງ ລາຄາຄຸ້ມຄ່າ ພ້ອມບໍລິການຫຼັງການຂາຍທີ່ໝັ້ນໃຈໄດ້</p>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container">
+        <h2 class="section-title">ປະເພດສິນຄ້າ</h2>
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="pc.png" alt="ຄອມພິວເຕີຕັ້ງໂຕະ">
+                </div>
+                <div class="category-content">
+                    <h3>ຄອມພິວເຕີຕັ້ງໂຕະ</h3>
+                    <p>ຄົບຖ້ວນທຸກຄວາມຕ້ອງການ</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="not.png" alt="ໂນດບຸກ">
+                </div>
+                <div class="category-content">
+                    <h3>ໂນດບຸກ</h3>
+                    <p>ພກພາໄດ້ສະດວກ</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="ssd.png" alt="ອະໄວຍະວະ">
+                </div>
+                <div class="category-content">
+                    <h3>ອຸປະກອນ ໂນ໊ດບຸກ</h3>
+                    <p>ອັບເກຣດໄດ້ຕາມຕ້ອງການ</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="cpu.png" alt="ອຸປະກອນຕໍ່ເພີ່ມ">
+                </div>
+                <div class="category-content">
+                    <h3>ອຸປະກອນ PC</h3>
+                    <p>ຄົບຊຸດການໃຊ້ງານ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container">
+        <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
+        <div class="products">
+            <div class="product-card">
+                <div class="badge">ຂາຍດີ</div>
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຄອມພິວເຕີ Gaming">
+                </div>
+                <div class="product-content">
+                    <h3>ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>ສະເປກສູງເໝາະສຳລັບນັກເກມ ແລະ ວຽກກຣາຟິກ</p>
+                    <div class="product-price">
+                        <span class="discount-price">35,900 ກີບ</span>
+                        32,900 ກີບ
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">ເພີ່ມໃນກະຕ່າ</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="badge">ໃໝ່</div>
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ໂນດບຸກ ASUS VivoBook 15">
+                </div>
+                <div class="product-content">
+                    <h3>ໂນດບຸກ ASUS VivoBook 15</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ</p>
+                    <div class="product-price">19,500 ກີບ</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">ເພີ່ມໃນກະຕ່າ</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="badge">ສິນຄ້າມາໃໝ່</div>
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ກາດຈໍ RTX 4070">
+                </div>
+                <div class="product-content">
+                    <h3>ກາດຈໍ RTX 4070</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ</p>
+                    <div class="product-price">24,900 ກີບ</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">ເພີ່ມໃນກະຕ່າ</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="badge">ລາຄາພິເສດ</div>
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຫູຟັງ Gaming 7.1">
+                </div>
+                <div class="product-content">
+                    <h3>ຫູຟັງ Gaming 7.1</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>ສຽງຄົມຊັດ ເກົ່າສະບາຍ</p>
+                    <div class="product-price">
+                        <span class="discount-price">3,290 ກີບ</span>
+                        2,590 ກີບ
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">ເພີ່ມໃນກະຕ່າ</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ບໍລິການຂອງພວກເຮົາ</h3>
+                    <ul>
+                        <li><a href="#">ອັບເກຣດຄອມພິວເຕີ</a></li>
+                        <li><a href="#">ຊ່ອມຄອມພິວເຕີ</a></li>
+                        <li><a href="#">ໃຫ້ຄຳປຶກສາ</a></li>
+                        <li><a href="#">ຮັບປະກັນສິນຄ້າ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ຕິດຕໍ່ພວກເຮົາ</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</li>
+                        <li><i class="fas fa-phone"></i> 20 29988148</li>
+                        <li><i class="fas fa-envelope"></i> info@jtech.la</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ກ່ຽວກັບ JTech</h3>
+                    <p>ພວກເຮົາແມ່ນຜູ້ຊ່ຽວຊານດ້ານຄອມພິວເຕີ ແລະ ອຸປະກອນໄອທີທີ່ມີປະສົບການຫຼາຍກວ່າ 10 ປີ</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1CbJTRfNMc/?mibextid=wwXIfr" target="_blank" class="social-icon facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://wa.me/2029988148" target="_blank" class="social-icon whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 JTech. ສະຫງວນລິຂະສິດທັງໝົດ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ເພີ່ມສິນຄ້າລົງໃນກະຕ່າ
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('ເພີ່ມສິນຄ້າລົງໃນກະຕ່າແລ້ວ!');
+                });
+            });
+            
+            // ປ່ຽນໄອຄອນເມື່ອກົດ wishlist
+            const wishlistButtons = document.querySelectorAll('.wishlist');
+            wishlistButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        this.style.color = 'red';
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        this.style.color = '';
+                    }
+                });
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
