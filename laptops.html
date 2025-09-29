@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JTech - ຂາຍອຸປະກອນຄອມພິວເຕີ ແລະ ບໍລິການປຶກສາດ້ານໄອທີ</title>
+    <title>ຄອມພິວເຕີຕັ້ງໂຕະ - JTech</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -1002,10 +1002,6 @@
     </style>
 </head>
 <body>
-    <!-- View Mode Indicator -->
-    <div class="view-mode-indicator mobile">📱 ໂໝດມືຖື</div>
-    <div class="view-mode-indicator desktop">💻 ໂໝດ PC</div>
-    
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">
         <i class="fas fa-chevron-up"></i>
@@ -1015,20 +1011,23 @@
     <header>
         <div class="container">
             <div class="header-top">
+                <!-- เปลี่ยนลิงก์โลโก้ -->
                 <a href="index.html" class="logo">
                     <i class="fas fa-laptop"></i>
                     <span>JTech</span>
                 </a>
                 
+                <!-- ส่วนค้นหา (ไม่เปลี่ยนแปลง) -->
                 <div class="search-bar">
                     <input type="text" placeholder="ຄົ້ນຫາສິນຄ້າ ຫຼື ບໍລິການ...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
-              
+               
         
         <nav>
             <div class="container">
                 <ul class="nav-links">
+                    <!-- เปลี่ยนลิงก์เมนูนำทางทั้งหมด -->
                     <li><a href="index.html">ໜ້າຫຼັກ</a></li>
                     <li><a href="index.html#products">ສິນຄ້າ</a></li>
                     <li><a href="index.html#categories" class="active">ປະເພດສິນຄ້າ</a></li>
@@ -1040,288 +1039,126 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <h1>ອຸປະກອນຄອມພິວເຕີຄຸນນະພາບສູງ ແລະ ບໍລິການປຶກສາດ້ານໄອທີ</h1>
-            <p>ພົບກັບອຸປະກອນຄອມພິວເຕີຄຸນນະພາບສູງ ລາຄາຄຸ້ມຄ່າ ພ້ອມບໍລິການປຶກສາດ້ານໄອທີຈາກຜູ້ຊ່ຽວຊານ</p>
-          
+            <h1>ຄອມພິວເຕດຕັ້ງໂຕະ</h1>
+            <p>ຄອມພິວເຕີຕັ້ງໂຕະຄຸນນະພາບສູງ ສະເປກຄົບຖ້ວນ ເໝາະສຳລັບການໃຊ້ງານທຸກປະເພດ ທັງວຽກງານ ເກມ ແລະ ການຮຽນຮູ້</p>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="container" id="categories">
-        <h2 class="section-title">ປະເພດສິນຄ້າ</h2>
-        <div class="categories">
-            <a href="desktop-computers.html" class="category-link">
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="pc.png" alt="ຄອມພິວເຕີຕັ້ງໂຕະ">
-                    </div>
-                    <div class="category-content">
-                        <h3>ຄອມພິວເຕີຕັ້ງໂຕະ</h3>
-                        <p>ຄົບຖ້ວນທຸກຄວາມຕ້ອງການ</p>
-                        <div class="category-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="laptops.html" class="category-link">
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="not.png" alt="ໂນດບຸກ">
-                    </div>
-                    <div class="category-content">
-                        <h3>ໂນ໊ດບຸກ</h3>
-                        <p>ພົກພາໄດ້ສະດວກ</p>
-                        <div class="category-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="laptop-accessories.html" class="category-link">
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="ssd.png" alt="ອະໄວຍະວະ">
-                    </div>
-                    <div class="category-content">
-                        <h3>ອຸປະກອນ ໂນ໊ດບຸກ</h3>
-                        <p>ອັບເກຣດໄດ້ຕາມຕ້ອງການ</p>
-                        <div class="category-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="pc-components.html" class="category-link">
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="cpu.png" alt="ອຸປະກອນຕໍ່ເພີ່ມ">
-                    </div>
-                    <div class="category-content">
-                        <h3>ອຸປະກອນ PC</h3>
-                        <p>ຄົບຊຸດການໃຊ້ງານ</p>
-                        <div class="category-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="container" id="products">
-        <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
-        <div class="products">
-            <div class="product-card">
-                <div class="badge">ຂາຍດີ</div>
-                <div class="product-img">
-                    <img src="dell.png" alt="ຄອມພິວເຕີ Gaming">
-                </div>
-                <div class="product-content">
-                    <h3>ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ</h3>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>ສະເປກສູງເໝາະສຳລັບນັກເກມ ແລະ ວຽກກຣາຟິກ</p>
-                    <div class="product-price">
-                        <span class="discount-price">35,900 ກີບ</span>
-                        32,900 ກີບ
-                    </div>
-                    <div class="product-actions">
-                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ" target="_blank" class="order-btn">
-                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                        </a>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                    </div>
-                </div>
+ <!-- Featured Products -->
+ <section class="container" id="products">
+    <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
+    <div class="products">
+        <div class="product-card">
+            <div class="badge">ຂາຍດີ</div>
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຄອມພິວເຕີ Gaming">
             </div>
-            
-            <div class="product-card">
-                <div class="badge">ໃໝ່</div>
-                <div class="product-img">
-                    <img src="lenovo.png" alt="ໂນດບຸກ ASUS VivoBook 15">
+            <div class="product-content">
+                <h3>ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
                 </div>
-                <div class="product-content">
-                    <h3>ໂນດບຸກ ASUS VivoBook 15</h3>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <p>ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ</p>
-                    <div class="product-price">19,500 ກີບ</div>
-                    <div class="product-actions">
-                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ໂນດບຸກ ASUS VivoBook 15 ລາຄາ 19,500 ກີບ" target="_blank" class="order-btn">
-                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                        </a>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                    </div>
+                <p>ສະເປກສູງເໝາະສຳລັບນັກເກມ ແລະ ວຽກກຣາຟິກ</p>
+                <div class="product-price">
+                    <span class="discount-price">35,900 ກີບ</span>
+                    32,900 ກີບ
                 </div>
-            </div>
-            
-            <div class="product-card">
-                <div class="badge">ສິນຄ້າມາໃໝ່</div>
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ກາດຈໍ RTX 4070">
-                </div>
-                <div class="product-content">
-                    <h3>ກາດຈໍ RTX 4070</h3>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ</p>
-                    <div class="product-price">24,900 ກີບ</div>
-                    <div class="product-actions">
-                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ" target="_blank" class="order-btn">
-                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                        </a>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <div class="badge">ລາຄາພິເສດ</div>
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຫູຟັງ Gaming 7.1">
-                </div>
-                <div class="product-content">
-                    <h3>ຫູຟັງ Gaming 7.1</h3>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>ສຽງຄົມຊັດ ເກົ່າສະບາຍ</p>
-                    <div class="product-price">
-                        <span class="discount-price">3,290 ກີບ</span>
-                        2,590 ກີບ
-                    </div>
-                    <div class="product-actions">
-                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຫູຟັງ Gaming 7.1 ລາຄາ 2,590 ກີບ" target="_blank" class="order-btn">
-                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                        </a>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="container" id="services">
-        <h2 class="section-title">ບໍລິການຂອງພວກເຮົາ</h2>
-        <div class="services">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-medical"></i>
-                </div>
-                <div class="service-content">
-                    <h3>ບໍລິການສ້ອມແປງຄອມພິວເຕີ</h3>
-                    <p>ສ້ອມແປງຄອມພິວເຕີທຸກປະເພດ ທັງໂນ້ດບຸກ ແລະ ຄອມພິວເຕີຕັ້ງໂຕະ ພ້ອມບໍລິການອັບເກຣດລະບົບ</p>
-                    <a href="https://wa.me/2029988148" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> ສອບຖາມ
+                <div class="product-actions">
+                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ" target="_blank" class="order-btn">
+                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
                     </a>
+                    <button class="wishlist"><i class="far fa-heart"></i></button>
                 </div>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-network-wired"></i>
+        </div>
+        
+        <div class="product-card">
+            <div class="badge">ໃໝ່</div>
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ໂນດບຸກ ASUS VivoBook 15">
+            </div>
+            <div class="product-content">
+                <h3>ໂນດບຸກ ASUS VivoBook 15</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
                 </div>
-                <div class="service-content">
-                    <h3>ຕິດຕັ້ງເຄືອຂ່າຍຄອມພິວເຕີ</h3>
-                    <p>ອອກແບບ ແລະ ຕິດຕັ້ງເຄືອຂ່າຍຄອມພິວເຕີ ທັງໃນອົງກອນ ແລະ ຄົວເຮືອນ</p>
-                    <a href="https://wa.me/2029988148" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> ສອບຖາມ
+                <p>ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ</p>
+                <div class="product-price">19,500 ກີບ</div>
+                <div class="product-actions">
+                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ໂນດບຸກ ASUS VivoBook 15 ລາຄາ 19,500 ກີບ" target="_blank" class="order-btn">
+                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
                     </a>
+                    <button class="wishlist"><i class="far fa-heart"></i></button>
                 </div>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-shield-alt"></i>
+        </div>
+        
+        <div class="product-card">
+            <div class="badge">ສິນຄ້າມາໃໝ່</div>
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ກາດຈໍ RTX 4070">
+            </div>
+            <div class="product-content">
+                <h3>ກາດຈໍ RTX 4070</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                 </div>
-                <div class="service-content">
-                    <h3>ບໍລິການຄວາມປອດໄພດ້ານໄອທີ</h3>
-                    <p>ຕິດຕັ້ງ ແລະ ປັບປຸງລະບົບຄວາມປອດໄພ ປ້ອງກັນຂໍ້ມູນທີ່ສຳຄັນ</p>
-                    <a href="https://wa.me/2029988148" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> ສອບຖາມ
+                <p>ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ</p>
+                <div class="product-price">24,900 ກີບ</div>
+                <div class="product-actions">
+                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ" target="_blank" class="order-btn">
+                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
                     </a>
+                    <button class="wishlist"><i class="far fa-heart"></i></button>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Consultation Banner -->
-    <section class="consultation-banner" id="consultation">
-        <div class="container">
-            <h2>ໃຫ້ຄຳປຶກສາດ້ານໄອທີຟີ</h2>
-            <p>ພວກເຮົາມີຜູ້ຊ່ຽວຊານທີ່ມີປະສົບການພ້ອມໃຫ້ຄຳປຶກສາ ແລະ ແກ້ໄຂບັນຫາທຸກປະເພດດ້ານໄອທີ</p>
-            <a href="https://wa.me/2029988148" class="btn btn-secondary">
-                <i class="fab fa-whatsapp"></i> ຕິດຕໍ່ປຶກສາດຽວນີ້
-            </a>
-        </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <h2 class="section-title">ຕິດຕໍ່ພວກເຮົາ</h2>
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">ຊື່ ແລະ ນາມສະກຸນ</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">ເບີໂທລະສັບ</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">ອີເມວ</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">ຫົວຂໍ້</label>
-                        <select id="subject" name="subject" required>
-                            <option value="">ເລືອກຫົວຂໍ້</option>
-                            <option value="consultation">ປຶກສາດ້ານໄອທີ</option>
-                            <option value="repair">ສ້ອມແປງຄອມພິວເຕີ</option>
-                            <option value="purchase">ສອບຖາມສິນຄ້າ</option>
-                            <option value="other">ອື່ນໆ</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">ຂໍ້ຄວາມ</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">ສົ່ງຂໍ້ຄວາມ</button>
-                </form>
+        
+        <div class="product-card">
+            <div class="badge">ລາຄາພິເສດ</div>
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຫູຟັງ Gaming 7.1">
+            </div>
+            <div class="product-content">
+                <h3>ຫູຟັງ Gaming 7.1</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p>ສຽງຄົມຊັດ ເກົ່າສະບາຍ</p>
+                <div class="product-price">
+                    <span class="discount-price">3,290 ກີບ</span>
+                    2,590 ກີບ
+                </div>
+                <div class="product-actions">
+                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຫູຟັງ Gaming 7.1 ລາຄາ 2,590 ກີບ" target="_blank" class="order-btn">
+                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                    </a>
+                    <button class="wishlist"><i class="far fa-heart"></i></button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
@@ -1368,11 +1205,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // ເພີ່ມສິນຄ້າລົງໃນກະຕ່າ
-            const orderButtons = document.querySelectorAll('.order-btn');
-            orderButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    // ບໍ່ຕ້ອງມີການປ້ອນຂໍ້ມູນ ເພາະລິງກ໌ໄປຫາ WhatsApp ໂດຍກົງ
-                    console.log('ກົດປຸ່ມສັ່ງຊື້: ' + this.href);
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    this.innerHTML = '<span class="loading"></span> ກຳລັງເພີ່ມ...';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'ເພີ່ມແລ້ວ!';
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                        }, 1500);
+                    }, 1000);
                 });
             });
             
@@ -1406,51 +1250,6 @@
                     this.querySelector('i').classList.toggle('fa-times');
                 });
             }
-            
-            // Form submission
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.textContent;
-                    
-                    submitBtn.innerHTML = '<span class="loading"></span> ກຳລັງສົ່ງ...';
-                    submitBtn.disabled = true;
-                    
-                    setTimeout(() => {
-                        alert('ຂໍຂອບໃຈ! ພວກເຮົາໄດ້ຮັບຂໍ້ຄວາມຂອງທ່ານແລ້ວ. ພວກເຮົາຈະຕິດຕໍ່ທ່ານກັບຄືນໃນໄວໆນີ້.');
-                        contactForm.reset();
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                    }, 2000);
-                });
-            }
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu if open
-                        if (navLinks.classList.contains('active')) {
-                            navLinks.classList.remove('active');
-                            mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-                            mobileMenuBtn.querySelector('i').classList.remove('fa-times');
-                        }
-                    }
-                });
-            });
             
             // Back to top button
             const backToTopBtn = document.querySelector('.back-to-top');
@@ -1487,7 +1286,7 @@
             }, observerOptions);
             
             // Observe elements for animation
-            const animatedElements = document.querySelectorAll('.category-card, .product-card, .service-card');
+            const animatedElements = document.querySelectorAll('.product-card');
             animatedElements.forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
