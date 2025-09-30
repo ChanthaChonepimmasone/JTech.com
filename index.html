@@ -798,28 +798,31 @@
         @media (max-width: 768px) {
             .products {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-                margin-bottom: 30px;
+                gap: 12px;
+                margin-bottom: 25px;
             }
             
             .product-card {
                 margin-bottom: 0;
-                border-radius: 12px;
+                border-radius: 10px;
                 overflow: hidden;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
                 border: 1px solid var(--border);
                 position: relative;
                 background: white;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
             }
             
             .product-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
             }
             
             .product-img {
-                height: 160px;
+                height: 140px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -827,14 +830,14 @@
                 position: relative;
                 background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
                 border-bottom: 1px solid var(--border);
+                flex-shrink: 0;
             }
             
             .product-img img {
-                width: 85%;
-                height: 85%;
+                width: 80%;
+                height: 80%;
                 object-fit: contain;
-                transition: all 0.5s ease;
-                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                transition: all 0.4s ease;
             }
             
             .product-card:hover .product-img img {
@@ -842,14 +845,17 @@
             }
             
             .product-content {
-                padding: 16px 12px;
+                padding: 12px 10px;
                 background: white;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
             }
             
             .product-content h3 {
-                font-size: 0.95rem;
-                margin-bottom: 8px;
-                height: 42px;
+                font-size: 0.85rem;
+                margin-bottom: 6px;
+                height: 38px;
                 overflow: hidden;
                 color: var(--primary);
                 line-height: 1.3;
@@ -860,19 +866,20 @@
             }
             
             .product-content p {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
                 margin-bottom: 8px;
                 color: var(--gray);
-                line-height: 1.4;
+                line-height: 1.3;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                flex-grow: 1;
             }
             
             .product-price {
-                font-size: 1.1rem;
-                margin: 8px 0;
+                font-size: 1rem;
+                margin: 6px 0;
                 font-weight: 700;
                 color: var(--primary);
                 display: flex;
@@ -883,14 +890,14 @@
             .discount-price {
                 color: var(--gray);
                 text-decoration: line-through;
-                font-size: 0.85rem;
-                margin-right: 8px;
+                font-size: 0.8rem;
+                margin-right: 6px;
                 font-weight: 500;
             }
             
             .product-rating {
-                margin-bottom: 12px;
-                font-size: 0.85rem;
+                margin-bottom: 10px;
+                font-size: 0.8rem;
                 color: var(--secondary);
                 display: flex;
                 align-items: center;
@@ -899,15 +906,15 @@
             .product-actions {
                 display: flex;
                 justify-content: space-between;
-                gap: 8px;
-                margin-top: 12px;
+                gap: 6px;
+                margin-top: 10px;
             }
             
             .order-btn, .wishlist {
                 width: 100%;
-                padding: 10px 12px;
-                font-size: 0.9rem;
-                border-radius: 8px;
+                padding: 8px 10px;
+                font-size: 0.8rem;
+                border-radius: 6px;
                 transition: all 0.3s ease;
             }
             
@@ -919,9 +926,10 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 6px;
+                gap: 4px;
                 text-decoration: none;
                 box-shadow: 0 2px 4px rgba(26, 54, 93, 0.2);
+                flex: 1;
             }
             
             .order-btn:hover {
@@ -937,8 +945,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 44px;
-                min-width: 44px;
+                width: 36px;
+                min-width: 36px;
             }
             
             .wishlist:hover {
@@ -949,13 +957,13 @@
             
             .badge {
                 position: absolute;
-                top: 10px;
-                right: 10px;
+                top: 8px;
+                right: 8px;
                 background: var(--accent);
                 color: white;
-                padding: 4px 8px;
-                border-radius: 20px;
-                font-size: 10px;
+                padding: 3px 6px;
+                border-radius: 12px;
+                font-size: 9px;
                 font-weight: 700;
                 z-index: 10;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -964,36 +972,39 @@
             /* Enhanced Categories for Mobile */
             .categories {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-                margin-bottom: 30px;
+                gap: 12px;
+                margin-bottom: 25px;
             }
             
             .category-card {
                 margin-bottom: 0;
-                border-radius: 12px;
+                border-radius: 10px;
                 overflow: hidden;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
                 border: 1px solid var(--border);
+                display: flex;
+                flex-direction: column;
+                height: 100%;
             }
             
             .category-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
             }
             
             .category-img {
-                height: 130px;
+                height: 110px;
                 background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
                 border-bottom: 1px solid var(--border);
+                flex-shrink: 0;
             }
             
             .category-img img {
-                width: 70%;
-                height: 70%;
+                width: 65%;
+                height: 65%;
                 object-fit: contain;
-                transition: all 0.5s ease;
-                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                transition: all 0.4s ease;
             }
             
             .category-card:hover .category-img img {
@@ -1001,22 +1012,26 @@
             }
             
             .category-content {
-                padding: 16px 12px;
+                padding: 12px 10px;
                 text-align: center;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
             
             .category-content h3 {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 margin-bottom: 6px;
                 color: var(--primary);
                 font-weight: 600;
             }
             
             .category-content p {
-                font-size: 0.8rem;
-                margin-bottom: 10px;
+                font-size: 0.75rem;
+                margin-bottom: 8px;
                 color: var(--gray);
-                line-height: 1.4;
+                line-height: 1.3;
             }
             
             .category-arrow {
@@ -1298,24 +1313,81 @@
                 font-size: 1.3rem;
             }
             
+            /* แก้ไข: เปลี่ยนจาก 1fr เป็น 2 คอลัมน์ */
             .products, .categories {
-                grid-template-columns: 1fr;
-                gap: 12px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
             
             .product-img {
-                height: 140px;
+                height: 120px;
             }
             
             .category-img {
-                height: 120px;
+                height: 100px;
+            }
+            
+            /* เพิ่มการปรับปรุงสำหรับการแสดงผล 2 คอลัมน์ */
+            .product-content {
+                padding: 10px 8px;
+            }
+            
+            .product-content h3 {
+                font-size: 0.8rem;
+                height: 36px;
+            }
+            
+            .product-content p {
+                font-size: 0.7rem;
+                margin-bottom: 6px;
+            }
+            
+            .product-price {
+                font-size: 0.9rem;
+            }
+            
+            .product-actions {
+                gap: 6px;
+                margin-top: 8px;
+            }
+            
+            .order-btn, .wishlist {
+                padding: 6px 8px;
+                font-size: 0.75rem;
+            }
+            
+            .wishlist {
+                width: 32px;
+                min-width: 32px;
+            }
+        }
+        
+        /* สำหรับอุปกรณ์ที่มีหน้าจอแคบมาก (เช่น iPhone 5/SE) */
+        @media (max-width: 320px) {
+            .products, .categories {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .product-img {
+                height: 100px;
+            }
+            
+            .category-img {
+                height: 80px;
+            }
+            
+            .product-content h3 {
+                font-size: 0.75rem;
+                height: 32px;
             }
         }
         
         /* Tablet Devices */
         @media (min-width: 769px) and (max-width: 1024px) {
             .categories, .products {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
             }
         }
         
@@ -1485,546 +1557,121 @@
         </div>
     </section>
 
-  <!-- Featured Products -->
-<section class="container" id="products">
-    <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
-    <div class="products">
-        <div class="product-card" data-product-id="1">
-            <div class="badge">ຂາຍດີ</div>
-            <div class="product-img">
-                <img src="dell.png" alt="ຄອມພິວເຕີ Gaming">
-            </div>
-            <div class="product-content">
-                <h3 class="product-title">ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+    <!-- Featured Products -->
+    <section class="container" id="products">
+        <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
+        <div class="products">
+            <div class="product-card" data-product-id="1">
+                <div class="badge">ຂາຍດີ</div>
+                <div class="product-img">
+                    <img src="dell.png" alt="ຄອມພິວເຕີ Gaming">
                 </div>
-                <p class="product-description">ສະເປກສູງເໝາະສຳລັບນັກເກມ ແລະ ວຽກກຣາຟິກ</p>
-                <div class="product-price">
-                    <span class="discount-price">35,900 ກີບ</span>
-                    <span class="current-price">32,900 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="product-card" data-product-id="2">
-            <div class="badge">ໃໝ່</div>
-            <div class="product-img">
-                <img src="lenovo.png" alt="ໂນດບຸກ ASUS VivoBook 15">
-            </div>
-            <div class="product-content">
-                <h3 class="product-title">ໂນດບຸກ ASUS VivoBook 15</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                </div>
-                <p class="product-description">ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ</p>
-                <div class="product-price">
-                    <span class="current-price">19,500 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ໂນດບຸກ ASUS VivoBook 15 ລາຄາ 19,500 ກີບ" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
+                <div class="product-content">
+                    <h3 class="product-title">ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="product-description">ສະເປກສູງເໝາະສຳລັບນັກເກມ ແລະ ວຽກກຣາຟິກ</p>
+                    <div class="product-price">
+                        <span class="discount-price">35,900 ກີບ</span>
+                        <span class="current-price">32,900 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="product-card" data-product-id="3">
-            <div class="badge">ສິນຄ້າມາໃໝ່</div>
-            <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ກາດຈໍ RTX 4070">
-            </div>
-            <div class="product-content">
-                <h3 class="product-title">ກາດຈໍ RTX 4070</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="product-description">ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ</p>
-                <div class="product-price">
-                    <span class="current-price">24,900 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="product-card" data-product-id="4">
-            <div class="badge">ລາຄາພິເສດ</div>
-            <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຫູຟັງ Gaming 7.1">
-            </div>
-            <div class="product-content">
-                <h3 class="product-title">ຫູຟັງ Gaming 7.1</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <p class="product-description">ສຽງຄົມຊັດ ເກົ່າສະບາຍ</p>
-                <div class="product-price">
-                    <span class="discount-price">3,290 ກີບ</span>
-                    <span class="current-price">2,590 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຫູຟັງ Gaming 7.1 ລາຄາ 2,590 ກີບ" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Product Detail Modal -->
-<div id="productModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="modal-body">
-            <div class="modal-product-img">
-                <img id="modalProductImg" src="" alt="">
-            </div>
-            <div class="modal-product-details">
-                <h2 id="modalProductTitle"></h2>
-                <div class="modal-product-rating" id="modalProductRating"></div>
-                <p id="modalProductDescription"></p>
-                <div class="modal-product-price">
-                    <span id="modalProductDiscountPrice" class="discount-price"></span>
-                    <span id="modalProductCurrentPrice" class="current-price"></span>
-                </div>
-                <div class="modal-product-specs">
-                    <h3>ລາຍລະອຽດສະເພາະ</h3>
-                    <ul id="modalProductSpecs"></ul>
-                </div>
-                <div class="modal-product-actions">
-                    <a href="#" id="modalOrderBtn" class="order-btn modal-order-btn" target="_blank">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້ດຽວນີ້
-                    </a>
-                    <button class="wishlist modal-wishlist"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    /* Modal Styles */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    .modal-content {
-        background-color: white;
-        margin: 2% auto;
-        padding: 0;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 900px;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-        from { transform: translateY(-50px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-
-    .close {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        font-size: 28px;
-        font-weight: bold;
-        color: var(--gray);
-        cursor: pointer;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.9);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    }
-
-    .close:hover {
-        color: var(--accent);
-        background: white;
-        transform: scale(1.1);
-    }
-
-    .modal-body {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        padding: 30px;
-    }
-
-    .modal-product-img {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f8fafc;
-        border-radius: 10px;
-        padding: 20px;
-        height: 400px;
-    }
-
-    .modal-product-img img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .modal-product-details h2 {
-        color: var(--primary);
-        margin-bottom: 15px;
-        font-size: 1.8rem;
-    }
-
-    .modal-product-rating {
-        color: var(--secondary);
-        margin-bottom: 15px;
-        font-size: 1.1rem;
-    }
-
-    .modal-product-details p {
-        color: var(--gray);
-        margin-bottom: 20px;
-        line-height: 1.6;
-    }
-
-    .modal-product-price {
-        margin: 20px 0;
-        font-size: 1.5rem;
-    }
-
-    .modal-product-specs {
-        margin: 25px 0;
-    }
-
-    .modal-product-specs h3 {
-        color: var(--primary);
-        margin-bottom: 15px;
-        font-size: 1.3rem;
-    }
-
-    .modal-product-specs ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .modal-product-specs li {
-        padding: 8px 0;
-        border-bottom: 1px solid var(--border);
-        color: var(--dark);
-    }
-
-    .modal-product-specs li:last-child {
-        border-bottom: none;
-    }
-
-    .modal-product-actions {
-        display: flex;
-        gap: 15px;
-        margin-top: 25px;
-    }
-
-    .modal-order-btn {
-        flex: 1;
-        padding: 15px 20px;
-        font-size: 1.1rem;
-    }
-
-    .modal-wishlist {
-        width: 60px;
-        font-size: 1.2rem;
-    }
-
-    /* Make product cards clickable */
-    .product-card {
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Prevent buttons from triggering card click */
-    .product-actions * {
-        pointer-events: auto;
-    }
-
-    .product-card > *:not(.product-actions) {
-        pointer-events: none;
-    }
-
-    /* Responsive Modal */
-    @media (max-width: 768px) {
-        .modal-content {
-            width: 95%;
-            margin: 5% auto;
-            max-height: 85vh;
-        }
-
-        .modal-body {
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .modal-product-img {
-            height: 250px;
-        }
-
-        .modal-product-details h2 {
-            font-size: 1.4rem;
-        }
-
-        .modal-product-actions {
-            flex-direction: column;
-        }
-
-        .modal-order-btn, .modal-wishlist {
-            width: 100%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .modal-content {
-            width: 98%;
-            margin: 2% auto;
-        }
-
-        .modal-body {
-            padding: 15px;
-        }
-
-        .modal-product-img {
-            height: 200px;
-        }
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Product data
-        const products = {
-            1: {
-                title: "ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ",
-                image: "dell.png",
-                rating: "★★★★½",
-                description: "ສະເປກສູງເໝາະສຳລັບນັກເກມ ແລະ ວຽກກຣາຟິກ",
-                discountPrice: "35,900 ກີບ",
-                currentPrice: "32,900 ກີບ",
-                specs: [
-                    "ຫນ່ວຍປະມວນຜົນ: Intel Core i7-13700K",
-                    "ກາດຈໍ: NVIDIA RTX 4070 12GB",
-                    "ແພັດເຕີດີ: 32GB DDR5",
-                    "ຮາດດິດ: 1TB NVMe SSD",
-                    "ລະບົບປະຕິບັດການ: Windows 11 Pro"
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ"
-            },
-            2: {
-                title: "ໂນດບຸກ ASUS VivoBook 15",
-                image: "lenovo.png",
-                rating: "★★★★☆",
-                description: "ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ",
-                currentPrice: "19,500 ກີບ",
-                specs: [
-                    "ຫນ່ວຍປະມວນຜົນ: Intel Core i5-1240P",
-                    "ກາດຈໍ: Intel Iris Xe Graphics",
-                    "ແພັດເຕີດີ: 16GB DDR4",
-                    "ຮາດດິດ: 512GB SSD",
-                    "ຈໍ: 15.6\" FHD IPS",
-                    "ນ້ຳຫນັກ: 1.7 ກິໂລ"
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ໂນດບຸກ ASUS VivoBook 15 ລາຄາ 19,500 ກີບ"
-            },
-            3: {
-                title: "ກາດຈໍ RTX 4070",
-                image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                rating: "★★★★★",
-                description: "ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ",
-                currentPrice: "24,900 ກີບ",
-                specs: [
-                    "ຊຸດ: NVIDIA GeForce RTX 4070",
-                    "ຫນ່ວຍຄວບຄຸມຄວາມຈຳ: 12GB GDDR6X",
-                    "ຄວາມໄວ: 19 Gbps",
-                    "ຊ່ອງຕໍ່: PCIe 4.0 x16",
-                    "ພະລັງງານ: 200W",
-                    "ຮອງຮັບ: Ray Tracing, DLSS 3"
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ"
-            },
-            4: {
-                title: "ຫູຟັງ Gaming 7.1",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                rating: "★★★★½",
-                description: "ສຽງຄົມຊັດ ເກົ່າສະບາຍ",
-                discountPrice: "3,290 ກີບ",
-                currentPrice: "2,590 ກີບ",
-                specs: [
-                    "ຮູບແບບ: Over-ear",
-                    "ລະບົບສຽງ: 7.1 Surround Sound",
-                    "ໄມໂຄຣໂຟນ: Yes, Noise Cancelling",
-                    "ຊ່ອງຕໍ່: USB & 3.5mm Jack",
-                    "ສີ: Black/Red",
-                    "ນ້ຳຫນັກ: 320g"
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຫູຟັງ Gaming 7.1 ລາຄາ 2,590 ກີບ"
-            }
-        };
-
-        // Modal elements
-        const modal = document.getElementById('productModal');
-        const closeBtn = document.querySelector('.close');
-        const modalProductImg = document.getElementById('modalProductImg');
-        const modalProductTitle = document.getElementById('modalProductTitle');
-        const modalProductRating = document.getElementById('modalProductRating');
-        const modalProductDescription = document.getElementById('modalProductDescription');
-        const modalProductDiscountPrice = document.getElementById('modalProductDiscountPrice');
-        const modalProductCurrentPrice = document.getElementById('modalProductCurrentPrice');
-        const modalProductSpecs = document.getElementById('modalProductSpecs');
-        const modalOrderBtn = document.getElementById('modalOrderBtn');
-
-        // Product card click event
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                // Don't trigger if clicking on buttons
-                if (e.target.closest('.product-actions')) {
-                    return;
-                }
-                
-                const productId = this.getAttribute('data-product-id');
-                const product = products[productId];
-                
-                if (product) {
-                    openProductModal(product);
-                }
-            });
-        });
-
-        // Open modal function
-        function openProductModal(product) {
-            modalProductImg.src = product.image;
-            modalProductImg.alt = product.title;
-            modalProductTitle.textContent = product.title;
-            modalProductRating.innerHTML = product.rating.split('').map(char => {
-                if (char === '★') return '<i class="fas fa-star"></i>';
-                if (char === '½') return '<i class="fas fa-star-half-alt"></i>';
-                if (char === '☆') return '<i class="far fa-star"></i>';
-                return char;
-            }).join('');
-            modalProductDescription.textContent = product.description;
             
-            // Handle prices
-            if (product.discountPrice) {
-                modalProductDiscountPrice.textContent = product.discountPrice;
-                modalProductDiscountPrice.style.display = 'inline';
-            } else {
-                modalProductDiscountPrice.style.display = 'none';
-            }
+            <div class="product-card" data-product-id="2">
+                <div class="badge">ໃໝ່</div>
+                <div class="product-img">
+                    <img src="lenovo.png" alt="ໂນດບຸກ ASUS VivoBook 15">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">ໂນດບຸກ ASUS VivoBook 15</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="product-description">ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ</p>
+                    <div class="product-price">
+                        <span class="current-price">19,500 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ໂນດບຸກ ASUS VivoBook 15 ລາຄາ 19,500 ກີບ" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
             
-            modalProductCurrentPrice.textContent = product.currentPrice;
-            modalOrderBtn.href = product.whatsappLink;
+            <div class="product-card" data-product-id="3">
+                <div class="badge">ສິນຄ້າມາໃໝ່</div>
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ກາດຈໍ RTX 4070">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">ກາດຈໍ RTX 4070</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="product-description">ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ</p>
+                    <div class="product-price">
+                        <span class="current-price">24,900 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
             
-            // Add specs
-            modalProductSpecs.innerHTML = '';
-            product.specs.forEach(spec => {
-                const li = document.createElement('li');
-                li.textContent = spec;
-                modalProductSpecs.appendChild(li);
-            });
-            
-            // Show modal
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close modal
-        closeBtn.addEventListener('click', closeModal);
-        
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // ESC key to close modal
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Wishlist functionality in modal
-        const modalWishlist = document.querySelector('.modal-wishlist');
-        modalWishlist.addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                this.style.color = 'red';
-                this.style.borderColor = 'red';
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                this.style.color = '';
-                this.style.borderColor = '';
-            }
-        });
-    });
-</script>
+            <div class="product-card" data-product-id="4">
+                <div class="badge">ລາຄາພິເສດ</div>
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຫູຟັງ Gaming 7.1">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">ຫູຟັງ Gaming 7.1</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="product-description">ສຽງຄົມຊັດ ເກົ່າສະບາຍ</p>
+                    <div class="product-price">
+                        <span class="discount-price">3,290 ກີບ</span>
+                        <span class="current-price">2,590 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຫູຟັງ Gaming 7.1 ລາຄາ 2,590 ກີບ" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Services Section -->
     <section class="container" id="services">
