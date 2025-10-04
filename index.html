@@ -584,86 +584,6 @@
             gap: 20px;
         }
         
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 40px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--secondary);
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: white;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #cbd5e1;
-        }
         
         /* Badge and Discount Styles */
         .badge {
@@ -1432,6 +1352,61 @@
             outline: 2px solid var(--primary);
             outline-offset: 2px;
         }
+        /* Social Icons Styles */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon.facebook {
+    background: #3b5998;
+}
+
+.social-icon.whatsapp {
+    background: #25D366;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon.facebook:hover {
+    background: #2d4373;
+}
+
+.social-icon.whatsapp:hover {
+    background: #128C7E;
+}
+
+/* Responsive Styles for Social Icons */
+@media (max-width: 768px) {
+    .social-icons {
+        margin-top: 20px;
+    }
+    
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1448,367 +1423,31 @@
                     <i class="fas fa-laptop"></i>
                     <span>JTech</span>
                 </a>
-                
-                <div class="search-bar">
-                    <input type="text" placeholder="ຄົ້ນຫາສິນຄ້າ ຫຼື ບໍລິການ...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                
-                <div class="user-actions">
-                    <a href="#"><i class="fas fa-user"></i> ບັນຊີ</a>
-                    <a href="#"><i class="fas fa-shopping-cart"></i> ກະຕ່າ</a>
-                </div>
-                
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        
-        <nav>
-            <div class="container">
-                <ul class="nav-links">
-                    <li><a href="index.html">ໜ້າຫຼັກ</a></li>
-                    <li><a href="index.html#products">ສິນຄ້າ</a></li>
-                    <li><a href="index.html#categories" class="active">ປະເພດສິນຄ້າ</a></li>
-                    <li><a href="index.html#services">ບໍລິການ</a></li>
-                    <li><a href="index.html#consultation">ປຶກສາດ້ານໄອທີ</a></li>
-                    <li><a href="index.html#contact">ຕິດຕໍ່</a></li>
-                </ul>
-            </div>
-        </nav>
+               
+              
+       
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>ອຸປະກອນຄອມພິວເຕີຄຸນນະພາບສູງ ແລະ ບໍລິການປຶກສາດ້ານໄອທີ</h1>
-            <p>ພົບກັບອຸປະກອນຄອມພິວເຕີຄຸນນະພາບສູງ ລາຄາຄຸ້ມຄ່າ ພ້ອມບໍລິການປຶກສາດ້ານໄອທີຈາກຜູ້ຊ່ຽວຊານ</p>
-            <div class="hero-buttons">
-                <a href="#products" class="btn btn-secondary">ຊື້ສິນຄ້າ</a>
-                <a href="#consultation" class="btn">ປຶກສາດ້ານໄອທີ</a>
-            </div>
+  <!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Lao it support - ໃຫ້ບໍລິການປຶກສາດ້ານໄອທີ ແລະ ແກ້ໄຂບັນຫາຄອມພິວເຕີຟີ</h1>
+        <p>ພວກເຮົາແກ້ໄຂທຸກບັນຫາເລື່ອງໄອທີຂອງທ່ານ ຕັ້ງແຕ່ບັນຫາຮາດແວ ໄປຈົນເຖິງບັນຫາໂປຣແກຣມຟີ</p>
+        <div class="hero-buttons">
+            <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍມີປັນຫາກ່ຽວກັບຄອມພິວເຕີ" class="btn">ປຶກສາ it support ຟີ</a>
         </div>
-    </section>
-
-<!-- Categories Section -->
-<section class="container" id="categories">
-    <h2 class="section-title">ປະເພດສິນຄ້າ</h2>
-    <div class="categories">
-        <a href="desktop-computers.html" class="category-link">
-            <div class="category-card">
-                <div class="category-content">
-                    <div class="category-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <h3>ຄອມພິວເຕີຕັ້ງໂຕະ</h3>
-                    <p>ຄົບຖ້ວນທຸກຄວາມຕ້ອງການ</p>
-                    <div class="category-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-            </div>
-        </a>
-        
-        <a href="laptops.html" class="category-link">
-            <div class="category-card">
-                <div class="category-content">
-                    <div class="category-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>ໂນ໊ດບຸກ</h3>
-                    <p>ພົກພາໄດ້ສະດວກ</p>
-                    <div class="category-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-            </div>
-        </a>
-        
-        <a href="laptop-accessories.html" class="category-link">
-            <div class="category-card">
-                <div class="category-content">
-                    <div class="category-icon">
-                        <i class="fas fa-keyboard"></i>
-                    </div>
-                    <h3>ອຸປະກອນ ໂນ໊ດບຸກ</h3>
-                    <p>ອັບເກຣດໄດ້ຕາມຕ້ອງການ</p>
-                    <div class="category-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-            </div>
-        </a>
-        
-        <a href="pc-components.html" class="category-link">
-            <div class="category-card">
-                <div class="category-content">
-                    <div class="category-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>ອຸປະກອນ PC</h3>
-                    <p>ຄົບຊຸດການໃຊ້ງານ</p>
-                    <div class="category-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-            </div>
-        </a>
+        <!-- ເພີ່ມສື່ມວນຊົນທີ່ນີ້ -->
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/1A6wwegUYL/?mibextid=wwXIfr" target="_blank" class="social-icon facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/2029988148" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
     </div>
 </section>
 
-<style>
-    /* Categories Grid Layout */
-    .categories {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-        margin-bottom: 40px;
-    }
-
-    /* Category Icon Styles */
-    .category-icon {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, var(--primary), #2c5282);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
-        font-size: 30px;
-        color: white;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
-    }
-
-    .category-card:hover .category-icon {
-        transform: scale(1.1) rotate(5deg);
-        background: linear-gradient(135deg, var(--secondary), #f59e0b);
-    }
-
-    /* Updated Category Card Styles */
-    .category-card {
-        background: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: all 0.3s ease;
-        border: 1px solid var(--border);
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 30px 20px;
-        text-align: center;
-        min-height: 220px;
-    }
-
-    .category-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-hover);
-        border-color: var(--primary);
-    }
-
-    .category-content {
-        padding: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .category-content h3 {
-        margin-bottom: 12px;
-        font-size: 1.3rem;
-        color: var(--primary);
-        font-weight: 600;
-        line-height: 1.3;
-    }
-
-    .category-content p {
-        color: var(--gray);
-        margin-bottom: 20px;
-        line-height: 1.5;
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-    }
-
-    .category-arrow {
-        color: var(--primary);
-        font-size: 1.2rem;
-        transition: transform 0.3s ease;
-        margin-top: auto;
-    }
-
-    .category-card:hover .category-arrow {
-        transform: translateX(8px);
-        color: var(--secondary);
-    }
-
-    /* ===== ENHANCED MOBILE STYLES ===== */
-    
-    /* Tablet Devices */
-    @media (min-width: 769px) and (max-width: 1024px) {
-        .categories {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        
-        .category-card {
-            padding: 25px 20px;
-            min-height: 200px;
-        }
-        
-        .category-icon {
-            width: 65px;
-            height: 65px;
-            font-size: 28px;
-            margin-bottom: 18px;
-        }
-        
-        .category-content h3 {
-            font-size: 1.2rem;
-        }
-        
-        .category-content p {
-            font-size: 0.9rem;
-        }
-    }
-
-    /* Mobile Devices */
-    @media (max-width: 768px) {
-        .categories {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .category-card {
-            padding: 20px 15px;
-            border-radius: 12px;
-            min-height: 180px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border);
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-        
-        .category-icon {
-            width: 55px;
-            height: 55px;
-            font-size: 22px;
-            margin-bottom: 12px;
-            box-shadow: 0 3px 8px rgba(26, 54, 93, 0.15);
-        }
-        
-        .category-card:hover .category-icon {
-            transform: scale(1.05) rotate(3deg);
-        }
-        
-        .category-content h3 {
-            font-size: 1rem;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-        
-        .category-content p {
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-        
-        .category-arrow {
-            font-size: 1rem;
-        }
-        
-        .category-card:hover .category-arrow {
-            transform: translateX(5px);
-        }
-    }
-
-    /* Extra Small Mobile Devices */
-    @media (max-width: 480px) {
-        .categories {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        
-        .category-card {
-            padding: 18px 12px;
-            min-height: 160px;
-            border-radius: 10px;
-        }
-        
-        .category-icon {
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .category-content h3 {
-            font-size: 0.9rem;
-            margin-bottom: 6px;
-        }
-        
-        .category-content p {
-            font-size: 0.75rem;
-            margin-bottom: 12px;
-        }
-        
-        .category-arrow {
-            font-size: 0.9rem;
-        }
-    }
-
-    /* Very Small Mobile Devices */
-    @media (max-width: 360px) {
-        .categories {
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-        
-        .category-card {
-            padding: 20px 15px;
-            min-height: 140px;
-        }
-        
-        .category-icon {
-            width: 45px;
-            height: 45px;
-            font-size: 18px;
-        }
-        
-        .category-content h3 {
-            font-size: 0.85rem;
-        }
-        
-        .category-content p {
-            font-size: 0.7rem;
-        }
-    }
-
-    /* Ensure proper spacing and alignment */
-    .category-link {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        height: 100%;
-    }
-
-    /* Smooth transitions for better UX */
-    .category-card,
-    .category-icon,
-    .category-arrow {
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-</style>
 <!-- Featured Products -->
 <section class="container" id="products">
     <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
@@ -1816,10 +1455,10 @@
         <div class="product-card" data-product-id="1">
             <div class="badge">ຂາຍດີ</div>
             <div class="product-img">
-                <img src="pcacer.png" alt="ຄອມພິວເຕີ ຍີຫໍ່ ສະເພາະຫ້ອງການ">
+                <img src="Keyboard-Mouse.png" alt="ຄີບອດໍ + ເມົ້າ">
             </div>
             <div class="product-content">
-                <h3 class="product-title">ຄອມພິວເຕີ ACER Emachines U200</h3>
+                <h3 class="product-title">Keyboard&Mouse Wireless LENOVO Lecoo KW200</h3>
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1827,10 +1466,10 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <p class="product-description">ຄອມພິວເຕີ ຍີຫໍ່ ສະເພາະຫ້ອງການ</p>
+                <p class="product-description">ENSKU:DTI222</p>
                 <div class="product-price">
-                    <span class="discount-price">35,900 ກີບ</span>
-                    <span class="current-price">32,900 ກີບ</span>
+                    <span class="discount-price">202,000 ກີບ</span>
+                    <span class="current-price">250,000 ກີບ</span>
                 </div>
                 <div class="product-actions">
                     <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ" target="_blank" class="order-btn">
@@ -1844,10 +1483,10 @@
         <div class="product-card" data-product-id="2">
             <div class="badge">ໃໝ່</div>
             <div class="product-img">
-                <img src="lenovo.png" alt="ໂນດບຸກ ASUS VivoBook 15">
+                <img src="Mouse.png" alt="Mouse USB PHILIPS SPK7247SKU:DTK224">
             </div>
             <div class="product-content">
-                <h3 class="product-title">ໂນດບຸກ ASUS VivoBook 15</h3>
+                <h3 class="product-title">Mouse USB PHILIPS SPK7247SKU</h3>
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1855,12 +1494,13 @@
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
                 </div>
-                <p class="product-description">ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ</p>
+                <p class="product-description">DTK224</p>
                 <div class="product-price">
-                    <span class="current-price">19,500 ກີບ</span>
+                    <span class="discount-price">70,000 ກີບ</span>
+                    <span class="current-price">60,000 ກີບ</span>
                 </div>
                 <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ໂນດບຸກ ASUS VivoBook 15 ລາຄາ 19,500 ກີບ" target="_blank" class="order-btn">
+                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ Mouse USB PHILIPS SPK7247SKU" target="_blank" class="order-btn">
                         <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
                     </a>
                     <button class="wishlist"><i class="far fa-heart"></i></button>
@@ -1871,10 +1511,10 @@
         <div class="product-card" data-product-id="3">
             <div class="badge">ສິນຄ້າມາໃໝ່</div>
             <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ກາດຈໍ RTX 4070">
+                <img src="Backpack.png" alt="ກະເປົ່າເປ້ NB ROG ASUS">
             </div>
             <div class="product-content">
-                <h3 class="product-title">ກາດຈໍ RTX 4070</h3>
+                <h3 class="product-title">ກະເປົ່າເປ້ NB ROG ASUS</h3>
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1882,12 +1522,13 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <p class="product-description">ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ</p>
+                <p class="product-description">NBG227</p>
                 <div class="product-price">
-                    <span class="current-price">24,900 ກີບ</span>
+                    <span class="discount-price">250,000 ກີບ</span>
+                    <span class="current-price">220,000 ກີບ</span>
                 </div>
                 <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ" target="_blank" class="order-btn">
+                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກະເປົ່າເປ້ NB ROG ASUS" target="_blank" class="order-btn">
                         <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
                     </a>
                     <button class="wishlist"><i class="far fa-heart"></i></button>
@@ -1898,10 +1539,10 @@
         <div class="product-card" data-product-id="4">
             <div class="badge">ລາຄາພິເສດ</div>
             <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ຫູຟັງ Gaming 7.1">
+                <img src="Pad-Mouse.png" alt="ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm">
             </div>
             <div class="product-content">
-                <h3 class="product-title">ຫູຟັງ Gaming 7.1</h3>
+                <h3 class="product-title">ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm</h3>
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1909,13 +1550,13 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <p class="product-description">ສຽງຄົມຊັດ ເກົ່າສະບາຍ</p>
+                <p class="product-description">DTK227</p>
                 <div class="product-price">
-                    <span class="discount-price">3,290 ກີບ</span>
-                    <span class="current-price">2,590 ກີບ</span>
+                    <span class="discount-price">40,000 ກີບ</span>
+                    <span class="current-price">30,090 ກີບ</span>
                 </div>
                 <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຫູຟັງ Gaming 7.1 ລາຄາ 2,590 ກີບ" target="_blank" class="order-btn">
+                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm" target="_blank" class="order-btn">
                         <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
                     </a>
                     <button class="wishlist"><i class="far fa-heart"></i></button>
@@ -2178,68 +1819,52 @@
         // Product data
         const products = {
             1: {
-                title: "ຄອມພິວເຕີ ຍີຫໍ່ ສະເພາະຫ້ອງການ",
-                image: "pcacer.png",
+                title: "Keyboard&Mouse Wireless LENOVO Lecoo KW200",
+                image: "Keyboard-Mouse.png",
                 rating: "★★★★½",
-                description: "ຄອມພິວເຕີທີ່ໄດ້ຂາຍເປັນເຄື່ອງມື 1 ຮັບປະກັນ 1 ປີ. ແຖມ 4 ຢ່າງ: ເມົ້າ,ຄີບອດ,ແຜ່ນຮອງເມົ້າ,ສະຕິກເກີແປ້ນພິມພາສາລາວ",
-                discountPrice: "3,500,000 ກີບ",
-                currentPrice: "3,300,000 ກີບ",
+                description: "ເມົ້າ,ຄີບອດ ໄລ້ສາຍ",
+                discountPrice: "202,000ກີບ",
+                currentPrice: "250,000 ກີບ",
                 specs: [
-                    "ຫນ່ວຍປະມວນຜົນ: Intel Core i3-6100 3.7Ghz",
-                    "RAM: DDR4 8Gb M.2",
-                    "SSD: NVME 256Gb",
-                    "ລະບົບປະຕິບັດການ: Windows 10 Pro"
+                   
                 ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ"
+                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ເມົ້າ,ຄີບອດ ໄລ້ສາຍ"
             },
             2: {
-                title: "ໂນດບຸກ ASUS VivoBook 15",
-                image: "lenovo.png",
+                title: "Mouse USB PHILIPS SPK7247SKU",
+                image: "Mouse.png",
                 rating: "★★★★☆",
-                description: "ເບົາ ແລະ ບາງ ພກພາໄດ້ສະດວກ",
-                currentPrice: "19,500 ກີບ",
+                description: "DTK224",
+                discountPrice: "70,000ກີບ",
+                currentPrice: "60,000 ກີບ",
                 specs: [
-                    "ຫນ່ວຍປະມວນຜົນ: Intel Core i5-1240P",
-                    "ກາດຈໍ: Intel Iris Xe Graphics",
-                    "ແພັດເຕີດີ: 16GB DDR4",
-                    "ຮາດດິດ: 512GB SSD",
-                    "ຈໍ: 15.6\" FHD IPS",
-                    "ນ້ຳຫນັກ: 1.7 ກິໂລ"
+                   
                 ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ໂນດບຸກ ASUS VivoBook 15 ລາຄາ 19,500 ກີບ"
+                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ Mouse USB PHILIPS SPK7247SKU"
             },
             3: {
-                title: "ກາດຈໍ RTX 4070",
-                image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                title: "ກະເປົ່າເປ້ NB ROG ASUS",
+                image: "Backpack.png",
                 rating: "★★★★★",
-                description: "ປະສິດທິພາບສູງສຳລັບເກມ ແລະ ເຮັດເອນິເມຊັນ",
-                currentPrice: "24,900 ກີບ",
+                description: "ກະເປົ່າເປ້ NB ROG ASUSNBG228",
+                discountPrice: "250,000ກີບ",
+                currentPrice: "220,000 ກີບ",
                 specs: [
-                    "ຊຸດ: NVIDIA GeForce RTX 4070",
-                    "ຫນ່ວຍຄວບຄຸມຄວາມຈຳ: 12GB GDDR6X",
-                    "ຄວາມໄວ: 19 Gbps",
-                    "ຊ່ອງຕໍ່: PCIe 4.0 x16",
-                    "ພະລັງງານ: 200W",
-                    "ຮອງຮັບ: Ray Tracing, DLSS 3"
+                   
                 ],
                 whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ"
             },
             4: {
-                title: "ຫູຟັງ Gaming 7.1",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                title: "ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm",
+                image: "Pad-Mouse.png",
                 rating: "★★★★½",
-                description: "ສຽງຄົມຊັດ ເກົ່າສະບາຍ",
-                discountPrice: "3,290 ກີບ",
-                currentPrice: "2,590 ກີບ",
+                description: "DTK227",
+                discountPrice: "40,000 ກີບ",
+                currentPrice: "30,000 ກີບ",
                 specs: [
-                    "ຮູບແບບ: Over-ear",
-                    "ລະບົບສຽງ: 7.1 Surround Sound",
-                    "ໄມໂຄຣໂຟນ: Yes, Noise Cancelling",
-                    "ຊ່ອງຕໍ່: USB & 3.5mm Jack",
-                    "ສີ: Black/Red",
-                    "ນ້ຳຫນັກ: 320g"
+                 
                 ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຫູຟັງ Gaming 7.1 ລາຄາ 2,590 ກີບ"
+                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm"
             }
         };
 
@@ -2348,42 +1973,7 @@
         });
     });
 </script>
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>ບໍລິການຂອງພວກເຮົາ</h3>
-                    <ul>
-                        <li><a href="#products">ຂາຍອຸປະກອນຄອມພິວເຕີ</a></li>
-                        <li><a href="#services">ຊ່ອມແຊມຄອມພິວເຕີ</a></li>
-                        <li><a href="#consultation">ປຶກສາດ້ານໄອທີ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>ຕິດຕໍ່ພວກເຮົາ</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> 020-29988148</li>
-                        <li><i class="fas fa-envelope"></i> info@jtech.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> ນະຄອນຫຼວງວຽງຈັນ, ລາວ</li>
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/share/1CbJTRfNMc/?mibextid=wwXIfr" target="_blank" class="social-icon facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://wa.me/2029988148" target="_blank" class="social-icon whatsapp">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                        </div>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>ກ່ຽວກັບ JTech</h3>
-                    <p>ພວກເຮົາແມ່ນຜູ້ຊ່ຽວຊານດ້ານຄອມພິວເຕີ ແລະ ອຸປະກອນໄອທີທີ່ມີປະສົບການຫຼາຍກວ່າ 10 ປີ ພ້ອມທັງບໍລິການປຶກສາດ້ານໄອທີ</p>
-                </div>
-            </div>
-            
+   <footer>
             <div class="footer-bottom">
                 <p>&copy; 2025 JTech. ສະຫງວນລິຂະສິດທັງໝົດ.</p>
             </div>
