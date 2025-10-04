@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JTech - ຂາຍອຸປະກອນຄອມພິວເຕີ ແລະ ບໍລິການປຶກສາດ້ານໄອທີ</title>
+    <title>Lao it support - ບໍລິການປຶກສາດ້ານໄອທີ ແລະ ແກ້ໄຂບັນຫາຄອມພິວເຕີຟີ</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Keyboard-Mouse.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Keyboard-Mouse.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Keyboard-Mouse.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Keyboard-Mouse.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -585,7 +592,6 @@
             gap: 20px;
         }
         
-        
         /* Badge and Discount Styles */
         .badge {
             position: absolute;
@@ -713,6 +719,111 @@
             to { transform: rotate(360deg); }
         }
         
+        /* Social Icons Styles */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon.facebook {
+            background: #3b5998;
+        }
+
+        .social-icon.whatsapp {
+            background: #25D366;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icon.facebook:hover {
+            background: #2d4373;
+        }
+
+        .social-icon.whatsapp:hover {
+            background: #128C7E;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         /* ===== ENHANCED MOBILE STYLES ===== */
         
         /* Enhanced Product Cards for Mobile */
@@ -1215,6 +1326,17 @@
                 bottom: 15px;
                 left: 15px;
             }
+            
+            /* Responsive Styles for Social Icons */
+            .social-icons {
+                margin-top: 20px;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
         }
         
         /* Extra Small Devices */
@@ -1355,61 +1477,221 @@
             outline: 2px solid var(--primary);
             outline-offset: 2px;
         }
-        /* Social Icons Styles */
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 25px;
-}
 
-.social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
 
-.social-icon.facebook {
-    background: #3b5998;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-.social-icon.whatsapp {
-    background: #25D366;
-}
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
 
-.social-icon:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-.social-icon.facebook:hover {
-    background: #2d4373;
-}
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gray);
+            cursor: pointer;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
 
-.social-icon.whatsapp:hover {
-    background: #128C7E;
-}
+        .close:hover {
+            color: var(--accent);
+            background: white;
+            transform: scale(1.1);
+        }
 
-/* Responsive Styles for Social Icons */
-@media (max-width: 768px) {
-    .social-icons {
-        margin-top: 20px;
-    }
-    
-    .social-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
-    }
-}
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .modal-product-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            height: 400px;
+        }
+
+        .modal-product-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-product-details h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .modal-product-rating {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .modal-product-details p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .modal-product-price {
+            margin: 20px 0;
+            font-size: 1.5rem;
+        }
+
+        .modal-product-specs {
+            margin: 25px 0;
+        }
+
+        .modal-product-specs h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .modal-product-specs ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-product-specs li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--dark);
+        }
+
+        .modal-product-specs li:last-child {
+            border-bottom: none;
+        }
+
+        .modal-product-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .modal-order-btn {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+        }
+
+        .modal-wishlist {
+            width: 60px;
+            font-size: 1.2rem;
+        }
+
+        /* Make product cards clickable */
+        .product-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Prevent buttons from triggering card click */
+        .product-actions * {
+            pointer-events: auto;
+        }
+
+        .product-card > *:not(.product-actions) {
+            pointer-events: none;
+        }
+
+        /* Responsive Modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                max-height: 85vh;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .modal-product-img {
+                height: 250px;
+            }
+
+            .modal-product-details h2 {
+                font-size: 1.4rem;
+            }
+
+            .modal-product-actions {
+                flex-direction: column;
+            }
+
+            .modal-order-btn, .modal-wishlist {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 98%;
+                margin: 2% auto;
+            }
+
+            .modal-body {
+                padding: 15px;
+            }
+
+            .modal-product-img {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1426,557 +1708,147 @@
                     <i class="fas fa-laptop"></i>
                     <span>JTech</span>
                 </a>
-               
               
-       
     </header>
 
-  <!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-        <h1>Lao it support - ໃຫ້ບໍລິການປຶກສາດ້ານໄອທີ ແລະ ແກ້ໄຂບັນຫາຄອມພິວເຕີຟີ</h1>
-        <p>ພວກເຮົາແກ້ໄຂທຸກບັນຫາເລື່ອງໄອທີຂອງທ່ານ ຕັ້ງແຕ່ບັນຫາຮາດແວ ໄປຈົນເຖິງບັນຫາໂປຣແກຣມຟີ</p>
-        <div class="hero-buttons">
-            <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍມີປັນຫາກ່ຽວກັບຄອມພິວເຕີ" class="btn">ປຶກສາ it support ຟີ</a>
-        </div>
-        <!-- ເພີ່ມສື່ມວນຊົນທີ່ນີ້ -->
-        <div class="social-icons">
-            <a href="https://www.facebook.com/share/1A6wwegUYL/?mibextid=wwXIfr" target="_blank" class="social-icon facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://wa.me/2029988148" target="_blank" class="social-icon whatsapp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Products -->
-<section class="container" id="products">
-    <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
-    <div class="products">
-        <div class="product-card" data-product-id="1">
-            <div class="badge">ຂາຍດີ</div>
-            <div class="product-img">
-                <img src="Keyboard-Mouse.png" alt="ຄີບອດໍ + ເມົ້າ">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Lao it support - ໃຫ້ບໍລິການປຶກສາດ້ານໄອທີ ແລະ ແກ້ໄຂບັນຫາຄອມພິວເຕີຟີ</h1>
+            <p>ພວກເຮົາແກ້ໄຂທຸກບັນຫາເລື່ອງໄອທີຂອງທ່ານ ຕັ້ງແຕ່ບັນຫາຮາດແວ ໄປຈົນເຖິງບັນຫາໂປຣແກຣມຟີ</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍມີປັນຫາກ່ຽວກັບຄອມພິວເຕີ" class="btn">ປຶກສາ it support ຟີ</a>
             </div>
-            <div class="product-content">
-                <h3 class="product-title">Keyboard&Mouse Wireless LENOVO Lecoo KW200</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <p class="product-description">ENSKU:DTI222</p>
-                <div class="product-price">
-                    <span class="discount-price">202,000 ກີບ</span>
-                    <span class="current-price">250,000 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
-                </div>
+            <!-- ເພີ່ມສື່ມວນຊົນທີ່ນີ້ -->
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/1A6wwegUYL/?mibextid=wwXIfr" target="_blank" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/2029988148" target="_blank" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
             </div>
         </div>
-        
-        <div class="product-card" data-product-id="2">
-            <div class="badge">ໃໝ່</div>
-            <div class="product-img">
-                <img src="Mouse.png" alt="Mouse USB PHILIPS SPK7247SKU:DTK224">
-            </div>
-            <div class="product-content">
-                <h3 class="product-title">Mouse USB PHILIPS SPK7247SKU</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container" id="products">
+        <h2 class="section-title">ສິນຄ້າແນະນຳ</h2>
+        <div class="products">
+            <div class="product-card" data-product-id="1">
+                <div class="badge">ຂາຍດີ</div>
+                <div class="product-img">
+                    <img src="Keyboard-Mouse.png" alt="ຄີບອດໍ + ເມົ້າ">
                 </div>
-                <p class="product-description">DTK224</p>
-                <div class="product-price">
-                    <span class="discount-price">70,000 ກີບ</span>
-                    <span class="current-price">60,000 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ Mouse USB PHILIPS SPK7247SKU" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="product-card" data-product-id="3">
-            <div class="badge">ສິນຄ້າມາໃໝ່</div>
-            <div class="product-img">
-                <img src="Backpack.png" alt="ກະເປົ່າເປ້ NB ROG ASUS">
-            </div>
-            <div class="product-content">
-                <h3 class="product-title">ກະເປົ່າເປ້ NB ROG ASUS</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="product-description">NBG227</p>
-                <div class="product-price">
-                    <span class="discount-price">250,000 ກີບ</span>
-                    <span class="current-price">220,000 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກະເປົ່າເປ້ NB ROG ASUS" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
+                <div class="product-content">
+                    <h3 class="product-title">Keyboard&Mouse Wireless LENOVO Lecoo KW200</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="product-description">ENSKU:DTI222</p>
+                    <div class="product-price">
+                        <span class="discount-price">202,000 ກີບ</span>
+                        <span class="current-price">250,000 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ຄອມພິວເຕີ Gaming ລຸ້ນພິເສດ ລາຄາ 32,900 ກີບ" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="product-card" data-product-id="4">
-            <div class="badge">ລາຄາພິເສດ</div>
-            <div class="product-img">
-                <img src="Pad-Mouse.png" alt="ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm">
-            </div>
-            <div class="product-content">
-                <h3 class="product-title">ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <p class="product-description">DTK227</p>
-                <div class="product-price">
-                    <span class="discount-price">40,000 ກີບ</span>
-                    <span class="current-price">30,090 ກີບ</span>
-                </div>
-                <div class="product-actions">
-                    <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm" target="_blank" class="order-btn">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
-                    </a>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Product Detail Modal -->
-<div id="productModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="modal-body">
-            <div class="modal-product-img">
-                <img id="modalProductImg" src="" alt="">
-            </div>
-            <div class="modal-product-details">
-                <h2 id="modalProductTitle"></h2>
-                <div class="modal-product-rating" id="modalProductRating"></div>
-                <p id="modalProductDescription"></p>
-                <div class="modal-product-price">
-                    <span id="modalProductDiscountPrice" class="discount-price"></span>
-                    <span id="modalProductCurrentPrice" class="current-price"></span>
-                </div>
-                <div class="modal-product-specs">
-                    <h3>ລາຍລະອຽດສະເພາະ</h3>
-                    <ul id="modalProductSpecs"></ul>
-                </div>
-                <div class="modal-product-actions">
-                    <a href="#" id="modalOrderBtn" class="order-btn modal-order-btn" target="_blank">
-                        <i class="fab fa-whatsapp"></i> ສັ່ງຊື້ດຽວນີ້
-                    </a>
-                    <button class="wishlist modal-wishlist"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    /* Modal Styles */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    .modal-content {
-        background-color: white;
-        margin: 2% auto;
-        padding: 0;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 900px;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-        from { transform: translateY(-50px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-
-    .close {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        font-size: 28px;
-        font-weight: bold;
-        color: var(--gray);
-        cursor: pointer;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.9);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    }
-
-    .close:hover {
-        color: var(--accent);
-        background: white;
-        transform: scale(1.1);
-    }
-
-    .modal-body {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        padding: 30px;
-    }
-
-    .modal-product-img {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f8fafc;
-        border-radius: 10px;
-        padding: 20px;
-        height: 400px;
-    }
-
-    .modal-product-img img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .modal-product-details h2 {
-        color: var(--primary);
-        margin-bottom: 15px;
-        font-size: 1.8rem;
-    }
-
-    .modal-product-rating {
-        color: var(--secondary);
-        margin-bottom: 15px;
-        font-size: 1.1rem;
-    }
-
-    .modal-product-details p {
-        color: var(--gray);
-        margin-bottom: 20px;
-        line-height: 1.6;
-    }
-
-    .modal-product-price {
-        margin: 20px 0;
-        font-size: 1.5rem;
-    }
-
-    .modal-product-specs {
-        margin: 25px 0;
-    }
-
-    .modal-product-specs h3 {
-        color: var(--primary);
-        margin-bottom: 15px;
-        font-size: 1.3rem;
-    }
-
-    .modal-product-specs ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .modal-product-specs li {
-        padding: 8px 0;
-        border-bottom: 1px solid var(--border);
-        color: var(--dark);
-    }
-
-    .modal-product-specs li:last-child {
-        border-bottom: none;
-    }
-
-    .modal-product-actions {
-        display: flex;
-        gap: 15px;
-        margin-top: 25px;
-    }
-
-    .modal-order-btn {
-        flex: 1;
-        padding: 15px 20px;
-        font-size: 1.1rem;
-    }
-
-    .modal-wishlist {
-        width: 60px;
-        font-size: 1.2rem;
-    }
-
-    /* Make product cards clickable */
-    .product-card {
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Prevent buttons from triggering card click */
-    .product-actions * {
-        pointer-events: auto;
-    }
-
-    .product-card > *:not(.product-actions) {
-        pointer-events: none;
-    }
-
-    /* Responsive Modal */
-    @media (max-width: 768px) {
-        .modal-content {
-            width: 95%;
-            margin: 5% auto;
-            max-height: 85vh;
-        }
-
-        .modal-body {
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .modal-product-img {
-            height: 250px;
-        }
-
-        .modal-product-details h2 {
-            font-size: 1.4rem;
-        }
-
-        .modal-product-actions {
-            flex-direction: column;
-        }
-
-        .modal-order-btn, .modal-wishlist {
-            width: 100%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .modal-content {
-            width: 98%;
-            margin: 2% auto;
-        }
-
-        .modal-body {
-            padding: 15px;
-        }
-
-        .modal-product-img {
-            height: 200px;
-        }
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Product data
-        const products = {
-            1: {
-                title: "Keyboard&Mouse Wireless LENOVO Lecoo KW200",
-                image: "Keyboard-Mouse.png",
-                rating: "★★★★½",
-                description: "ເມົ້າ,ຄີບອດ ໄລ້ສາຍ",
-                discountPrice: "202,000ກີບ",
-                currentPrice: "250,000 ກີບ",
-                specs: [
-                   
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ເມົ້າ,ຄີບອດ ໄລ້ສາຍ"
-            },
-            2: {
-                title: "Mouse USB PHILIPS SPK7247SKU",
-                image: "Mouse.png",
-                rating: "★★★★☆",
-                description: "DTK224",
-                discountPrice: "70,000ກີບ",
-                currentPrice: "60,000 ກີບ",
-                specs: [
-                   
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ Mouse USB PHILIPS SPK7247SKU"
-            },
-            3: {
-                title: "ກະເປົ່າເປ້ NB ROG ASUS",
-                image: "Backpack.png",
-                rating: "★★★★★",
-                description: "ກະເປົ່າເປ້ NB ROG ASUSNBG228",
-                discountPrice: "250,000ກີບ",
-                currentPrice: "220,000 ກີບ",
-                specs: [
-                   
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກາດຈໍ RTX 4070 ລາຄາ 24,900 ກີບ"
-            },
-            4: {
-                title: "ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm",
-                image: "Pad-Mouse.png",
-                rating: "★★★★½",
-                description: "DTK227",
-                discountPrice: "40,000 ກີບ",
-                currentPrice: "30,000 ກີບ",
-                specs: [
-                 
-                ],
-                whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm"
-            }
-        };
-
-        // Modal elements
-        const modal = document.getElementById('productModal');
-        const closeBtn = document.querySelector('.close');
-        const modalProductImg = document.getElementById('modalProductImg');
-        const modalProductTitle = document.getElementById('modalProductTitle');
-        const modalProductRating = document.getElementById('modalProductRating');
-        const modalProductDescription = document.getElementById('modalProductDescription');
-        const modalProductDiscountPrice = document.getElementById('modalProductDiscountPrice');
-        const modalProductCurrentPrice = document.getElementById('modalProductCurrentPrice');
-        const modalProductSpecs = document.getElementById('modalProductSpecs');
-        const modalOrderBtn = document.getElementById('modalOrderBtn');
-
-        // Product card click event
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                // Don't trigger if clicking on buttons
-                if (e.target.closest('.product-actions')) {
-                    return;
-                }
-                
-                const productId = this.getAttribute('data-product-id');
-                const product = products[productId];
-                
-                if (product) {
-                    openProductModal(product);
-                }
-            });
-        });
-
-        // Open modal function
-        function openProductModal(product) {
-            modalProductImg.src = product.image;
-            modalProductImg.alt = product.title;
-            modalProductTitle.textContent = product.title;
-            modalProductRating.innerHTML = product.rating.split('').map(char => {
-                if (char === '★') return '<i class="fas fa-star"></i>';
-                if (char === '½') return '<i class="fas fa-star-half-alt"></i>';
-                if (char === '☆') return '<i class="far fa-star"></i>';
-                return char;
-            }).join('');
-            modalProductDescription.textContent = product.description;
             
-            // Handle prices
-            if (product.discountPrice) {
-                modalProductDiscountPrice.textContent = product.discountPrice;
-                modalProductDiscountPrice.style.display = 'inline';
-            } else {
-                modalProductDiscountPrice.style.display = 'none';
-            }
+            <div class="product-card" data-product-id="2">
+                <div class="badge">ໃໝ່</div>
+                <div class="product-img">
+                    <img src="Mouse.png" alt="Mouse USB PHILIPS SPK7247SKU:DTK224">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Mouse USB PHILIPS SPK7247SKU</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="product-description">DTK224</p>
+                    <div class="product-price">
+                        <span class="discount-price">70,000 ກີບ</span>
+                        <span class="current-price">60,000 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ Mouse USB PHILIPS SPK7247SKU" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
             
-            modalProductCurrentPrice.textContent = product.currentPrice;
-            modalOrderBtn.href = product.whatsappLink;
+            <div class="product-card" data-product-id="3">
+                <div class="badge">ສິນຄ້າມາໃໝ່</div>
+                <div class="product-img">
+                    <img src="Backpack.png" alt="ກະເປົ່າເປ້ NB ROG ASUS">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">ກະເປົ່າເປ້ NB ROG ASUS</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="product-description">NBG227</p>
+                    <div class="product-price">
+                        <span class="discount-price">250,000 ກີບ</span>
+                        <span class="current-price">220,000 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກະເປົ່າເປ້ NB ROG ASUS" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
             
-            // Add specs
-            modalProductSpecs.innerHTML = '';
-            product.specs.forEach(spec => {
-                const li = document.createElement('li');
-                li.textContent = spec;
-                modalProductSpecs.appendChild(li);
-            });
-            
-            // Show modal
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+            <div class="product-card" data-product-id="4">
+                <div class="badge">ລາຄາພິເສດ</div>
+                <div class="product-img">
+                    <img src="Pad-Mouse.png" alt="ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="product-description">DTK227</p>
+                    <div class="product-price">
+                        <span class="discount-price">40,000 ກີບ</span>
+                        <span class="current-price">30,090 ກີບ</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm" target="_blank" class="order-btn">
+                            <i class="fab fa-whatsapp"></i> ສັ່ງຊື້
+                        </a>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Close modal
-        closeBtn.addEventListener('click', closeModal);
-        
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // ESC key to close modal
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Wishlist functionality in modal
-        const modalWishlist = document.querySelector('.modal-wishlist');
-        modalWishlist.addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                this.style.color = 'red';
-                this.style.borderColor = 'red';
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                this.style.color = '';
-                this.style.borderColor = '';
-            }
-        });
-    });
-</script>
-   <footer>
             <div class="footer-bottom">
                 <p>&copy; 2025 JTech. ສະຫງວນລິຂະສິດທັງໝົດ.</p>
             </div>
@@ -1985,6 +1857,174 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Product data
+            const products = {
+                1: {
+                    title: "Keyboard&Mouse Wireless LENOVO Lecoo KW200",
+                    image: "Keyboard-Mouse.png",
+                    rating: "★★★★½",
+                    description: "ເມົ້າ,ຄີບອດ ໄລ້ສາຍ",
+                    discountPrice: "202,000ກີບ",
+                    currentPrice: "250,000 ກີບ",
+                    specs: [
+                        "ປະເພດ: ຄີບອດໍ ແລະ ເມົ້າ Wireless",
+                        "ຍີ່ຫໍ້: LENOVO Lecoo",
+                        "ຮຸ່ນ: KW200",
+                        "ສີ: ດຳ"
+                    ],
+                    whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ເມົ້າ,ຄີບອດ ໄລ້ສາຍ"
+                },
+                2: {
+                    title: "Mouse USB PHILIPS SPK7247SKU",
+                    image: "Mouse.png",
+                    rating: "★★★★☆",
+                    description: "DTK224",
+                    discountPrice: "70,000ກີບ",
+                    currentPrice: "60,000 ກີບ",
+                    specs: [
+                        "ປະເພດ: ເມົ້າ USB",
+                        "ຍີ່ຫໍ້: PHILIPS",
+                        "ຮຸ່ນ: SPK7247",
+                        "ສີ: ດຳ"
+                    ],
+                    whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ Mouse USB PHILIPS SPK7247SKU"
+                },
+                3: {
+                    title: "ກະເປົ່າເປ້ NB ROG ASUS",
+                    image: "Backpack.png",
+                    rating: "★★★★★",
+                    description: "ກະເປົ່າເປ້ NB ROG ASUSNBG228",
+                    discountPrice: "250,000ກີບ",
+                    currentPrice: "220,000 ກີບ",
+                    specs: [
+                        "ປະເພດ: ກະເປົ່າເປ້ຄອມພິວເຕີ",
+                        "ຍີ່ຫໍ້: ASUS ROG",
+                        "ຂະໜາດ: ກວ້າງ 30cm, ສູງ 45cm",
+                        "ສີ: ດຳ-ແດງ"
+                    ],
+                    whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ກະເປົ່າເປ້ NB ROG ASUS"
+                },
+                4: {
+                    title: "ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm",
+                    image: "Pad-Mouse.png",
+                    rating: "★★★★½",
+                    description: "DTK227",
+                    discountPrice: "40,000 ກີບ",
+                    currentPrice: "30,000 ກີບ",
+                    specs: [
+                        "ປະເພດ: ແຜ່ນຮອງເມົ້າ",
+                        "ຍີ່ຫໍ້: Logitech",
+                        "ຂະໜາດ: 340x280x3mm",
+                        "ສີ: ດຳ"
+                    ],
+                    whatsappLink: "https://wa.me/2029988148?text=ສະບາຍດີ! ຂ້ອຍສົນໃຈສັ່ງຊື້ ແຜ່ນຮອງເມົ້າ Logitech 340x280x3mm"
+                }
+            };
+
+            // Modal elements
+            const modal = document.getElementById('productModal');
+            const closeBtn = document.querySelector('.close');
+            const modalProductImg = document.getElementById('modalProductImg');
+            const modalProductTitle = document.getElementById('modalProductTitle');
+            const modalProductRating = document.getElementById('modalProductRating');
+            const modalProductDescription = document.getElementById('modalProductDescription');
+            const modalProductDiscountPrice = document.getElementById('modalProductDiscountPrice');
+            const modalProductCurrentPrice = document.getElementById('modalProductCurrentPrice');
+            const modalProductSpecs = document.getElementById('modalProductSpecs');
+            const modalOrderBtn = document.getElementById('modalOrderBtn');
+
+            // Product card click event
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on buttons
+                    if (e.target.closest('.product-actions')) {
+                        return;
+                    }
+                    
+                    const productId = this.getAttribute('data-product-id');
+                    const product = products[productId];
+                    
+                    if (product) {
+                        openProductModal(product);
+                    }
+                });
+            });
+
+            // Open modal function
+            function openProductModal(product) {
+                modalProductImg.src = product.image;
+                modalProductImg.alt = product.title;
+                modalProductTitle.textContent = product.title;
+                modalProductRating.innerHTML = product.rating.split('').map(char => {
+                    if (char === '★') return '<i class="fas fa-star"></i>';
+                    if (char === '½') return '<i class="fas fa-star-half-alt"></i>';
+                    if (char === '☆') return '<i class="far fa-star"></i>';
+                    return char;
+                }).join('');
+                modalProductDescription.textContent = product.description;
+                
+                // Handle prices
+                if (product.discountPrice) {
+                    modalProductDiscountPrice.textContent = product.discountPrice;
+                    modalProductDiscountPrice.style.display = 'inline';
+                } else {
+                    modalProductDiscountPrice.style.display = 'none';
+                }
+                
+                modalProductCurrentPrice.textContent = product.currentPrice;
+                modalOrderBtn.href = product.whatsappLink;
+                
+                // Add specs
+                modalProductSpecs.innerHTML = '';
+                product.specs.forEach(spec => {
+                    const li = document.createElement('li');
+                    li.textContent = spec;
+                    modalProductSpecs.appendChild(li);
+                });
+                
+                // Show modal
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Close modal
+            closeBtn.addEventListener('click', closeModal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            // ESC key to close modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // Wishlist functionality in modal
+            const modalWishlist = document.querySelector('.modal-wishlist');
+            modalWishlist.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    this.style.color = 'red';
+                    this.style.borderColor = 'red';
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    this.style.color = '';
+                    this.style.borderColor = '';
+                }
+            });
+
             // ເພີ່ມສິນຄ້າລົງໃນກະຕ່າ
             const addToCartButtons = document.querySelectorAll('.add-to-cart');
             addToCartButtons.forEach(button => {
@@ -2004,7 +2044,8 @@
             // ປ່ຽນໄອຄອນເມື່ອກົດ wishlist
             const wishlistButtons = document.querySelectorAll('.wishlist');
             wishlistButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const icon = this.querySelector('i');
                     if (icon.classList.contains('far')) {
                         icon.classList.remove('far');
