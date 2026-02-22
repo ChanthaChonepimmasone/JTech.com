@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friendship Quiz - ວັດແທກຄວາມຮູ້ໃຈ</title>
+    <title>Friendship Quiz - ວັດຄວາມຮູ້ໃຈ</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #6366f1; --secondary: #ec4899; --bg: #f3f4f6; }
@@ -33,9 +33,9 @@
     <div id="loading" style="text-align: center; margin-top: 50px;">ກຳລັງໂຫລດ...</div>
 
     <div id="step-main" class="hidden">
-        <h2 id="title">ເຈົ້າຮູ້ໃຈຂ້ອຍສ່ຳໃດ?</h2>
+        <h2 id="title">ໝູ່ຮູ້ໃຈເຮົາສ່ຳໃດ?</h2>
         <input type="text" id="user-name" placeholder="ໃສ່ຊື່ຂອງເຈົ້າຢູ່ ນີ້...">
-        <button class="btn" onclick="startQuiz()">ເລີ່ມຫຼິ້ນ</button>
+        <button class="btn" onclick="startQuiz()">ເລີ່ມ</button>
     </div>
 
     <div id="step-quiz" class="hidden">
@@ -52,7 +52,7 @@
 
     <div id="step-share" class="hidden">
         <h2>ສ້າງສຳເລັດແລ້ວ!</h2>
-        <p style="text-align: center;">ສົ່ງລິ້ງນີ້ໃຫ້ໝູ່ທາຍ:</p>
+        <p style="text-align: center;">ສົ່ງລິ້ງນີ້ໃຫ້ໝູ່:</p>
         <input type="text" id="share-url" readonly onclick="this.select()">
         <button class="btn" onclick="copyLink()">ຄັດລອກລິ້ງສົ່ງໃຫ້ໝູ່</button>
         <button id="view-scores-btn" class="btn btn-secondary" style="margin-top:20px;">ເບິ່ງຄະແນນຂອງໝູ່</button>
