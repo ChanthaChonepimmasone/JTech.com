@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friendship Quiz - ວັດແທກຄວາມຮູ້ໃຈ</title>
+    <title>Friendship Quiz - ວັດຄວາມຮູ້ໃຈ</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #6366f1; --secondary: #ec4899; --bg: #f3f4f6; }
@@ -60,9 +60,8 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDoc, doc, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDoc, getDocs, doc, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // ໃຊ້ Firebase Config ເດີມຂອງເຈົ້າ
     const firebaseConfig = {
         apiKey: "AIzaSyDX3r9VBoCJ5XPPUDPIK5uLsXxJxE7gA98",
         authDomain: "quizzes-451f5.firebaseapp.com",
@@ -76,13 +75,18 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // ຄຳຖາມຕົວຢ່າງ (ເຈົ້າສາມາດປ່ຽນຂໍ້ຄວາມພາສາລາວຢູ່ບ່ອນນີ້ໄດ້)
     const questions = [
         { q: "ອາຫານທີ່ຂ້ອຍມັກທີ່ສຸດ?", options: [
             { t: "ຊາບູ", i: "https://images.unsplash.com/photo-1590577976322-3d2d6e21306d?w=200" },
             { t: "ຊູຊິ", i: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=200" },
             { t: "ເຂົ້າຜັດກະລາເປົາ", i: "https://images.unsplash.com/photo-1552611052-33e04de081de?w=200" },
             { t: "ຕຳໝາກຫຸ່ງ", i: "https://images.unsplash.com/photo-1563833714765-490ca9fe15d7?w=200" }
+        ]},
+        { q: "ສັດລ້ຽງທີ່ຂ້ອຍມັກ?", options: [
+            { t: "ໝາ", i: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=200" },
+            { t: "ແມວ", i: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=200" },
+            { t: "ກະຕ່າຍ", i: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=200" },
+            { t: "ນົກ", i: "https://images.unsplash.com/photo-1552728089-57bdde30fc3b?w=200" }
         ]}
     ];
 
@@ -94,18 +98,36 @@
 
     window.onload = async () => {
         document.getElementById('loading').classList.add('hidden');
+        
         if (viewMode === "scores" && quizId) {
             showScores(quizId);
         } else if (quizId) {
             const snap = await getDoc(doc(db, "quizzes", quizId));
             if (snap.exists()) {
                 document.getElementById('title').innerText = `ທາຍໃຈທ່ານ ${snap.data().ownerName}`;
+                
+                // ກວດສອບວ່າເຄີຍຫຼິ້ນແລ້ວບໍ່
+                const savedName = localStorage.getItem(`played_${quizId}`);
+                if (savedName) {
+                    const hasScore = await checkExistingScore(quizId, savedName);
+                    if (hasScore) {
+                        alert("ທ່ານເຄີຍຕອບແລ້ວ, ກຳລັງພາໄປໜ້າຄະແນນ...");
+                        showScores(quizId);
+                        return;
+                    }
+                }
                 document.getElementById('step-main').classList.remove('hidden');
             }
         } else {
             document.getElementById('step-main').classList.remove('hidden');
         }
     };
+
+    async function checkExistingScore(qId, name) {
+        const q = query(collection(db, "scores"), where("quizId", "==", qId), where("friendName", "==", name));
+        const querySnapshot = await getDocs(q);
+        return !querySnapshot.empty;
+    }
 
     window.startQuiz = () => {
         const name = document.getElementById('user-name').value;
@@ -139,6 +161,7 @@
             const docRef = await addDoc(collection(db, "quizzes"), { ownerName: name, answers: selectedAnswers });
             showSharePage(docRef.id);
         } else {
+            localStorage.setItem(`played_${quizId}`, name);
             const snap = await getDoc(doc(db, "quizzes", quizId));
             let score = 0;
             selectedAnswers.forEach((ans, i) => { if(ans === snap.data().answers[i]) score++; });
