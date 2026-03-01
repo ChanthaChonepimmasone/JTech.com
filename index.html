@@ -1,189 +1,263 @@
 <!DOCTYPE html>
 <html lang="lo">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lao Karaoke - ແປພາສາໂອເກະ</title>
-  
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-  <style>
-    /* ຕົບແຕ່ງ UI ເພີ່ມເຕີມຈາກໄຟລ໌ເດີມ */
-    :root {
-      --primary-color: #2c5282;
-      --primary-light: #4299e1;
-      --secondary-color: #38a169;
-      --light-bg: #f7fafc;
-      --border-color: #e2e8f0;
-      --text-color: #2d3748;
-      --white: #ffffff;
-    }
-
-    body { font-family: 'Saysettha OT', sans-serif; background: var(--light-bg); margin: 0; }
-
-    /* Login Overlay */
-    .auth-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8); display: flex; justify-content: center;
-      align-items: center; z-index: 2000;
-    }
-    .auth-box { background: white; padding: 30px; border-radius: 12px; text-align: center; }
-
-    .user-bar {
-      background: white; padding: 10px 20px; border-bottom: 1px solid var(--border-color);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-    textarea { width: 100%; height: 150px; padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 15px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lao Karaoke - Premium Translator</title>
     
-    .btn { padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-    .btn-primary { background: var(--primary-color); color: white; width: 100%; }
-    .btn-success { background: var(--secondary-color); color: white; }
-    
-    .hidden { display: none !important; }
-    .output-box { background: white; padding: 15px; border: 1px solid var(--border-color); min-height: 100px; border-radius: 8px; margin-top: 15px; }
-  </style>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        :root {
+            --primary: #2c5282;
+            --success: #38a169;
+            --warning: #ecc94b;
+            --danger: #e53e3e;
+            --bg: #f7fafc;
+            --card: #ffffff;
+            --text: #2d3748;
+            --text-secondary: #718096;
+        }
+
+        body { font-family: 'Saysettha OT', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 70px; }
+        .hidden { display: none !important; }
+
+        /* Navigation Bottom Bar */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; border-top: 1px solid #e2e8f0; height: 65px; z-index: 1000; }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--text-secondary); }
+        .nav-item.active { color: var(--primary); }
+        .nav-item small { font-size: 10px; margin-top: 4px; }
+
+        /* Components */
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; }
+        .card { background: var(--card); border-radius: 16px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-google { background: white; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+        /* Profile & Premium */
+        .profile-img { width: 90px; height: 90px; border-radius: 50%; border: 4px solid var(--primary); margin: 0 auto 15px; display: block; }
+        .premium-tag { background: var(--warning); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; color: black; display: inline-block; }
+        .qr-box { background: white; padding: 15px; border-radius: 12px; border: 2px dashed #cbd5e0; margin: 20px 0; text-align: center; }
+
+        /* Translator Styles */
+        textarea { width: 100%; height: 150px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; font-size: 16px; box-sizing: border-box; resize: none; }
+        .output-container { background: #edf2f7; padding: 15px; border-radius: 12px; min-height: 50px; font-weight: 500; color: var(--primary); position: relative; }
+    </style>
 </head>
 <body>
 
-  <div id="authOverlay" class="auth-overlay">
-    <div class="auth-box">
-      <h2>ຍິນດີຕ້ອນຮັບ</h2>
-      <p>ກະລຸນາເຂົ້າສູ່ລະບົບດ້ວຍ Google ເພື່ອໃຊ້ງານ</p>
-      <button id="googleLoginBtn" class="btn btn-primary">Login with Google</button>
-    </div>
-  </div>
-
-  <div id="userBar" class="user-bar hidden">
-    <div id="userName">ກຳລັງໂຫຼດ...</div>
-    <div id="usageQuota" style="font-weight: bold;">ໂຄຕ້າ: 0/15</div>
-    <button id="logoutBtn" style="color:red; background:none; border:none; cursor:pointer;">Logout</button>
-  </div>
-
-  <div class="container">
-    <h1 style="text-align:center; color: var(--primary-color);">ແປລາວ ↔ Karaoke</h1>
-    
-    <textarea id="inputText" placeholder="ພິມຂໍ້ຄວາມທີ່ນີ້..."></textarea>
-    
-    <select id="direction" style="width:100%; padding:10px; margin-bottom:15px;">
-      <option value="lao-to-karaoke">ລາວ ➜ Karaoke</option>
-      <option value="karaoke-to-lao">Karaoke ➜ ລາວ</option>
-    </select>
-
-    <div style="display:flex; gap:10px;">
-      <button id="translateBtn" class="btn btn-primary" style="flex:1;">ແປພາສາ</button>
-      <button id="clearBtn" class="btn" style="background:#ddd;">ລ້າງ</button>
+    <div id="page-login" class="auth-overlay" style="height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg);">
+        <div class="card" style="width: 85%; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 10px;">🎙️</div>
+            <h2 style="margin-bottom: 5px;">ສະບາຍດີ!</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">ເຂົ້າສູ່ລະບົບເພື່ອເລີ່ມແປພາສາ</p>
+            <button id="btn-login-google" class="btn btn-google">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
+                Login with Google
+            </button>
+        </div>
     </div>
 
-    <div id="output" class="output-box"></div>
+    <div id="app-content" class="hidden">
+        <div class="container">
+            
+            <div id="tab-translate" class="tab-view">
+                <h2 style="margin-bottom: 20px;">ແປພາສາ</h2>
+                <div class="card">
+                    <div style="display:flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; font-weight: bold;">
+                        <span id="label-from">ລາວ</span>
+                        <span id="btn-swap" style="cursor:pointer; color: var(--primary);">🔄 ປ່ຽນ</span>
+                        <span id="label-to">Karaoke</span>
+                    </div>
+                    <textarea id="input-text" placeholder="ພິມຂໍ້ຄວາມຢູ່ທີ່ນີ້..."></textarea>
+                    <button id="btn-do-translate" class="btn btn-primary" style="margin-top: 10px;">ແປພາສາ</button>
+                </div>
 
-    <div id="premiumSection" style="margin-top:30px; border:2px solid #ecc94b; padding:20px; text-align:center; border-radius:10px;">
-      <h3>⭐ ປົດລັອກ Premium (ບໍ່ຈຳກັດ)</h3>
-      <p>ຊຳລະຜ່ານ BCEL One ແລ້ວສົ່ງໃບບິນມາທາງ WhatsApp</p>
-      <a href="https://wa.me/2029988148" target="_blank" class="btn btn-success" style="text-decoration:none; display:inline-block; background:#ecc94b; color:black;">
-        ສະໝັກທີ່ນີ້
-      </a>
+                <div id="card-result" class="card hidden">
+                    <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 10px 0;">ຜົນລັບ:</p>
+                    <div id="output-text" class="output-container"></div>
+                    <button id="btn-copy" class="btn" style="background:#edf2f7; margin-top:10px;">ຄັດລອກ</button>
+                </div>
+            </div>
+
+            <div id="tab-profile" class="tab-view hidden">
+                <h2 style="margin-bottom: 20px;">ໂປຣໄຟລ໌</h2>
+                <div class="card" style="text-align: center;">
+                    <img id="user-avatar" class="profile-img" src="" alt="User">
+                    <h3 id="user-display-name" style="margin: 5px 0;">...</h3>
+                    <p id="user-email" style="font-size: 14px; color: var(--text-secondary); margin: 0 0 15px 0;">...</p>
+                    <div id="premium-badge-container"></div>
+                    
+                    <div style="text-align: left; margin-top: 25px; background: #f8fafc; padding: 15px; border-radius: 12px;">
+                        <p style="margin: 0; font-size: 14px;">📊 ໂຄຕ້າການໃຊ້ງານມື້ນີ້:</p>
+                        <h4 id="usage-status" style="margin: 5px 0;">0 / 15 ຄັ້ງ</h4>
+                    </div>
+
+                    <button id="btn-go-premium" class="btn btn-primary" style="margin-top: 20px; background: var(--warning); color: black;">⭐ ອັບເກຣດ Premium</button>
+                    <button id="btn-logout" class="btn" style="margin-top: 15px; color: var(--danger);">ອອກຈາກລະບົບ</button>
+                </div>
+            </div>
+
+            <div id="tab-upgrade" class="tab-view hidden">
+                <div style="display:flex; align-items: center; margin-bottom: 20px;">
+                    <button onclick="switchTab('tab-profile')" style="background:none; border:none; font-size: 20px; cursor:pointer;">⬅️</button>
+                    <h2 style="margin: 0 0 0 10px;">ສະໝັກ Premium</h2>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <p style="font-weight: bold; font-size: 18px; margin-bottom: 5px;">ລາຄາ 99,000 ກີບ</p>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">ໃຊ້ງານບໍ່ຈຳກັດ 3 ເດືອນ</p>
+                    
+                    <div class="qr-box">
+                        <div style="font-size: 40px;">🏦</div>
+                        <p style="font-weight: bold; margin: 10px 0;">BCEL One QR</p>
+                        <p style="font-size: 12px; color: var(--text-secondary);">ກະລຸນາສະແກນ QR ໂອນເງິນຜ່ານ BCEL One</p>
+                    </div>
+
+                    <div style="text-align: left; font-size: 14px; line-height: 1.6;">
+                        <p><b>ວິທີເປີດໃຊ້ງານ:</b></p>
+                        <p>1. ໂອນເງິນຕາມລາຄາທີ່ກຳນົດ.</p>
+                        <p>2. ແຄັບໜ້າຈໍໃບບິນການໂອນ.</p>
+                        <p>3. ສົ່ງໃບບິນມາທີ່ WhatsApp ແອັດມິນ.</p>
+                    </div>
+
+                    <a href="https://wa.me/2029988148" target="_blank" class="btn btn-primary" style="background: #25D366; text-decoration: none; display: block; margin-top: 20px;">ສົ່ງໃບບິນທາງ WhatsApp</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="switchTab('tab-translate')">
+                <span>🌐</span>
+                <small>ແປພາສາ</small>
+            </div>
+            <div class="nav-item" onclick="switchTab('tab-profile')">
+                <span>👤</span>
+                <small>ໂປຣໄຟລ໌</small>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // --- 2. Firebase Configuration (ໃຊ້ຂໍ້ມູນທີ່ທ່ານໃຫ້ມາ) ---
-    const firebaseConfig = {
-      apiKey: "AIzaSyAQDV_jzYvaAR7EzbUclP5ru-rMygMW44I",
-      authDomain: "laokaraoke-43d77.firebaseapp.com",
-      projectId: "laokaraoke-43d77",
-      storageBucket: "laokaraoke-43d77.firebasestorage.app",
-      messagingSenderId: "6060211155",
-      appId: "1:6060211155:web:f5a63c55cf6e0ea9180d26",
-      measurementId: "G-RYHD1BZ16B"
-    };
+    <script>
+        // --- Firebase Config ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyAQDV_jzYvaAR7EzbUclP5ru-rMygMW44I",
+            authDomain: "laokaraoke-43d77.firebaseapp.com",
+            projectId: "laokaraoke-43d77",
+            storageBucket: "laokaraoke-43d77.firebasestorage.app",
+            messagingSenderId: "6060211155",
+            appId: "1:6060211155:web:f5a63c55cf6e0ea9180d26"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+        // --- Dictionary & Logic ---
+        const karaokeToLaoMap = { "sam": "ຊໍ່າ", "bg": "ເບີງ", "happy birthday": "ສຸກສັນວັນເກີດ" }; // ສາມາດເພີ່ມຈາກ translator.ts
+        const laoToKaraokeMap = { "ຊໍ່າ": "sam", "ເບີງ": "bg", "ສຸກສັນວັນເກີດ": "happy birthday" };
 
-    let currentUser = null;
-    let userData = { usageCount: 0, isPremium: false };
+        let currentDirection = "lao-to-karaoke";
+        let userData = { usageCount: 0, isPremium: false };
+        const FREE_LIMIT = 15;
 
-    // --- 3. Logic ການ Login ---
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        currentUser = user;
-        document.getElementById('authOverlay').classList.add('hidden');
-        document.getElementById('userBar').classList.remove('hidden');
-        document.getElementById('userName').textContent = user.displayName;
-        await syncUserData(user.uid);
-      } else {
-        document.getElementById('authOverlay').classList.remove('hidden');
-        document.getElementById('userBar').classList.add('hidden');
-      }
-    });
+        // --- Auth Observer ---
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                document.getElementById('page-login').classList.add('hidden');
+                document.getElementById('app-content').classList.remove('hidden');
+                updateProfileUI(user);
+                await fetchUserData(user.uid);
+            } else {
+                document.getElementById('page-login').classList.remove('hidden');
+                document.getElementById('app-content').classList.add('hidden');
+            }
+        });
 
-    async function syncUserData(uid) {
-      const userRef = db.collection('users').doc(uid);
-      const doc = await userRef.get();
-      const today = new Date().toDateString();
+        async function fetchUserData(uid) {
+            const userRef = db.collection('users').doc(uid);
+            const doc = await userRef.get();
+            const today = new Date().toDateString();
 
-      if (!doc.exists) {
-        userData = { usageCount: 0, isPremium: false, lastReset: today };
-        await userRef.set(userData);
-      } else {
-        userData = doc.data();
-        if (userData.lastReset !== today && !userData.isPremium) {
-          userData.usageCount = 0;
-          userData.lastReset = today;
-          await userRef.update({ usageCount: 0, lastReset: today });
+            if (!doc.exists) {
+                userData = { usageCount: 0, isPremium: false, lastReset: today };
+                await userRef.set(userData);
+            } else {
+                userData = doc.data();
+                if (userData.lastReset !== today && !userData.isPremium) {
+                    userData.usageCount = 0;
+                    userData.lastReset = today;
+                    await userRef.update({ usageCount: 0, lastReset: today });
+                }
+            }
+            refreshStats();
         }
-      }
-      updateUI();
-    }
 
-    function updateUI() {
-      const qLabel = document.getElementById('usageQuota');
-      if (userData.isPremium) {
-        qLabel.innerHTML = "⭐ Premium ບໍ່ຈຳກັດ";
-        document.getElementById('premiumSection').classList.add('hidden');
-      } else {
-        qLabel.textContent = `ໂໂຄຕ້າ: ${userData.usageCount}/15`;
-      }
-    }
+        function updateProfileUI(user) {
+            document.getElementById('user-avatar').src = user.photoURL || 'https://via.placeholder.com/100';
+            document.getElementById('user-display-name').textContent = user.displayName;
+            document.getElementById('user-email').textContent = user.email;
+        }
 
-    // --- 4. Logic ການແປພາສາ (ຈາກ Code ເດີມຂອງທ່ານ) ---
-    const dictionary = { "ຊໍ່າ": "sam", "ເບີງ": "bg", "ຫມາ": "Mar🐶", "ໝາ": "Mar🐶" };
+        function refreshStats() {
+            const statusText = userData.isPremium ? "Premium: ບໍ່ຈຳກັດ" : `${userData.usageCount} / ${FREE_LIMIT} ຄັ້ງ`;
+            document.getElementById('usage-status').textContent = statusText;
+            document.getElementById('premium-badge-container').innerHTML = userData.isPremium ? '<span class="premium-tag">⭐ PREMIUM</span>' : '';
+            document.getElementById('btn-go-premium').classList.toggle('hidden', userData.isPremium);
+        }
 
-    async function handleTranslate() {
-      if (!userData.isPremium && userData.usageCount >= 15) {
-        alert("ໂໂຄຕ້າໝົດແລ້ວ! ກະລຸນາສະໝັກ Premium");
-        return;
-      }
+        // --- App Actions ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-view').forEach(t => t.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            if (tabId === 'tab-translate') document.querySelectorAll('.nav-item')[0].classList.add('active');
+            if (tabId === 'tab-profile') document.querySelectorAll('.nav-item')[1].classList.add('active');
+        }
 
-      const input = document.getElementById('inputText').value.trim();
-      if (!input) return;
+        document.getElementById('btn-swap').onclick = () => {
+            currentDirection = currentDirection === "lao-to-karaoke" ? "karaoke-to-lao" : "lao-to-karaoke";
+            document.getElementById('label-from').textContent = currentDirection === "lao-to-karaoke" ? "ລາວ" : "Karaoke";
+            document.getElementById('label-to').textContent = currentDirection === "lao-to-karaoke" ? "Karaoke" : "ລາວ";
+        };
 
-      // ສົມມຸດການແປ (Logic ເດີມ)
-      let result = input; 
-      // ... (ໃສ່ Logic dictionary.replace ທີ່ນີ້)
+        document.getElementById('btn-do-translate').onclick = async () => {
+            if (!userData.isPremium && userData.usageCount >= FREE_LIMIT) {
+                alert("ໂຄຕ້າຂອງທ່ານໝົດແລ້ວ! ກະລຸນາອັບເກຣດ Premium");
+                switchTab('tab-upgrade');
+                return;
+            }
 
-      document.getElementById('output').textContent = "ຜົນການແປ: " + result;
+            const text = document.getElementById('input-text').value.trim();
+            if (!text) return;
 
-      if (!userData.isPremium) {
-        userData.usageCount++;
-        updateUI();
-        await db.collection('users').doc(currentUser.uid).update({ usageCount: userData.usageCount });
-      }
-    }
+            // Simple Translation Logic
+            let result = text;
+            const map = currentDirection === "lao-to-karaoke" ? laoToKaraokeMap : karaokeToLaoMap;
+            for (let key in map) {
+                result = result.replace(new RegExp(key, 'g'), map[key]);
+            }
 
-    // Event Listeners
-    document.getElementById('googleLoginBtn').onclick = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    document.getElementById('logoutBtn').onclick = () => auth.signOut();
-    document.getElementById('translateBtn').onclick = handleTranslate;
-    document.getElementById('clearBtn').onclick = () => {
-      document.getElementById('inputText').value = '';
-      document.getElementById('output').textContent = '';
-    };
-  </script>
+            document.getElementById('output-text').textContent = result;
+            document.getElementById('card-result').classList.remove('hidden');
+
+            if (!userData.isPremium) {
+                userData.usageCount++;
+                refreshStats();
+                await db.collection('users').doc(auth.currentUser.uid).update({ usageCount: userData.usageCount });
+            }
+        };
+
+        document.getElementById('btn-login-google').onclick = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        document.getElementById('btn-logout').onclick = () => auth.signOut();
+        document.getElementById('btn-go-premium').onclick = () => switchTab('tab-upgrade');
+        document.getElementById('btn-copy').onclick = () => {
+            navigator.clipboard.writeText(document.getElementById('output-text').textContent);
+            alert("ຄັດລອກແລ້ວ!");
+        };
+    </script>
 </body>
 </html>
