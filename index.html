@@ -1,295 +1,285 @@
 <!DOCTYPE html>
 <html lang="lo">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friendship Quiz - ວັດຄວາມຮູ້ໃຈ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;500&display=swap" rel="stylesheet">
-    <style>
-        :root { --primary: #6366f1; --secondary: #ec4899; --bg: #f3f4f6; }
-        body { font-family: 'Noto Sans Lao', sans-serif; background-color: var(--bg); margin: 0; display: flex; justify-content: center; min-height: 100vh; }
-        #app { 
-            width: 100%; 
-            max-width: 450px; 
-            background: white; 
-            padding: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            min-height: 100vh; 
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .content { flex: 1; }
-        .hidden { display: none; }
-        h2, h3 { text-align: center; color: var(--primary); }
-        .btn { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; text-decoration: none; display: block; text-align: center; box-sizing: border-box; }
-        .btn-secondary { background: var(--secondary); }
-        input[type="text"] { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #e5e7eb; border-radius: 12px; box-sizing: border-box; font-family: 'Noto Sans Lao', sans-serif; }
-        
-        .score-card { background: #fff; padding: 15px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .rank { width: 30px; height: 30px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; margin-right: 10px; }
-        .name { flex-grow: 1; font-weight: 500; }
-        .points { color: var(--secondary); font-weight: bold; font-size: 18px; }
-        
-        #options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .image-option { border: 3px solid #f3f4f6; border-radius: 15px; overflow: hidden; cursor: pointer; text-align: center; transition: 0.2s; }
-        .image-option:active { transform: scale(0.95); border-color: var(--primary); }
-        .image-option img { width: 100%; height: 110px; object-fit: cover; display: block; }
-        .image-option span { display: block; padding: 8px; font-size: 13px; }
-        
-        .progress-bar { height: 8px; background: #eee; border-radius: 10px; margin: 20px 0; overflow: hidden; }
-        #progress-fill { height: 100%; background: linear-gradient(to right, var(--primary), var(--secondary)); width: 0%; transition: 0.3s; }
-        
-        /* Footer Style */
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #888;
-            padding: 20px 0 10px 0;
-            border-top: 1px solid #f0f0f0;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lao Karaoke - ແປພາສາໂອເກະ</title>
+  
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #2c5282;
+      --primary-light: #4299e1;
+      --secondary-color: #38a169;
+      --light-bg: #f7fafc;
+      --border-color: #e2e8f0;
+      --text-color: #2d3748;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Saysettha OT', 'Noto Sans Lao', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Auth Overlay */
+    .auth-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85); display: flex; justify-content: center;
+      align-items: center; z-index: 2000;
+    }
+    .auth-box {
+      background: white; padding: 30px; border-radius: 12px; 
+      text-align: center; max-width: 350px; width: 90%;
+    }
+
+    /* User Bar */
+    .user-bar {
+      background: white; padding: 10px 20px; border-bottom: 1px solid var(--border-color);
+      display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;
+    }
+
+    .container {
+      max-width: 800px; margin: 0 auto; padding: 20px;
+    }
+
+    .main-header { text-align: center; margin-bottom: 30px; }
+    
+    textarea {
+      width: 100%; height: 150px; padding: 15px; border: 1px solid var(--border-color);
+      border-radius: 8px; font-size: 1rem; margin-bottom: 15px; box-sizing: border-box;
+    }
+
+    .direction-select {
+      width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border-color);
+    }
+
+    .button-group { display: flex; gap: 10px; margin-bottom: 20px; }
+    
+    .btn {
+      flex: 1; padding: 12px; border: none; border-radius: 8px;
+      font-weight: bold; cursor: pointer; transition: 0.2s;
+    }
+    .btn-primary { background: var(--primary-color); color: white; }
+    .btn-secondary { background: #edf2f7; color: #4a5568; }
+    .btn-success { background: var(--secondary-color); color: white; }
+
+    .output-container {
+      min-height: 120px; padding: 15px; background: white; border: 1px solid var(--border-color);
+      border-radius: 8px; margin-bottom: 15px; white-space: pre-wrap;
+    }
+
+    .premium-box {
+      border: 2px solid #ecc94b; background: #fffff0; padding: 20px; border-radius: 10px; text-align: center;
+    }
+
+    .badge-premium { background: #ecc94b; color: black; padding: 2px 8px; border-radius: 5px; font-weight: bold; }
+    .hidden { display: none !important; }
+    
+    #loading { text-align: center; color: var(--primary-color); display: none; margin-bottom: 10px; }
+  </style>
 </head>
 <body>
 
-<div id="app">
-    <div class="content">
-        <div id="loading" style="text-align: center; margin-top: 50px;">ກຳລັງໂຫລດ...</div>
+  <div id="authOverlay" class="auth-overlay">
+    <div class="auth-box">
+      <h2>ຍິນດີຕ້ອນຮັບ</h2>
+      <p>ກະລຸນາເຂົ້າສູ່ລະບົບດ້ວຍ Google ເພື່ອໃຊ້ງານ</p>
+      <button id="googleLoginBtn" class="btn btn-primary">Login with Google</button>
+    </div>
+  </div>
 
-        <div id="step-main" class="hidden">
-            <h2 id="title">ໝູ່ຮູ້ໃຈເຮົາສ່ຳໃດ?</h2>
-            <input type="text" id="user-name" placeholder="ໃສ່ຊື່ຂອງເຈົ້າຢູ່ ນີ້...">
-            <button class="btn" onclick="startQuiz()">ເລີ່ມ</button>
-        </div>
+  <div id="userBar" class="user-bar hidden">
+    <div id="userName">Loading...</div>
+    <div id="usageQuota">Quota: 0/15</div>
+    <button id="logoutBtn" style="color:red; background:none; border:none; cursor:pointer;">Logout</button>
+  </div>
 
-        <div id="step-quiz" class="hidden">
-            <div class="progress-bar"><div id="progress-fill"></div></div>
-            <h3 id="question-text">ຄຳຖາມ</h3>
-            <div id="options-container"></div>
-        </div>
-
-        <div id="step-scores" class="hidden">
-            <h2 id="score-title">ອັນດັບຄະແນນ</h2>
-            <div id="leaderboard-list"></div>
-            <button class="btn" onclick="window.location.href=window.location.origin + window.location.pathname">ສ້າງຄຳຖາມຂອງເຈົ້າເອງ</button>
-        </div>
-
-        <div id="step-share" class="hidden">
-            <h2>ສ້າງສຳເລັດແລ້ວ!</h2>
-            <p style="text-align: center;">ສົ່ງລິ້ງນີ້ໃຫ້ໝູ່ທາຍ:</p>
-            <input type="text" id="share-url" readonly onclick="this.select()">
-            <button class="btn" onclick="copyLink()">ຄັດລອກລິ້ງສົ່ງໃຫ້ໝູ່</button>
-            <button id="view-scores-btn" class="btn btn-secondary" style="margin-top:20px;">ເບິ່ງຄະແນນຂອງໝູ່</button>
-        </div>
+  <div class="container">
+    <div class="main-header">
+      <h1>ແປລາວ ↔ Karaoke</h1>
+      <p>ເຄື່ອງມືແປພາສາລາວເປັນພາສາ Karaoke</p>
     </div>
 
-    <div class="footer">
-        ເວັບນີ້ສ້າງຂື້ນໂດຍ ທ.ຈັນທະຈອນ ພິມມະສອນ
+    <textarea id="inputText" placeholder="ພິມຂໍ້ຄວາມທີ່ນີ້..."></textarea>
+
+    <select id="direction" class="direction-select">
+      <option value="lao-to-karaoke">ລາວ ➜ Karaoke</option>
+      <option value="karaoke-to-lao">Karaoke ➜ ລາວ</option>
+    </select>
+
+    <div class="button-group">
+      <button id="translateBtn" class="btn btn-primary">ແປພາສາ</button>
+      <button id="clearBtn" class="btn btn-secondary">ລ້າງຂໍ້ຄວາມ</button>
     </div>
-</div>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDoc, getDocs, doc, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    <div id="loading">ກຳລັງປະມວນຜົນ...</div>
+    <div id="output" class="output-container"></div>
+    
+    <button id="copyBtn" class="btn btn-success hidden">ຄັດລອກຜົນລັບ</button>
 
+    <div id="premiumSection" class="premium-box" style="margin-top: 30px;">
+      <h3 style="color: #b7791f;">⭐ ປົດລັອກ Premium</h3>
+      <p>ໃຊ້ງານບໍ່ຈຳກັດ 3 ເດືອນ | ລາຄາພິເສດ</p>
+      <p>ຊຳລະຜ່ານ BCEL One (P2P) ແລ້ວສົ່ງໃບບິນມາທາງ WhatsApp</p>
+      <a href="https://wa.me/2029988148" target="_blank" class="btn btn-success" style="text-decoration: none; display: inline-block; background: #ecc94b; color: black;">
+        ສະໝັກ Premium ທີ່ນີ້
+      </a>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; color: #718096; font-size: 0.8rem;">
+      <p>© 2025-2026 Lao Karaoke - ພັດທະນາໂດຍ: ຈັນທະຈອນ ພິມມະສອນ</p>
+    </footer>
+  </div>
+
+  <script>
+    // --- 1. Firebase Configuration ---
     const firebaseConfig = {
-        apiKey: "AIzaSyDX3r9VBoCJ5XPPUDPIK5uLsXxJxE7gA98",
-        authDomain: "quizzes-451f5.firebaseapp.com",
-        projectId: "quizzes-451f5",
-        storageBucket: "quizzes-451f5.firebasestorage.app",
-        messagingSenderId: "595454143513",
-        appId: "1:595454143513:web:077ff17df9a43cc85f4e88",
-        measurementId: "G-Y6ZQPW54KN"
+      apiKey: "AIzaSyAQDV_jzYvaAR7EzbUclP5ru-rMygMW44I",
+      authDomain: "laokaraoke-43d77.firebaseapp.com",
+      projectId: "laokaraoke-43d77",
+      storageBucket: "laokaraoke-43d77.firebasestorage.app",
+      messagingSenderId: "6060211155",
+      appId: "1:6060211155:web:f5a63c55cf6e0ea9180d26",
+      measurementId: "G-RYHD1BZ16B"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-    const questions = [
-        { q: "1. ອາຫານທີ່ຂ້ອຍມັກທີ່ສຸດ?", options: [
-            { t: "ເຂົ້າປຽກ", i: "https://www.cpbrandsite.com/contents/images/mixvlb0ekik51xtxfyb1uzumyrejlf32dexfdnfe.png" },
-            { t: "ຊູຊິ", i: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=200" },
-            { t: "ເຂົ້າຜັດກະເພົາ", i: "https://thejournalistclub.com/wp-content/uploads/2022/06/1-%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%81%E0%B8%B0%E0%B9%80%E0%B8%9E%E0%B8%A3%E0%B8%B2-.jpeg" },
-            { t: "ຕຳໝາກຫຸ່ງ", i: "https://img.thaicdn.net/u/2016/surauch/cook1/j1_1.jpg" }
-        ]},
-        { q: "2. ສັດລ້ຽງທີ່ຂ້ອຍມັກ?", options: [
-            { t: "ໝາ", i: "https://www.khaosod.co.th/sentangsedtee/wp-content/uploads/2017/08/19748768_753354378157581_8252557471428846992_n.jpg" },
-            { t: "ແມວ", i: "https://i.pinimg.com/1200x/fc/52/0a/fc520adbfd8771446cb6b152045690ea.jpg" },
-            { t: "ກະຕ່າຍ", i: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=200" },
-            { t: "ປາກັດ", i: "https://img.lazcdn.com/g/ff/kf/S5553bb9284cf42a19c5b04df0c561da5i.jpg_720x720q80.jpg_.webp" }
-        ]},
-        { q: "3. ເວລາຫວ່າງມັກເຮັດຫຍັງ?", options: [
-            { t: "ເບິ່ງໜັງ", i: "https://t1.blockdit.com/photos/2019/12/5de47cfbdaa1882c9d0b146d_800x0xcover_igPxR9I1.jpg" },
-            { t: "ຫຼິ້ນເກມ", i: "https://blix.gg/blog/wp-content/uploads/2025/01/image-7-1.jpg" },
-            { t: "ຟັງເພງ", i: "https://cdn-images.dzcdn.net/images/cover/66e32a3a877009cfefae58a49279c3ba/500x500-000000-80-0-0.jpg" },
-            { t: "ນອນ", i: "https://www.phitsanulok-hospital.com/stocks/news/c710x400/ir/w4/9le8irw45i1/%E0%B9%80%E0%B8%A7%E0%B9%89%E0%B8%9A%E0%B8%9A%E0%B8%9A%E0%B8%9A.png" }
-        ]},
-        { q: "4. ສີທີ່ຂ້ອຍມັກທີ່ສຸດ?", options: [
-            { t: "ສີຟ້າ", i: "https://f.ptcdn.info/895/076/000/r9uw3ua2zEI95o8rF9F-o.jpg" },
-            { t: "ສີແດງ", i: "https://falcon.groundcontrolth.com/upload/92ef99626bbd26114c4978cf8e547881.webp" },
-            { t: "ສີຂາວ", i: "https://fk.lnwfile.com/_/fk/_raw/8d/p3/c5.jpg" },
-			{ t: "ສີບົວ", i: "https://5.imimg.com/data5/SELLER/Default/2020/9/PC/XO/LS/112798342/fluorescent-pink-color-paper-1000x1000.jpeg" },
-			{ t: "ສີຂຽວ", i: "https://cdn11.bigcommerce.com/s-3uewkq06zr/images/stencil/1280x1280/products/235/440/fluorescent_green__89336.1492524804.png?c=2" },
-			{ t: "ສີນ້ຳຕານ", i: "https://s.isanook.com/ho/0/ud/20/103993/d2.jpg" },
-			{ t: "ສີສົ້ມ", i: "https://s.isanook.com/ho/0/ud/20/103993/d7.jpg" },
-			{ t: "ສີເຫຼືອງ", i: "https://s.isanook.com/ho/0/ud/20/103993/d6.jpg" },
-            { t: "ສີດຳ", i: "https://siamtak.b-cdn.net/hero-product/6544835929006ff12c703584_AB.jpeg" }
-        ]},
-        { q: "5. ສະຖານທີ່ທ່ອງທ່ຽວທີ່ຢາກໄປ?", options: [
-            { t: "ທະເລ", i: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200" },
-            { t: "ພູເຂົາ", i: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200" },
-            { t: "ວັງວຽງ", i: "https://s.isanook.com/tr/0/ui/286/1434837/312612740_6086756468024617_6074421122956215243_n.jpg" },
-            { t: "ຫລວງພະບາງ", i: "https://res.klook.com/image/upload/w_1265,h_791,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/wgek7dmpq42qoj3ic72u.webp" }
-        ]},
-        { q: "6. ເຄື່ອງດື່ມທີ່ມັກ?", options: [
-            { t: "ກາເຟ", i: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200" },
-            { t: "ຊານົມໄຂ່ມຸກ", i: "https://cdn-cms.pgimgs.com/static/2020/03/114784014_xl.jpg" },
-            { t: "ນ້ຳໝາກໄມ້", i: "https://s.isanook.com/ca/0/ud/275/1376961/888.jpg?ip/crop/w1200h700/q80/webp" },
-            { t: "ນ້ຳອັດລົມ", i: "https://eatwellconcept.com/wp-content/uploads/2020/03/cola-drinks-black-soft-drinks_51137-1881.jpg" }
-        ]},
-        { q: "7. ລະດູການທີ່ມັກ?", options: [
-            { t: "ລະດູໜາວ", i: "https://scontent.fvte4-1.fna.fbcdn.net/v/t39.30808-6/595151095_1479800100812380_7556322119154403687_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a0f3c3&_nc_ohc=Ux6WJRsieoYQ7kNvwGU_q8N&_nc_oc=AdlS0V_8__2Dlerlxm74LRWcwa70yU4S-juoKwCM7FGsxwOFX6bI744et9PK01w7Kzk&_nc_zt=23&_nc_ht=scontent.fvte4-1.fna&_nc_gid=jr0sGSYezOUEhtgSQrQKlg&oh=00_Afs0kt5Z_JPUYa1xSRdf6DXBpCpg98LSD3KXXvTgvDw1ug&oe=69A08BC1" },
-            { t: "ລະດູຮ້ອນ", i: "https://static.naewna.com/uploads/news/source/729070.jpg" },
-            { t: "ລະດູຝົນ", i: "https://static.thairath.co.th/media/dFQROr7oWzulq5Fa5BEgXNKZKMsZGwAiRd6SUx8Dx0rzs3pG4kPstGCYf8GmT4MpgiX.webp" },
-            { t: "ໃບໄມ້ຫຼົ່ນ", i: "https://images.dmc.tv/wallpaper/raw/6061.jpg" }
-        ]},
-        { q: "8. ແນວໜັງທີ່ມັກເບິ່ງ?", options: [
-            { t: "ຕະຫຼົກ", i: "https://media.the101.world/wp-content/uploads/2023/03/05122425/20230327-ittidech-banner-scaled-1200x633.avif" },
-            { t: "ຜີ", i: "https://www.thestreetratchada.com/upload/contents/1732699133Oct%202%20(%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%20%E0%B8%9C%E0%B8%B5)%20(2).jpg" },
-            { t: "ແອັກຊັ່ນ", i: "https://f.ptcdn.info/109/081/000/rxo4zgq09a3UKM0MdL4s-o.jpg" },
-            { t: "ໂຣແມນຕິກ", i: "https://th-images.th-hellomagazine.com/wp-content/uploads/2022/03/07151231/Netflix-Forecasting-Love-and-Weather-768x512.jpg" }
-        ]},
-        { q: "9. ຂອງຫວານທີ່ມັກ?", options: [
-            { t: "ເຄັກ", i: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200" },
-            { t: "ໄອສະຄີມ", i: "https://images.lifestyleasia.com/wp-content/uploads/sites/8/2023/04/27130015/Ice-Cream-Sundae-5-1350x900.jpg?tr=w-1366" },
-            { t: "ໂດນັດ", i: "https://images.unsplash.com/photo-1527515545081-5db817172677?w=200" },
-            { t: "ຊັອກໂກແລັດ", i: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=200" }
-        ]},
-        { q: "10. ໃຊ້ໂທລະສັບຫຍັງ?", options: [
-            { t: "iphone", i: "https://basic-tutorials.com/wp-content/uploads/2025/07/GwF-YO2WkAEUkea-780x470.jpg" },
-            { t: "samsung", i: "https://i.gadgets360cdn.com/large/samsung_galaxy_s23_series_samsung_1678531903312.jpg?downsize=950:*" },
-            { t: "oppo", i: "https://s.isanook.com/hi/0/ud/320/1600423/oppo-find-n5-2.jpg?ip/resize/w728/q80/jpg" },
-            { t: "xiaomi", i: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/106/MTA-98850165/xiaomi_xiaomi_redmi_note_12_pro_5g_8-256gb_full04_dck4anoo.jpeg" }
-        ]}
-    ];
+    let currentUser = null;
+    let userData = { usageCount: 0, isPremium: false };
 
-    let currentIdx = 0;
-    let selectedAnswers = [];
-    let urlParams = new URLSearchParams(window.location.search);
-    let quizId = urlParams.get("id");
-    let viewMode = urlParams.get("view");
+    // --- 2. Karaoke Logic Dictionary ---
+    const dictionary = {
+      "ຊໍ່າ": "sam", "ເບີງ": "bg", "ເບີ່ງ": "bg", "ເບິງ": "bg",
+      "ສຸກສັນວັນເກີດ": "happy birthday", "ໝາ": "Mar🐶", "ຫມາ": "Mar🐶",
+      "ແຢ້": "yae", "ແຢ່": "yae", "ໃສ່": "yae", "k": "ເຄ", "m": "ໂມງ"
+    };
 
-    window.onload = async () => {
-        document.getElementById('loading').classList.add('hidden');
-        if (viewMode === "scores" && quizId) {
-            showScores(quizId);
-        } else if (quizId) {
-            const snap = await getDoc(doc(db, "quizzes", quizId));
-            if (snap.exists()) {
-                document.getElementById('title').innerText = `ທາຍໃຈທ່ານ ${snap.data().ownerName}`;
-                const savedName = localStorage.getItem(`played_${quizId}`);
-                if (savedName) {
-                    const hasScore = await checkExistingScore(quizId, savedName);
-                    if (hasScore) {
-                        alert("ທ່ານເຄີຍຕອບແລ້ວ, ກຳລັງພາໄປໜ້າຄະແນນ...");
-                        showScores(quizId);
-                        return;
-                    }
-                }
-                document.getElementById('step-main').classList.remove('hidden');
-            }
-        } else {
-            document.getElementById('step-main').classList.remove('hidden');
+    // --- 3. Authentication Logic ---
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        currentUser = user;
+        document.getElementById('authOverlay').classList.add('hidden');
+        document.getElementById('userBar').classList.remove('hidden');
+        document.getElementById('userName').textContent = user.displayName;
+        await syncUserDoc(user.uid);
+      } else {
+        document.getElementById('authOverlay').classList.remove('hidden');
+        document.getElementById('userBar').classList.add('hidden');
+      }
+    });
+
+    async function syncUserDoc(uid) {
+      const userRef = db.collection('users').doc(uid);
+      const doc = await userRef.get();
+      const today = new Date().toDateString();
+
+      if (!doc.exists) {
+        userData = { usageCount: 0, isPremium: false, lastReset: today };
+        await userRef.set(userData);
+      } else {
+        userData = doc.data();
+        if (userData.lastReset !== today && !userData.isPremium) {
+          userData.usageCount = 0;
+          userData.lastReset = today;
+          await userRef.update({ usageCount: 0, lastReset: today });
         }
-    };
-
-    async function checkExistingScore(qId, name) {
-        const q = query(collection(db, "scores"), where("quizId", "==", qId), where("friendName", "==", name));
-        const querySnapshot = await getDocs(q);
-        return !querySnapshot.empty;
+      }
+      updateUI();
     }
 
-    window.startQuiz = () => {
-        const name = document.getElementById('user-name').value;
-        if (!name) return alert("ກະລຸນາໃສ່ຊື່ກ່ອນ");
-        document.getElementById('step-main').classList.add('hidden');
-        document.getElementById('step-quiz').classList.remove('hidden');
-        renderQuestion();
-    };
+    function updateUI() {
+      const quotaLabel = document.getElementById('usageQuota');
+      const premiumSec = document.getElementById('premiumSection');
+      if (userData.isPremium) {
+        quotaLabel.innerHTML = "<span class='badge-premium'>⭐ Premium</span> ບໍ່ຈຳກັດ";
+        premiumSec.classList.add('hidden');
+      } else {
+        quotaLabel.textContent = `ໂຄຕ້າ: ${userData.usageCount}/15`;
+        premiumSec.classList.remove('hidden');
+      }
+    }
 
-    function renderQuestion() {
-        const q = questions[currentIdx];
-        document.getElementById('question-text').innerText = q.q;
-        document.getElementById('progress-fill').style.width = `${((currentIdx) / questions.length) * 100}%`;
-        const container = document.getElementById('options-container');
-        container.innerHTML = '';
-        q.options.forEach((opt, i) => {
-            const div = document.createElement('div');
-            div.className = 'image-option';
-            div.innerHTML = `<img src="${opt.i}"><span>${opt.t}</span>`;
-            div.onclick = () => {
-                selectedAnswers.push(i);
-                currentIdx++;
-                if (currentIdx < questions.length) renderQuestion(); else finish();
-            };
-            container.appendChild(div);
+    // --- 4. Translation Logic ---
+    function translateLogic(text, mode) {
+      if (mode === 'lao-to-karaoke') {
+        let result = text;
+        const keys = Object.keys(dictionary).sort((a,b) => b.length - a.length);
+        keys.forEach(key => {
+          const regex = new RegExp(key, 'g');
+          result = result.replace(regex, dictionary[key] + " ");
         });
+        return result.trim();
+      } else {
+        // Karaoke to Lao (Basic reverse)
+        let result = text.toLowerCase();
+        const keys = Object.keys(dictionary);
+        keys.forEach(key => {
+          const val = dictionary[key].toLowerCase();
+          const regex = new RegExp(val, 'g');
+          result = result.replace(regex, key);
+        });
+        return result;
+      }
     }
 
-    async function finish() {
-        const name = document.getElementById('user-name').value;
-        if (!quizId) {
-            const docRef = await addDoc(collection(db, "quizzes"), { ownerName: name, answers: selectedAnswers });
-            showSharePage(docRef.id);
-        } else {
-            localStorage.setItem(`played_${quizId}`, name);
-            const snap = await getDoc(doc(db, "quizzes", quizId));
-            let score = 0;
-            selectedAnswers.forEach((ans, i) => { if(ans === snap.data().answers[i]) score++; });
-            await addDoc(collection(db, "scores"), { quizId, friendName: name, score });
-            showScores(quizId);
+    async function handleTranslate() {
+      if (!userData.isPremium && userData.usageCount >= 15) {
+        alert("ທ່ານໃຊ້ຄົບໂຄຕ້າ 15 ຄັ້ງສຳລັບມື້ນີ້ແລ້ວ! ກະລຸນາສະໝັກ Premium.");
+        return;
+      }
+
+      const input = document.getElementById('inputText').value.trim();
+      if (!input) return;
+
+      document.getElementById('loading').style.display = 'block';
+      
+      setTimeout(async () => {
+        const mode = document.getElementById('direction').value;
+        const result = translateLogic(input, mode);
+        
+        document.getElementById('output').textContent = result;
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('copyBtn').classList.remove('hidden');
+
+        if (!userData.isPremium) {
+          userData.usageCount++;
+          updateUI();
+          await db.collection('users').doc(currentUser.uid).update({
+            usageCount: userData.usageCount
+          });
         }
+      }, 500);
     }
 
-    function showSharePage(id) {
-        document.getElementById('step-quiz').classList.add('hidden');
-        document.getElementById('step-share').classList.remove('hidden');
-        const link = window.location.origin + window.location.pathname + "?id=" + id;
-        document.getElementById('share-url').value = link;
-        document.getElementById('view-scores-btn').onclick = () => {
-            window.location.href = link + "&view=scores";
-        };
-    }
-
-    function showScores(id) {
-        document.getElementById('step-main').classList.add('hidden');
-        document.getElementById('step-quiz').classList.add('hidden');
-        document.getElementById('step-scores').classList.remove('hidden');
-        const q = query(collection(db, "scores"), where("quizId", "==", id));
-        onSnapshot(q, (snapshot) => {
-            const list = document.getElementById('leaderboard-list');
-            let scoresArr = [];
-            snapshot.forEach(doc => scoresArr.push(doc.data()));
-            scoresArr.sort((a, b) => b.score - a.score);
-            list.innerHTML = scoresArr.length ? "" : "<p style='text-align:center;'>ຍັງບໍ່ມີຄະແນນ...</p>";
-            scoresArr.forEach((data, index) => {
-                list.innerHTML += `
-                    <div class="score-card">
-                        <div class="rank">${index + 1}</div>
-                        <div class="name">${data.friendName}</div>
-                        <div class="points">${data.score}/${questions.length}</div>
-                    </div>`;
-            });
-        });
-    }
-
-    window.copyLink = () => {
-        const input = document.getElementById('share-url');
-        input.select();
-        navigator.clipboard.writeText(input.value);
-        alert("ຄັດລອກລິ້ງແລ້ວ!");
+    // --- 5. Event Listeners ---
+    document.getElementById('googleLoginBtn').onclick = () => {
+      auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     };
-</script>
+
+    document.getElementById('logoutBtn').onclick = () => auth.signOut();
+
+    document.getElementById('translateBtn').onclick = handleTranslate;
+
+    document.getElementById('clearBtn').onclick = () => {
+      document.getElementById('inputText').value = '';
+      document.getElementById('output').textContent = '';
+      document.getElementById('copyBtn').classList.add('hidden');
+    };
+
+    document.getElementById('copyBtn').onclick = () => {
+      const text = document.getElementById('output').textContent;
+      navigator.clipboard.writeText(text).then(() => alert("ຄັດລອກແລ້ວ!"));
+    };
+  </script>
 </body>
 </html>
