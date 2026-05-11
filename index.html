@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ร้านพระเครื่อง | วัดองตื้อมหาวิหาร</title>
+  <title>ร้านพระเครื่อง สปป ลาว | วัดองตื้อมหาวิหาร</title>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -202,15 +202,19 @@
 
     .product-img-wrap {
       position: relative;
-      height: 260px;
+      height: 280px;
       overflow: hidden;
       background: #0f0800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .product-img-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      padding: 10px;
       transition: transform 0.4s;
     }
 
@@ -317,7 +321,9 @@
     .featured-imgs img {
       width: 100%;
       height: 200px;
-      object-fit: cover;
+      object-fit: contain;
+      background: #0f0800;
+      padding: 6px;
       border-radius: 12px;
       border: 1px solid rgba(201,162,39,0.3);
       transition: transform 0.3s;
@@ -327,7 +333,7 @@
 
     .featured-imgs img:first-child {
       grid-column: span 2;
-      height: 250px;
+      height: 260px;
     }
 
     .featured-info h3 {
@@ -519,7 +525,9 @@
     .modal-img {
       width: 100%;
       height: 320px;
-      object-fit: cover;
+      object-fit: contain;
+      background: #0f0800;
+      padding: 10px;
     }
 
     .modal-body { padding: 28px; }
@@ -561,6 +569,45 @@
       justify-content: center;
     }
 
+    /* ─── FLOATING LINE BUTTON (mobile) ─── */
+    .fab-line {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 18px;
+      z-index: 200;
+      background: linear-gradient(135deg, #00c900, #00850d);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      padding: 12px 18px 12px 14px;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 24px rgba(0,185,0,0.5), 0 2px 8px rgba(0,0,0,0.4);
+      font-family: 'Sarabun', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fabPulse 2.5s ease-in-out infinite;
+    }
+    .fab-line:active { transform: scale(0.95); }
+    .fab-label { font-size: 15px; }
+
+    @keyframes fabPulse {
+      0%,100% { box-shadow: 0 6px 24px rgba(0,185,0,0.5); }
+      50% { box-shadow: 0 6px 32px rgba(0,185,0,0.8), 0 0 0 8px rgba(0,185,0,0.1); }
+    }
+
+    @media (max-width: 700px) {
+      .fab-line { display: flex; }
+      /* extra bottom padding so last card doesn't hide behind FAB */
+      .footer { padding-bottom: 90px; }
+    }
+
+    /* Touch-friendly tap highlight removal */
+    a, button { -webkit-tap-highlight-color: transparent; }
+
     /* ─── ANIMATIONS ─── */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-30px); }
@@ -591,11 +638,89 @@
       animation: shimmer 3s linear infinite;
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 700px) {
-      .featured { grid-template-columns: 1fr; }
-      .featured-imgs img:first-child { height: 200px; }
-      .modal-img { height: 240px; }
+    /* ─── RESPONSIVE / MOBILE-FIRST ─── */
+
+    /* Mobile base (< 480px) */
+    @media (max-width: 480px) {
+      .line-banner a {
+        font-size: 15px;
+        gap: 8px;
+      }
+      .hero { padding: 32px 16px; min-height: 85vh; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-badge { font-size: 13px; padding: 9px 18px; }
+
+      .section { padding: 36px 14px; }
+
+      /* Featured: single column, compact */
+      .featured {
+        grid-template-columns: 1fr;
+        padding: 22px 16px;
+        gap: 20px;
+        border-radius: 16px;
+      }
+      .featured-imgs { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .featured-imgs img { height: 130px; }
+      .featured-imgs img:first-child { height: 190px; }
+      .featured-info h3 { font-size: 1.2rem; }
+      .featured-info p { font-size: 14px; }
+      .featured-specs li { font-size: 13px; }
+
+      /* Products: 2-col tight grid on small phones */
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .product-img-wrap { height: 160px; }
+      .product-body { padding: 12px; }
+      .product-name { font-size: 13px; }
+      .product-desc { font-size: 11px; margin-bottom: 10px; }
+      .product-price { font-size: 14px; }
+      .product-footer { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .btn-line { padding: 8px 14px; font-size: 13px; width: 100%; justify-content: center; }
+
+      /* Modal full-screen on mobile */
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .modal {
+        border-radius: 20px 20px 0 0;
+        max-width: 100%;
+        max-height: 92vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .modal-img { height: 220px; }
+      .modal-body { padding: 20px 18px; }
+      .modal-title { font-size: 17px; }
+      .modal-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 20px; }
+      .btn-large { padding: 14px 20px; font-size: 15px; width: 100%; justify-content: center; }
+
+      /* Why section */
+      .why-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .why-item { padding: 18px 12px; }
+      .why-icon { font-size: 30px; }
+      .why-item h4 { font-size: 13px; }
+      .why-item p { font-size: 11px; }
+
+      /* Footer */
+      .footer { padding: 36px 16px; }
+      .footer-line-btn { padding: 14px 24px; font-size: 15px; width: 100%; justify-content: center; }
+    }
+
+    /* Tablet / larger phones (480–700px) */
+    @media (min-width: 481px) and (max-width: 700px) {
+      .featured { grid-template-columns: 1fr; gap: 24px; padding: 28px 22px; }
+      .featured-imgs img:first-child { height: 220px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .product-img-wrap { height: 200px; }
+      .modal-overlay { padding: 12px; }
+      .modal-img { height: 260px; }
+    }
+
+    /* Safe area for notch phones */
+    @supports (padding: max(0px)) {
+      .line-banner { padding-top: max(12px, env(safe-area-inset-top)); }
+      .footer { padding-bottom: max(48px, env(safe-area-inset-bottom)); }
     }
 
     .scroll-reveal {
@@ -611,18 +736,24 @@
 </head>
 <body>
 
-<!-- LINE Sticky Banner -->
+  <!-- LINE Sticky Banner -->
 <div class="line-banner">
-  <a href="https://line.me/ti/p/~@yourlineid" target="_blank" id="line-top">
+  <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" id="line-top">
     <span class="line-icon">💬</span>
-    สอบถาม / สั่งซื้อผ่าน LINE ได้เลย! &nbsp;— คลิกที่นี่
+    สอบถาม / สั่งซื้อผ่าน LINE &nbsp;<strong>@phalaos2015</strong>
   </a>
 </div>
+
+<!-- Floating LINE Button (mobile) -->
+<a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="fab-line" id="fab-line" aria-label="ติดต่อ LINE">
+  <span style="font-size:26px">💬</span>
+  <span class="fab-label">LINE</span>
+</a>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-  <h1 class="shimmer-text">ร้านพระเครื่อง<br>วัดองตื้อมหาวิหาร</h1>
+  <h1 class="shimmer-text">ร้านพระเครื่อง สปป ลาว<br>วัดองตื้อมหาวิหาร</h1>
   <p class="hero-sub">วัตถุมงคลคุณภาพ พิธีพุทธาภิเษกครบถ้วน &bull; นครหลวงเวียงจันทน์</p>
   <div class="hero-divider"></div>
   <div class="hero-badge">
@@ -634,9 +765,9 @@
 <div class="section">
   <div class="featured scroll-reveal">
     <div class="featured-imgs">
-      <img src="/mnt/user-data/uploads/680517259_122164247300819575_9057741616863932340_n.jpg" alt="พระเจ้าใหญ่องตื้อ หน้า">
-      <img src="/mnt/user-data/uploads/680127304_122164247276819575_3712638153996348177_n.jpg" alt="พระเจ้าใหญ่องตื้อ หลัง">
-      <img src="/mnt/user-data/uploads/680240072_122164247282819575_70837393029070695_n.jpg" alt="พระเจ้าใหญ่องตื้อ ด้านหลัง">
+      <img src="1.jpeg" alt="พระเจ้าใหญ่องตื้อ หน้า">
+      <img src="2.jpeg" alt="พระเจ้าใหญ่องตื้อ หลัง">
+      <img src="3.jpeg" alt="พระเจ้าใหญ่องตื้อ ด้านหลัง">
     </div>
     <div class="featured-info">
       <span class="featured-year">⭐ พระเด่น ประจำร้าน</span>
@@ -649,7 +780,7 @@
         <li>ตอกโค้ด (ก) พร้อมหมายเลขกำกับทุกองค์</li>
         <li>รับรองความแท้ 100%</li>
       </ul>
-      <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">
+      <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">
         💬 &nbsp; สอบถามราคา / สั่งซื้อ LINE
       </a>
     </div>
@@ -669,15 +800,15 @@
     <!-- Card 1 -->
     <div class="product-card scroll-reveal" onclick="openModal('modal1')">
       <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/680127304_122164247276819575_3712638153996348177_n.jpg" alt="หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง">
+        <img src="7.jpg" alt="หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง">
         <span class="product-badge">🔥 ยอดนิยม</span>
       </div>
       <div class="product-body">
-        <div class="product-name">หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดงผิวไฟ</div>
-        <div class="product-desc">ลุ้น "ล้ำรวยมั่นยืน" ปี 2558 — เส้นสายคมชัด ผิวไฟสวยงาม</div>
+        <div class="product-name">เหรียญ หลวงปู่สุวรรณคํา</div>
+        <div class="product-desc">สมปรารถนา รุ่นที2 เนื้ออัลปาก้า ลงยาเหลือง ลงยาจีวร 1500บาท✅</div>
         <div class="product-footer">
           <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
+          <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-line">💬 LINE</a>
         </div>
       </div>
     </div>
@@ -685,15 +816,15 @@
     <!-- Card 2 -->
     <div class="product-card scroll-reveal" onclick="openModal('modal2')">
       <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/680240072_122164247282819575_70837393029070695_n.jpg" alt="หลียนพระเจ้าใหญ่องตื้อ ด้านหลัง">
+        <img src="9.jpg" alt="หลียนพระเจ้าใหญ่องตื้อ ด้านหลัง">
         <span class="product-badge">✅ มีของ</span>
       </div>
       <div class="product-body">
-        <div class="product-name">หลียนพระเจ้าใหญ่องตื้อ ด้านหลัง — ยันต์มงคล</div>
+        <div class="product-name">หลียนพระเจ้าใหญ่องตื้อ ลุ้น "ล้ำรวยมั่นยืน" เนื้อทองแดง ยันต์มงคล 2500บาท✅</div>
         <div class="product-desc">ด้านหลังประทับยันต์มงคลเต็มองค์ ตอกโค้ด (ก) ครบ</div>
         <div class="product-footer">
           <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
+          <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-line">💬 LINE</a>
         </div>
       </div>
     </div>
@@ -701,220 +832,25 @@
     <!-- Card 3 -->
     <div class="product-card scroll-reveal" onclick="openModal('modal3')">
       <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/680373311_122164456556819575_145599254817414484_n.jpg" alt="หลียนหลวงปู่ กะไหล่ทอง">
-        <span class="product-badge">💛 กะไหล่ทอง</span>
+        <img src="4.jpeg" alt="หลียนหลวงปู่ กะไหล่ทอง">
+        <span class="product-badge">✅ มีของ</span>
       </div>
       <div class="product-body">
-        <div class="product-name">หลียนหลวงปู่ใหญ่ เนื้อกะไหล่ทอง (สี่เหลี่ยมข้าวหลามตัด)</div>
-        <div class="product-desc">รูปเหมือนหลวงปู่บนพื้นทองเหลือง ลงยาสีแดง สวยงามมาก</div>
+        <div class="product-name">หลียนพระเจ้าใหญ่องตื้อ ลุ้น "ล้ำรวยมั่นยืน" เนื้อกะไหล่เงิน ยันต์มงคล 2800บาท✅</div>
+        <div class="product-desc">ด้านหลังประทับยันต์มงคลเต็มองค์ ตอกโค้ด (ก) ครบ</div>
         <div class="product-footer">
           <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
+          <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-line">💬 LINE</a>
         </div>
       </div>
     </div>
-
-    <!-- Card 4 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal4')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/680517259_122164247300819575_9057741616863932340_n.jpg" alt="หลียนพระเจ้าใหญ่ เนื้อทองแดง ใหญ่">
-        <span class="product-badge">🔥 ยอดนิยม</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง (ไซส์ใหญ่)</div>
-        <div class="product-desc">ขนาดใหญ่กว่าปกติ เส้นสายคมชัด นาคพันรอบงดงาม</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal5')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/681192503_122164456250819575_7226270658929734067_n.jpg" alt="ลูกอมทองคำ กรอบทอง">
-        <span class="product-badge">✨ หายาก</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">ลูกอมทองคำ กรอบทอง — หมายเลข 305</div>
-        <div class="product-desc">ลูกอมในกรอบทองประดับลวดลายวิจิตร มีหมายเลขกำกับ</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal6')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/682553689_122164456268819575_6997492215870172653_n.jpg" alt="ลูกอมทองคำ กรอบทอง ด้านหลัง">
-        <span class="product-badge">✨ หายาก</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">ลูกอมทองคำ กรอบทอง (ด้านหลัง)</div>
-        <div class="product-desc">ด้านหลังกรอบลวดลายละเอียด มีตาไก่ 4 มุมสำหรับห้อยสายสังวาลย์</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 7 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal7')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/682831002_122164455998819575_4677609656034322410_n.jpg" alt="หลียนหลวงปู่ เนื้อเงิน กรอบพลาสติก">
-        <span class="product-badge">🥈 เนื้อเงิน</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">หลียนหลวงปู่ใหญ่ เนื้อเงิน เลขที่ 931 กรอบพลาสติกใส</div>
-        <div class="product-desc">เนื้อเงินผิวเงาสวย พร้อมกรอบพลาสติกใสกันกระทบ</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 8 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal8')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/683205061_122164455758819575_6439635739494002368_n.jpg" alt="พระยืน กรอบทอง">
-        <span class="product-badge">💛 กะไหล่ทอง</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">พระพุทธยืน กรอบทองวิจิตร ตาไก่ 3 มุม</div>
-        <div class="product-desc">พระยืนในกรอบทองประดับลวดลาย คุ้มครองผู้ห้อย</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 9 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal9')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/683607858_122164455506819575_5197003977236841182_n.jpg" alt="เขี้ยวสัตว์ กรอบเพชรพลอย">
-        <span class="product-badge">💎 หายาก</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">เขี้ยวสัตว์มงคล กรอบเพชร/คริสตัล (ด้านหน้า)</div>
-        <div class="product-desc">เขี้ยวสัตว์แท้บรรจุในกรอบประดับเพชร/คริสตัลรอบองค์ สวมงาม</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 10 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal10')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/683992999_122164456580819575_8759833152757849170_n.jpg" alt="หลียนจตุรทิศ เนื้อกะไหล่ทอง">
-        <span class="product-badge">💛 กะไหล่ทอง</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">หลียนจตุรทิศ ธรรมจักร เนื้อกะไหล่ทอง</div>
-        <div class="product-desc">ด้านหน้าประทับเทวดา 4 ทิศ ธรรมจักรกลาง ลงยาดำ สง่างาม</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 11 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal11')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/684095137_122164455770819575_6874771278844695925_n.jpg" alt="ยันต์ทองประดับเพชร กรอบทอง">
-        <span class="product-badge">💎 พรีเมียม</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">ยันต์ทองมงคล กรอบทองประดับเพชร CZ รอบองค์</div>
-        <div class="product-desc">ยันต์ทองประดับเพชรสังเคราะห์ล้อมรอบ ตาไก่ 3 มุม หรูหราสุดๆ</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 12 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal12')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/684112131_122164456010819575_5102024277259363077_n.jpg" alt="หลียนจตุรทิศ เนื้อเงิน กรอบพลาสติก">
-        <span class="product-badge">🥈 เนื้อเงิน</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">หลียนจตุรทิศ ธรรมจักร เนื้อเงิน กรอบพลาสติกใส</div>
-        <div class="product-desc">เนื้อเงินผิวเงาวาว ด้านหน้าประทับเทวดา 4 ทิศ ธรรมจักรกลาง</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 13 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal13')">
-      <div class="product-img-wrap">
-        <img src="/mnt/user-data/uploads/684209351_122164455518819575_5027198835035450593_n.jpg" alt="เขี้ยวสัตว์ กรอบเพชรพลอย ด้านหลัง">
-        <span class="product-badge">💎 หายาก</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">เขี้ยวสัตว์มงคล กรอบเพชร/คริสตัล (ด้านหลัง)</div>
-        <div class="product-desc">ด้านหลังเขี้ยวสัตว์แท้ เห็นลวดลายธรรมชาติชัดเจน ของหายากมาก</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-line">💬 LINE</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- WHY US -->
-<div class="why-section">
-  <div class="section-title scroll-reveal" style="max-width:1100px;margin:0 auto 0;">
-    <h2>ทำไมต้องเลือกร้านเรา?</h2>
-    <div class="ornament-line">
-      <hr><span>✦</span><hr>
-    </div>
-  </div>
-  <div class="why-grid">
-    <div class="why-item scroll-reveal">
-      <div class="why-icon">🏛️</div>
-      <h4>ของแท้ 100%</h4>
-      <p>ทุกชิ้นมาจากแหล่งที่มาชัดเจน จัดสร้างโดยวัดองตื้อมหาวิหาร นครหลวงเวียงจันทน์</p>
-    </div>
-    <div class="why-item scroll-reveal">
-      <div class="why-icon">🔏</div>
-      <h4>ตอกโค้ดทุกองค์</h4>
-      <p>มีโค้ด (ก) และหมายเลขลำดับกำกับทุกองค์ เป็นมาตรฐานการสะสม</p>
-    </div>
-    <div class="why-item scroll-reveal">
-      <div class="why-icon">💬</div>
-      <h4>ติดต่อง่ายผ่าน LINE</h4>
-      <p>สอบถาม ดูรูปเพิ่มเติม และสั่งซื้อสะดวกผ่าน LINE ตอบไวทุกวัน</p>
-    </div>
-    <div class="why-item scroll-reveal">
-      <div class="why-icon">📦</div>
-      <h4>จัดส่งทั่วประเทศ</h4>
-      <p>จัดส่งพัสดุอย่างระมัดระวัง บรรจุหีบห่อมิดชิด ปลอดภัยถึงมือคุณ</p>
-    </div>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-logo">✦ ร้านพระเครื่อง วัดองตื้อมหาวิหาร ✦</div>
   <div class="footer-sub">นครหลวงเวียงจันทน์ &bull; วัตถุมงคลแท้ พิธีครบถ้วน</div>
-  <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="footer-line-btn">
-    💬 &nbsp; ติดต่อสั่งซื้อผ่าน LINE
+  <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="footer-line-btn">
+    💬 &nbsp; ติดต่อสั่งซื้อผ่าน LINE <strong style="margin-left:6px">@phalaos2015</strong>
   </a>
   <br>
   <div class="footer-note">© 2568 ร้านพระเครื่อง วัดองตื้อมหาวิหาร &bull; เผยแพร่เพื่อเป็นข้อมูลสำหรับนักสะสมวัตถุมงคลลาว</div>
@@ -924,12 +860,13 @@
 <div class="modal-overlay" id="modal1">
   <div class="modal" style="position:relative">
     <button class="modal-close" onclick="closeModal('modal1')">✕</button>
-    <img src="/mnt/user-data/uploads/680127304_122164247276819575_3712638153996348177_n.jpg" class="modal-img" alt="">
+    <img src="7.jpg" class="modal-img" alt="">
+    <img src="8.jpg" class="modal-img" alt="">
     <div class="modal-body">
-      <div class="modal-title">หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดงผิวไฟ</div>
-      <div class="modal-desc">ลุ้น "ล้ำรวยมั่นยืน" ปี พ.ศ. 2558 — เส้นสายคมชัด ผิวไฟสวยงาม พิธีพุทธาภิเษกครบถ้วน ตอกโค้ด (ก) พร้อมหมายเลขกำกับ</div>
+      <div class="modal-title">เหรียญ หลวงปู่สุวรรณคํา</div>
+      <div class="modal-desc">สมปรารถนา รุ่นที2 เนื้ออัลปาก้า ลงยาเหลือง ลงยาจีวร พร้อมหมายเลขกำกับ 24 ราคา 1500บาท✅</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -938,12 +875,13 @@
 <div class="modal-overlay" id="modal2">
   <div class="modal" style="position:relative">
     <button class="modal-close" onclick="closeModal('modal2')">✕</button>
-    <img src="/mnt/user-data/uploads/680240072_122164247282819575_70837393029070695_n.jpg" class="modal-img" alt="">
+    <img src="6.jpg" class="modal-img" alt="">
+    <img src="9.jpg" class="modal-img" alt="">
     <div class="modal-body">
-      <div class="modal-title">หลียนพระเจ้าใหญ่องตื้อ ด้านหลัง — ยันต์มงคล</div>
+      <div class="modal-title">หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง ด้านหลัง — ยันต์มงคล</div>
       <div class="modal-desc">ด้านหลังประทับยันต์มงคลเต็มองค์ ตอกโค้ด (ก) ครบ รับรองความแท้จากวัดองตื้อมหาวิหาร</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -957,7 +895,7 @@
       <div class="modal-title">หลียนหลวงปู่ใหญ่ เนื้อกะไหล่ทอง (สี่เหลี่ยมข้าวหลามตัด)</div>
       <div class="modal-desc">รูปเหมือนหลวงปู่บนพื้นทองเหลือง ลงยาสีแดงสวยงาม ขนาดพกพาสะดวก</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -971,7 +909,7 @@
       <div class="modal-title">หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง (ไซส์ใหญ่)</div>
       <div class="modal-desc">ขนาดใหญ่กว่าปกติ เส้นสายคมชัด นาคพันรอบงดงาม พิธีครบถ้วน ปี 2558</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -985,7 +923,7 @@
       <div class="modal-title">ลูกอมทองคำ กรอบทอง — หมายเลข 305</div>
       <div class="modal-desc">ลูกอมในกรอบทองประดับลวดลายวิจิตร มีหมายเลขกำกับชัดเจน ของหายากมาก</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -999,7 +937,7 @@
       <div class="modal-title">ลูกอมทองคำ กรอบทอง (ด้านหลัง)</div>
       <div class="modal-desc">ด้านหลังกรอบลวดลายละเอียด มีตาไก่ 4 มุมสำหรับห้อยสายสังวาลย์ได้หลายแบบ</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -1013,7 +951,7 @@
       <div class="modal-title">หลียนหลวงปู่ใหญ่ เนื้อเงิน เลขที่ 931</div>
       <div class="modal-desc">เนื้อเงินผิวเงาสวย พร้อมกรอบพลาสติกใสกันกระทบ หมายเลข 931 มีเอกสาร</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -1027,7 +965,7 @@
       <div class="modal-title">พระพุทธยืน กรอบทองวิจิตร ตาไก่ 3 มุม</div>
       <div class="modal-desc">พระยืนในกรอบทองประดับลวดลาย คุ้มครองผู้ห้อย มีตาไก่ 3 มุมสำหรับห้อยสายพระ</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -1041,7 +979,7 @@
       <div class="modal-title">เขี้ยวสัตว์มงคล กรอบเพชร/คริสตัล (ด้านหน้า)</div>
       <div class="modal-desc">เขี้ยวสัตว์แท้บรรจุในกรอบประดับเพชร/คริสตัลล้อมรอบ สวยงามหรูหรา ของหายากมาก</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -1055,7 +993,7 @@
       <div class="modal-title">หลียนจตุรทิศ ธรรมจักร เนื้อกะไหล่ทอง</div>
       <div class="modal-desc">ด้านหน้าประทับเทวดา 4 ทิศ ธรรมจักรกลาง ลงยาดำสง่างาม มีจารึกชัดเจน</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -1069,7 +1007,7 @@
       <div class="modal-title">ยันต์ทองมงคล กรอบทองประดับเพชร CZ</div>
       <div class="modal-desc">ยันต์ทองประดับเพชรสังเคราะห์ CZ ล้อมรอบทั้งองค์ ตาไก่ 3 มุม หรูหราคุณภาพสูง</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -1083,7 +1021,7 @@
       <div class="modal-title">หลียนจตุรทิศ ธรรมจักร เนื้อเงิน</div>
       <div class="modal-desc">เนื้อเงินผิวเงาวาว ด้านหน้าประทับเทวดา 4 ทิศ ธรรมจักรกลาง กรอบพลาสติกใสพร้อมห้อยคล้อง</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
@@ -1097,14 +1035,112 @@
       <div class="modal-title">เขี้ยวสัตว์มงคล กรอบเพชร/คริสตัล (ด้านหลัง)</div>
       <div class="modal-desc">ด้านหลังเขี้ยวสัตว์แท้ เห็นลวดลายธรรมชาติชัดเจน ของหายากมาก เหมาะสะสมหรือใช้บูชา</div>
       <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@yourlineid" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal14">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('modal14')">✕</button>
+    <img src="/mnt/user-data/uploads/1778479230153_7.jpg" class="modal-img" alt="">
+    <div class="modal-body">
+      <div class="modal-title">หลียนหลวงปู่ใหญ่ กะไหล่ทอง ลงยาแดง</div>
+      <div class="modal-desc">รูปเหมือนหลวงปู่นั่งสมาธิ พื้นทองเหลืองลงยาแดงสวยงาม สี่เหลี่ยมข้าวหลามตัด</div>
+      <div class="modal-actions">
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal15">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('modal15')">✕</button>
+    <img src="/mnt/user-data/uploads/1778479230156_1.jpeg" class="modal-img" alt="">
+    <div class="modal-body">
+      <div class="modal-title">พระเจ้าองตื้อ เนื้อทองคำ กรอบเงินประดับเพชร</div>
+      <div class="modal-desc">พระนาคปรกเนื้อทองคำ ในกรอบเงินประดับเพชรล้อมรอบ หรูหราระดับพรีเมียม ของหายาก</div>
+      <div class="modal-actions">
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal16">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('modal16')">✕</button>
+    <img src="/mnt/user-data/uploads/1778479230157_2.jpeg" class="modal-img" alt="">
+    <div class="modal-body">
+      <div class="modal-title">พระเจ้าองตื้อ เนื้อทองคำ กรอบทองวิจิตร</div>
+      <div class="modal-desc">พระนาคปรกเนื้อทองในกรอบทองคำประดับลวดลายวิจิตรงดงาม งานฝีมือชั้นสูง</div>
+      <div class="modal-actions">
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal17">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('modal17')">✕</button>
+    <img src="/mnt/user-data/uploads/1778479230159_3.jpeg" class="modal-img" alt="">
+    <div class="modal-body">
+      <div class="modal-title">พระเจ้าองตื้อ เนื้อเงิน ลงยา 3 สี (แดง-เขียว-ทอง)</div>
+      <div class="modal-desc">ลงยาหลากสี พื้นแดง นาคเขียว พระทองคำ งดงามสวยหายากมาก</div>
+      <div class="modal-actions">
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal18">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('modal18')">✕</button>
+    <img src="/mnt/user-data/uploads/1778479230160_4.jpeg" class="modal-img" alt="">
+    <div class="modal-body">
+      <div class="modal-title">พระเจ้าองตื้อ เนื้อเงิน ผิวเงา</div>
+      <div class="modal-desc">เนื้อเงินแท้ผิวเงาสวย นาคพันรอบ เส้นสายคมชัด สวมใส่ได้ทุกวัน</div>
+      <div class="modal-actions">
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal19">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('modal19')">✕</button>
+    <img src="/mnt/user-data/uploads/1778479230161_5.jpeg" class="modal-img" alt="">
+    <div class="modal-body">
+      <div class="modal-title">พระเจ้าองตื้อ ลงยา 4 สี ครบเซ็ต</div>
+      <div class="modal-desc">ครบ 4 สี (ดำ/ส้ม/น้ำเงิน/เขียว) ในเซ็ตเดียว สะสมครบทุกรุ่น ของหายากมาก</div>
+      <div class="modal-actions">
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal20">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('modal20')">✕</button>
+    <img src="/mnt/user-data/uploads/1778479230162_5.jpg" class="modal-img" alt="">
+    <div class="modal-body">
+      <div class="modal-title">พระเจ้าองตื้อ เนื้อทองแดง นาคพัน (ไซส์ใหญ่)</div>
+      <div class="modal-desc">เนื้อทองแดงรมดำ นาคพันรอบ เส้นสายละเอียดคมชัด ลุ้น "ล้ำรวยมั่นยืน" ปี 2558</div>
+      <div class="modal-actions">
+        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Modal
+  // Modal open/close
   function openModal(id) {
     document.getElementById(id).classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -1113,30 +1149,39 @@
     document.getElementById(id).classList.remove('active');
     document.body.style.overflow = '';
   }
+  // Close on overlay click
   document.querySelectorAll('.modal-overlay').forEach(el => {
     el.addEventListener('click', function(e) {
       if (e.target === this) closeModal(this.id);
     });
   });
+  // Swipe down to close on mobile
+  document.querySelectorAll('.modal').forEach(modal => {
+    let startY = 0;
+    modal.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+    modal.addEventListener('touchend', e => {
+      if (e.changedTouches[0].clientY - startY > 80) closeModal(modal.closest('.modal-overlay').id);
+    }, { passive: true });
+  });
+
+  // Floating LINE button fades in after scrolling past banner
+  const fab = document.getElementById('fab-line');
+  if (fab) {
+    fab.style.opacity = '0';
+    fab.style.transition = 'opacity 0.3s';
+    window.addEventListener('scroll', () => {
+      fab.style.opacity = window.scrollY > 100 ? '1' : '0';
+      fab.style.pointerEvents = window.scrollY > 100 ? 'auto' : 'none';
+    }, { passive: true });
+  }
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('revealed');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target); }
     });
-  }, { threshold: 0.1 });
-
+  }, { threshold: 0.08 });
   document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-
-  // ─── UPDATE LINE ID ───
-  // Replace @yourlineid with your real LINE ID below:
-  const LINE_ID = '@yourlineid';
-  document.querySelectorAll('a[href*="yourlineid"]').forEach(a => {
-    a.href = `https://line.me/ti/p/~${LINE_ID}`;
-  });
 </script>
 </body>
 </html>
