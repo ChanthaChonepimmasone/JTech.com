@@ -1,1187 +1,191 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="lo">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ร้านพระเครื่อง สปป ลาว | วัดองตื้อมหาวิหาร</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: #c9a227;
-      --gold-light: #e8c547;
-      --gold-pale: #f5e6a3;
-      --deep: #1a0e00;
-      --dark: #2d1b00;
-      --mid: #5c3d0a;
-      --cream: #fdf6e3;
-      --red: #8b0000;
-      --red-light: #c0392b;
-      --white: #fffef8;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Sarabun', sans-serif;
-      background: var(--deep);
-      color: var(--cream);
-      overflow-x: hidden;
-    }
-
-    /* ─── HERO ─── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,162,39,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(139,0,0,0.15) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 80% 80%, rgba(139,0,0,0.15) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero-ornament {
-      font-size: 28px;
-      color: var(--gold);
-      letter-spacing: 12px;
-      margin-bottom: 16px;
-      animation: fadeInDown 1s ease both;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 6vw, 4rem);
-      font-weight: 700;
-      color: var(--gold-light);
-      text-shadow: 0 0 40px rgba(201,162,39,0.5), 0 2px 8px rgba(0,0,0,0.8);
-      line-height: 1.2;
-      animation: fadeInDown 1s ease 0.2s both;
-    }
-
-    .hero-sub {
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      color: var(--gold-pale);
-      margin-top: 12px;
-      font-weight: 300;
-      animation: fadeInDown 1s ease 0.4s both;
-    }
-
-    .hero-divider {
-      width: 200px;
-      height: 2px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      margin: 24px auto;
-      animation: fadeIn 1s ease 0.6s both;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, var(--red) 0%, #5c0000 100%);
-      border: 1px solid var(--gold);
-      color: var(--gold-pale);
-      padding: 10px 28px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 600;
-      animation: fadeInUp 1s ease 0.8s both;
-      box-shadow: 0 4px 20px rgba(139,0,0,0.4);
-    }
-
-    /* ─── LINE CTA ─── */
-    .line-banner {
-      background: linear-gradient(135deg, #00b900 0%, #00850d 100%);
-      padding: 20px 24px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-
-    .line-banner a {
-      color: white;
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.2s;
-    }
-
-    .line-banner a:hover { transform: scale(1.04); }
-
-    .line-icon {
-      width: 32px;
-      height: 32px;
-      background: white;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    /* ─── SECTION ─── */
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      color: var(--gold-light);
-      text-shadow: 0 0 20px rgba(201,162,39,0.4);
-    }
-
-    .section-title .ornament-line {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 12px;
-    }
-
-    .ornament-line span { color: var(--gold); font-size: 20px; }
-    .ornament-line hr { flex: 1; max-width: 120px; border-color: var(--gold); opacity: 0.4; }
-
-    /* ─── PRODUCT GRID ─── */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-    }
-
-    .product-card {
-      background: linear-gradient(145deg, #2d1b00, #1a0e00);
-      border: 1px solid rgba(201,162,39,0.3);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(201,162,39,0.2), 0 8px 20px rgba(0,0,0,0.6);
-      border-color: var(--gold);
-    }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .product-card:hover::before { opacity: 1; }
-
-    .product-img-wrap {
-      position: relative;
-      height: 280px;
-      overflow: hidden;
-      background: #0f0800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 10px;
-      transition: transform 0.4s;
-    }
-
-    .product-card:hover .product-img-wrap img {
-      transform: scale(1.06);
-    }
-
-    .product-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--red);
-      color: var(--gold-pale);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-      border: 1px solid rgba(201,162,39,0.4);
-    }
-
-    .product-body {
-      padding: 20px;
-    }
-
-    .product-name {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--gold-light);
-      line-height: 1.4;
-      margin-bottom: 6px;
-    }
-
-    .product-desc {
-      font-size: 13px;
-      color: #c4a96e;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .product-price {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--gold-light);
-    }
-
-    .btn-line {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, #00b900, #00850d);
-      color: white;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      font-family: 'Sarabun', sans-serif;
-    }
-
-    .btn-line:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(0,185,0,0.4);
-    }
-
-    /* ─── FEATURED MAIN ─── */
-    .featured {
-      background: linear-gradient(135deg, #2d1b00 0%, #1a0e00 100%);
-      border: 1px solid rgba(201,162,39,0.5);
-      border-radius: 24px;
-      padding: 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-      margin-bottom: 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .featured::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 0% 50%, rgba(201,162,39,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .featured-imgs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .featured-imgs img {
-      width: 100%;
-      height: 200px;
-      object-fit: contain;
-      background: #0f0800;
-      padding: 6px;
-      border-radius: 12px;
-      border: 1px solid rgba(201,162,39,0.3);
-      transition: transform 0.3s;
-    }
-
-    .featured-imgs img:hover { transform: scale(1.03); }
-
-    .featured-imgs img:first-child {
-      grid-column: span 2;
-      height: 260px;
-    }
-
-    .featured-info h3 {
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      color: var(--gold-light);
-      line-height: 1.3;
-      margin-bottom: 8px;
-    }
-
-    .featured-year {
-      display: inline-block;
-      background: var(--red);
-      color: var(--gold-pale);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 16px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-    }
-
-    .featured-info p {
-      color: #c4a96e;
-      line-height: 1.8;
-      font-size: 15px;
-      margin-bottom: 20px;
-    }
-
-    .featured-specs {
-      list-style: none;
-      margin-bottom: 24px;
-    }
-
-    .featured-specs li {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(201,162,39,0.15);
-      font-size: 14px;
-      color: #d4b870;
-      display: flex;
-      gap: 8px;
-    }
-
-    .featured-specs li::before {
-      content: '✦';
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .btn-large {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, #00b900, #00850d);
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      font-family: 'Sarabun', sans-serif;
-      box-shadow: 0 4px 20px rgba(0,185,0,0.3);
-    }
-
-    .btn-large:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 25px rgba(0,185,0,0.5);
-    }
-
-    /* ─── WHY ─── */
-    .why-section {
-      background: linear-gradient(135deg, #1a0e00, #0f0800);
-      border-top: 1px solid rgba(201,162,39,0.2);
-      border-bottom: 1px solid rgba(201,162,39,0.2);
-      padding: 60px 20px;
-    }
-
-    .why-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
-
-    .why-item {
-      text-align: center;
-      padding: 28px 20px;
-      border: 1px solid rgba(201,162,39,0.2);
-      border-radius: 16px;
-      background: rgba(201,162,39,0.03);
-      transition: border-color 0.3s, background 0.3s;
-    }
-
-    .why-item:hover {
-      border-color: rgba(201,162,39,0.5);
-      background: rgba(201,162,39,0.07);
-    }
-
-    .why-icon { font-size: 40px; margin-bottom: 12px; }
-
-    .why-item h4 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gold-light);
-      margin-bottom: 8px;
-    }
-
-    .why-item p {
-      font-size: 13px;
-      color: #c4a96e;
-      line-height: 1.7;
-    }
-
-    /* ─── FOOTER ─── */
-    .footer {
-      background: #0a0600;
-      border-top: 1px solid rgba(201,162,39,0.3);
-      padding: 48px 20px;
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--gold-light);
-      margin-bottom: 8px;
-    }
-
-    .footer-sub {
-      color: #8a7040;
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
-    .footer-line-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, #00b900, #00850d);
-      color: white;
-      text-decoration: none;
-      padding: 14px 36px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 32px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(0,185,0,0.3);
-    }
-
-    .footer-line-btn:hover {
-      transform: scale(1.04);
-      box-shadow: 0 6px 30px rgba(0,185,0,0.5);
-    }
-
-    .footer-note {
-      color: #5a4a25;
-      font-size: 12px;
-      margin-top: 24px;
-    }
-
-    /* ─── MODAL ─── */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-overlay.active { display: flex; }
-
-    .modal {
-      background: linear-gradient(145deg, #2d1b00, #1a0e00);
-      border: 1px solid var(--gold);
-      border-radius: 20px;
-      max-width: 520px;
-      width: 100%;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 60px rgba(201,162,39,0.15);
-    }
-
-    .modal-img {
-      width: 100%;
-      height: 320px;
-      object-fit: contain;
-      background: #0f0800;
-      padding: 10px;
-    }
-
-    .modal-body { padding: 28px; }
-
-    .modal-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--gold-light);
-      margin-bottom: 8px;
-    }
-
-    .modal-desc {
-      font-size: 14px;
-      color: #c4a96e;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(201,162,39,0.4);
-      color: var(--gold);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ─── FLOATING LINE BUTTON (mobile) ─── */
-    .fab-line {
-      display: none;
-      position: fixed;
-      bottom: 24px;
-      right: 18px;
-      z-index: 200;
-      background: linear-gradient(135deg, #00c900, #00850d);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      padding: 12px 18px 12px 14px;
-      flex-direction: row;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 24px rgba(0,185,0,0.5), 0 2px 8px rgba(0,0,0,0.4);
-      font-family: 'Sarabun', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: fabPulse 2.5s ease-in-out infinite;
-    }
-    .fab-line:active { transform: scale(0.95); }
-    .fab-label { font-size: 15px; }
-
-    @keyframes fabPulse {
-      0%,100% { box-shadow: 0 6px 24px rgba(0,185,0,0.5); }
-      50% { box-shadow: 0 6px 32px rgba(0,185,0,0.8), 0 0 0 8px rgba(0,185,0,0.1); }
-    }
-
-    @media (max-width: 700px) {
-      .fab-line { display: flex; }
-      /* extra bottom padding so last card doesn't hide behind FAB */
-      .footer { padding-bottom: 90px; }
-    }
-
-    /* Touch-friendly tap highlight removal */
-    a, button { -webkit-tap-highlight-color: transparent; }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-
-    .shimmer-text {
-      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-pale) 40%, var(--gold) 60%, var(--gold-light) 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s linear infinite;
-    }
-
-    /* ─── RESPONSIVE / MOBILE-FIRST ─── */
-
-    /* Mobile base (< 480px) */
-    @media (max-width: 480px) {
-      .line-banner a {
-        font-size: 15px;
-        gap: 8px;
-      }
-      .hero { padding: 32px 16px; min-height: 85vh; }
-      .hero h1 { font-size: 1.7rem; }
-      .hero-sub { font-size: 0.95rem; }
-      .hero-badge { font-size: 13px; padding: 9px 18px; }
-
-      .section { padding: 36px 14px; }
-
-      /* Featured: single column, compact */
-      .featured {
-        grid-template-columns: 1fr;
-        padding: 22px 16px;
-        gap: 20px;
-        border-radius: 16px;
-      }
-      .featured-imgs { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .featured-imgs img { height: 130px; }
-      .featured-imgs img:first-child { height: 190px; }
-      .featured-info h3 { font-size: 1.2rem; }
-      .featured-info p { font-size: 14px; }
-      .featured-specs li { font-size: 13px; }
-
-      /* Products: 2-col tight grid on small phones */
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-      .product-img-wrap { height: 160px; }
-      .product-body { padding: 12px; }
-      .product-name { font-size: 13px; }
-      .product-desc { font-size: 11px; margin-bottom: 10px; }
-      .product-price { font-size: 14px; }
-      .product-footer { flex-direction: column; align-items: flex-start; gap: 6px; }
-      .btn-line { padding: 8px 14px; font-size: 13px; width: 100%; justify-content: center; }
-
-      /* Modal full-screen on mobile */
-      .modal-overlay { padding: 0; align-items: flex-end; }
-      .modal {
-        border-radius: 20px 20px 0 0;
-        max-width: 100%;
-        max-height: 92vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      .modal-img { height: 220px; }
-      .modal-body { padding: 20px 18px; }
-      .modal-title { font-size: 17px; }
-      .modal-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 20px; }
-      .btn-large { padding: 14px 20px; font-size: 15px; width: 100%; justify-content: center; }
-
-      /* Why section */
-      .why-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .why-item { padding: 18px 12px; }
-      .why-icon { font-size: 30px; }
-      .why-item h4 { font-size: 13px; }
-      .why-item p { font-size: 11px; }
-
-      /* Footer */
-      .footer { padding: 36px 16px; }
-      .footer-line-btn { padding: 14px 24px; font-size: 15px; width: 100%; justify-content: center; }
-    }
-
-    /* Tablet / larger phones (480–700px) */
-    @media (min-width: 481px) and (max-width: 700px) {
-      .featured { grid-template-columns: 1fr; gap: 24px; padding: 28px 22px; }
-      .featured-imgs img:first-child { height: 220px; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .product-img-wrap { height: 200px; }
-      .modal-overlay { padding: 12px; }
-      .modal-img { height: 260px; }
-    }
-
-    /* Safe area for notch phones */
-    @supports (padding: max(0px)) {
-      .line-banner { padding-top: max(12px, env(safe-area-inset-top)); }
-      .footer { padding-bottom: max(48px, env(safe-area-inset-bottom)); }
-    }
-
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .scroll-reveal.revealed {
-      opacity: 1;
-      transform: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ຕຳນານ ພະພິຄະເນດ - ເທບແຫ່ງຄວາມສຳເລັດ</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&family=Souliyo&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS ສໍາລັບຕົບແຕ່ງເວັບໄຊ ແລະ ກຳນົດຟອນ */
+        body {
+            /* ລະບຸ Saysettha OT ເປັນອັນດັບທຳອິດ ຖ້າເຄື່ອງໃດມີຈະສະແດງຜົນທັນທີ ຖ້າບໍ່ມີຈະດຶງຟອນສຳຮອງທີ່ໃກ້ຄຽງ */
+            font-family: 'Saysettha OT', 'Saysettha_OT', 'Noto Sans Lao', 'Souliyo', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f6f0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #800020, #d4af37);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+            color: #fff8e7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid #d4af37;
+        }
+        h2 {
+            color: #800020;
+            border-bottom: 2px solid #f0e6d2;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-weight: 700;
+        }
+        .img-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            max-height: 400px;
+        }
+        .caption {
+            font-size: 0.9.5rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        .geji-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: #fffcf5;
+            padding: 20px;
+            border: 1px solid #eaddca;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .geji-img {
+            flex: 1;
+            max-width: 200px;
+            text-align: center;
+        }
+        .geji-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .geji-info {
+            flex: 2;
+        }
+        .geji-info h3 {
+            color: #800020;
+            margin-top: 0;
+            font-weight: 700;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+        @media (max-width: 600px) {
+            .geji-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .geji-img {
+                max-width: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- LINE Sticky Banner -->
-<div class="line-banner">
-  <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" id="line-top">
-    <span class="line-icon">💬</span>
-    สอบถาม / สั่งซื้อผ่าน LINE &nbsp;<strong>@phalaos2015</strong>
-  </a>
-</div>
+    <header>
+        <h1>ພະສີໂຫ (ພະພິຄະເນດ)</h1>
+        <p>ມະຫາເທບແຫ່ງປັນຍາ, ສິລະປະວິທະຍາ ແລະ ຄວາມສຳເລັດ</p>
+    </header>
 
-<!-- Floating LINE Button (mobile) -->
-<a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="fab-line" id="fab-line" aria-label="ติดต่อ LINE">
-  <span style="font-size:26px">💬</span>
-  <span class="fab-label">LINE</span>
-</a>
+    <div class="container">
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-  <h1 class="shimmer-text">ร้านพระเครื่อง สปป ลาว<br>วัดองตื้อมหาวิหาร</h1>
-  <p class="hero-sub">วัตถุมงคลคุณภาพ พิธีพุทธาภิเษกครบถ้วน &bull; นครหลวงเวียงจันทน์</p>
-  <div class="hero-divider"></div>
-  <div class="hero-badge">
-    🏆 &nbsp; พระเจ้าใหญ่องตื้อ &bull; ลุ้น "ล้ำรวยมั่นยืน" &bull; ปี พ.ศ. 2558
-  </div>
-</div>
-
-<!-- FEATURED ITEM -->
-<div class="section">
-  <div class="featured scroll-reveal">
-    <div class="featured-imgs">
-      <img src="1.jpeg" alt="พระเจ้าใหญ่องตื้อ หน้า">
-      <img src="2.jpeg" alt="พระเจ้าใหญ่องตื้อ หลัง">
-      <img src="3.jpeg" alt="พระเจ้าใหญ่องตื้อ ด้านหลัง">
-    </div>
-    <div class="featured-info">
-      <span class="featured-year">⭐ พระเด่น ประจำร้าน</span>
-      <h3>หลียนเสมา พระเจ้าใหญ่องตื้อ<br>ลุ้น "ล้ำรวยมั่นยืน"</h3>
-      <p>วัตถุมงคลที่มีพิธีการจัดสร้างยิ่งใหญ่และสมบูรณ์แบบที่สุดของวัดองตื้อมหาวิหาร นครหลวงเวียงจันทน์ ประธานฝ่ายสงฆ์โดยหลวงปู่ใหญ่ ดร.มหาผ่อง สะมาเลิก</p>
-      <ul class="featured-specs">
-        <li>ปีจัดสร้าง พ.ศ. 2558 (ค.ศ. 2015)</li>
-        <li>พิธีพุทธาภิเษก / สมโภช ครบถ้วนตามฮีดคอง</li>
-        <li>เนื้อทองแดง / กะไหล่ทอง / กะไหล่เงิน</li>
-        <li>ตอกโค้ด (ก) พร้อมหมายเลขกำกับทุกองค์</li>
-        <li>รับรองความแท้ 100%</li>
-      </ul>
-      <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">
-        💬 &nbsp; สอบถามราคา / สั่งซื้อ LINE
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUCT SECTION TITLE -->
-  <div class="section-title scroll-reveal">
-    <h2>วัตถุมงคลทั้งหมด</h2>
-    <div class="ornament-line">
-      <hr><span>✦</span><hr>
-    </div>
-  </div>
-
-  <!-- PRODUCTS -->
-  <div class="product-grid">
-
-    <!-- Card 1 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal1')">
-      <div class="product-img-wrap">
-        <img src="7.jpg" alt="หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง">
-        <span class="product-badge">🔥 ยอดนิยม</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">เหรียญ หลวงปู่สุวรรณคํา</div>
-        <div class="product-desc">สมปรารถนา รุ่นที2 เนื้ออัลปาก้า ลงยาเหลือง ลงยาจีวร 1500บาท✅</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-line">💬 LINE</a>
+        <div class="section">
+            <h2>ປະຫວັດ ແລະ ຄວາມເປັນມາ</h2>
+            <div class="img-container">
+                <img src="3.jpg" alt="ພະພິຄະເນດ">
+                <div class="caption">ຮູບຈໍາລອງອົງພະພິຄະເນດ ມະຫາເທບຜູ້ມີສຽນເປັນຊ້າງ</div>
+            </div>
+            <p><strong>ພະພິຄະເນດ</strong> ຫຼື <strong>ພະຄະເນດ</strong> ເປັນມະຫາເທບໃນສະໜາມເທບພະເຈົ້າຮິນດູ ທີ່ໄດ້ຮັບການເຄົາລົບນັບຖືຢ່າງກວ້າງຂວາງທີ່ສຸດ. ພະອົງເປັນໂອຣົດຂອງ <strong>ພະສິວະ (ພະອິດສວນ)</strong> ແລະ <strong>ພະແມ່ປາຣະວະຕີ (ພະແມ່ອຸມາເທວີ)</strong>.</p>
+            <p>ມີລັກສະນະເດັ່ນຄື: ມີກາຍເປັນມະນຸດ ແຕ່ມີສຽນ (ຫົວ) ເປັນຊ້າງ, ມີງາຂ້າງດຽວ ແລະ ມີພາຫະນະປະຈຳກາຍຄື <strong>ໜູ (ມຸສິກະ)</strong>. ພະອົງຊົງເປັນເທບແຫ່ງຄວາມຮອບຮູ້, ປັນຍາອັນສະຫຼາດສ່ອງໃສ ແລະ ເປັນຜູ້ຂະຈັດອຸປະສັກທັງປວງ.</p>
         </div>
-      </div>
-    </div>
 
-    <!-- Card 2 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal2')">
-      <div class="product-img-wrap">
-        <img src="9.jpg" alt="หลียนพระเจ้าใหญ่องตื้อ ด้านหลัง">
-        <span class="product-badge">✅ มีของ</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">หลียนพระเจ้าใหญ่องตื้อ ลุ้น "ล้ำรวยมั่นยืน" เนื้อทองแดง ยันต์มงคล 2500บาท✅</div>
-        <div class="product-desc">ด้านหลังประทับยันต์มงคลเต็มองค์ ตอกโค้ด (ก) ครบ</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-line">💬 LINE</a>
+        <div class="section">
+            <h2>ສັນຍະລັກ ແລະ ຄວາມໝາຍ</h2>
+            <ul>
+                <li><strong>ສຽນຊ້າງ:</strong> ໝາຍເຖິງຄວາມມີປັນຍາສະຫຼາດຫຼັກແຫຼມ ແລະ ຄວາມຍິ່ງໃຫຍ່.</li>
+                <li><strong>ຫູທີ່ກວ້າງໃຫຍ່:</strong> ໝາຍເຖິງການເປັນຜູ້ຟັງທີ່ດີ, ພ້ອມຮັບຟັງຄຳອ້ອນວອນຂອງມະນຸດ.</li>
+                <li><strong>ງາຂ້າງດຽວ:</strong> ໝາຍເຖິງການແຍກແຍະລະຫວ່າງຄວາມດີ ແລະ ຄວາມຊົ່ວ ຫຼື ຄວາມເສຍສະຫຼະ.</li>
+                <li><strong>ທ້ອງທີ່ໃຫຍ່:</strong> ໝາຍເຖິງຄວາມອຸດົມສົມບູນ ແລະ ການເກັບກັກຄວາມຮູ້ທັງໝົດໄວ້ໃນໂລກ.</li>
+            </ul>
         </div>
-      </div>
-    </div>
 
-    <!-- Card 3 -->
-    <div class="product-card scroll-reveal" onclick="openModal('modal3')">
-      <div class="product-img-wrap">
-        <img src="4.jpeg" alt="หลียนหลวงปู่ กะไหล่ทอง">
-        <span class="product-badge">✅ มีของ</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">หลียนพระเจ้าใหญ่องตื้อ ลุ้น "ล้ำรวยมั่นยืน" เนื้อกะไหล่เงิน ยันต์มงคล 2800บาท✅</div>
-        <div class="product-desc">ด้านหลังประทับยันต์มงคลเต็มองค์ ตอกโค้ด (ก) ครบ</div>
-        <div class="product-footer">
-          <span class="product-price">ติดต่อสอบถาม</span>
-          <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-line">💬 LINE</a>
+        <div class="section">
+            <h2>ພະເກຈິອາຈານຜູ້ຈັດສ້າງວັດຖຸມຸງຄຸນ</h2>
+            <p>ໃນການຈັດສ້າງວັດຖຸມຸງຄຸນພະພິຄະເນດລຸ້ນນີ້ ເພື່ອໃຫ້ລູກສິດລູກຫາໄດ້ບູຊາເປັນສິຣິມຸງຄຸນເປັນທີ່ຍອມຮັບຢ່າງກວ້າງຂວາງ ຄື:</p>
+            
+            <div class="geji-container">
+                <div class="geji-img">
+                    <img src="1.jpg" alt="ພະອາຈານບຸນຈອນ">
+                </div>
+                <div class="geji-info">
+                    <h3>ພະອາຈານບຸນຈອນ ກິດຕິຍາໂນ</h3>
+                    <p><strong>ວັດດອນຂະເຫມົາໂພນຈຳປາສັກ:</strong> ພະອາຈານບຸນຈອນ ກິດຕິຍາໂນ ແມ່ນພະເກຈິອາຈານທີ່ມີຊື່ສຽງ ແລະ ເປັນທີ່ເຄົາລົບນັບຖືຂອງພຸດທະສາສະນິກະຊົນ. ທ່ານມີຊື່ສຽງໂດ່ງດັງໃນເລື່ອງການສ້າງ ວັດຖຸມົງຄຸນ ທີ່ມີຜູ້ຄົນນິຍົມສະສົມ ແລະ ບູຊາຢ່າງຫຼວງຫຼາຍ ທັງໃນ ສປປ ລາວ ແລະ ຕ່າງປະເທດ.</p>
+                    <p>ວັດຖຸມຸງຄຸນພະພິຄະເນດທີ່ເພິ່ນປລຸກເສກ ຈະເດັ່ນໃນດ້ານເມດຕາມະຫານິຍົມ, ການຄ້າຂາຍຮຸ່ງເຮືອງ, ເສີມສະຕິປັນຍາ ແລະ ການປ້ອງກັນພະຍັນອັນຕະລາຍຕ່າງໆ ເຮັດໃຫ້ມີຜູ້ຄົນຫຼັ່ງໄຫຼໄປບູຊາຢ່າງບໍ່ຂາດສາຍ.</p>
+                </div>
+            </div>
+            
+            <blockquote style="background: #fffcf5; border-left: 5px solid #800020; padding: 10px 20px; margin-top: 20px;">
+                <em>*ໝາຍເຫດ: ການບູຊາໃຫ້ໄດ້ຜົນດີທີ່ສຸດ ຕ້ອງຄວບຄູ່ໄປກັບການປະພຶດຕົນຢູ່ໃນສິນທຳ, ມີຄວາມກະຕັນຍູ ແລະ ຂະຫຍັນໝັ່ນເພຽນໃນການງານ.</em>
+            </blockquote>
         </div>
-      </div>
+
+        <div class="section">
+            <h2>ຄາຖາ / ບົດສວດບູຊາພະພິຄະເນດ</h2>
+            <p>ທ່ານສາມາດສວດບົດນີ້ກ່ອນເລີ່ມຕົ້ນເຮັດວຽກ, ຮຽນໜັງສື ຫຼື ເຮັດທຸລະກິດ ເພື່ອຂໍພອນ:</p>
+            <p style="text-align: center; font-size: 1.4rem; color: #800020; font-weight: bold; background: #fffcf5; padding: 15px; border-radius: 6px;">
+                "ໂອມ ສຣີ ຄະເນສາຍະ ນະມະຮາ"<br>
+                <span style="font-size: 1rem; color: #555; font-weight: normal;">(ສວດ 3, 5, 9 ຫຼື 108 ຈົບ ຕາມຄວາມສະດວກ)</span>
+            </p>
+        </div>
+
     </div>
 
-<!-- FOOTER -->
-<div class="footer">
-  <div class="footer-logo">✦ ร้านพระเครื่อง วัดองตื้อมหาวิหาร ✦</div>
-  <div class="footer-sub">นครหลวงเวียงจันทน์ &bull; วัตถุมงคลแท้ พิธีครบถ้วน</div>
-  <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="footer-line-btn">
-    💬 &nbsp; ติดต่อสั่งซื้อผ่าน LINE <strong style="margin-left:6px">@phalaos2015</strong>
-  </a>
-  <br>
-  <div class="footer-note">© 2568 ร้านพระเครื่อง วัดองตื้อมหาวิหาร &bull; เผยแพร่เพื่อเป็นข้อมูลสำหรับนักสะสมวัตถุมงคลลาว</div>
-</div>
+    <footer>
+        <p>&copy; 2026 ເວັບໄຊເຜີຍແຜ່ຄວາມຮູ້ ແລະ ຕຳນານມະຫາເທບ. ສະຫງວນລິຂະສິດ.</p>
+    </footer>
 
-<!-- MODALS -->
-<div class="modal-overlay" id="modal1">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal1')">✕</button>
-    <img src="7.jpg" class="modal-img" alt="">
-    <img src="8.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">เหรียญ หลวงปู่สุวรรณคํา</div>
-      <div class="modal-desc">สมปรารถนา รุ่นที2 เนื้ออัลปาก้า ลงยาเหลือง ลงยาจีวร พร้อมหมายเลขกำกับ 24 ราคา 1500บาท✅</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal2">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal2')">✕</button>
-    <img src="6.jpg" class="modal-img" alt="">
-    <img src="9.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง ด้านหลัง — ยันต์มงคล</div>
-      <div class="modal-desc">ด้านหลังประทับยันต์มงคลเต็มองค์ ตอกโค้ด (ก) ครบ รับรองความแท้จากวัดองตื้อมหาวิหาร</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal3">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal3')">✕</button>
-    <img src="/mnt/user-data/uploads/680373311_122164456556819575_145599254817414484_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">หลียนหลวงปู่ใหญ่ เนื้อกะไหล่ทอง (สี่เหลี่ยมข้าวหลามตัด)</div>
-      <div class="modal-desc">รูปเหมือนหลวงปู่บนพื้นทองเหลือง ลงยาสีแดงสวยงาม ขนาดพกพาสะดวก</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal4">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal4')">✕</button>
-    <img src="/mnt/user-data/uploads/680517259_122164247300819575_9057741616863932340_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">หลียนพระเจ้าใหญ่องตื้อ เนื้อทองแดง (ไซส์ใหญ่)</div>
-      <div class="modal-desc">ขนาดใหญ่กว่าปกติ เส้นสายคมชัด นาคพันรอบงดงาม พิธีครบถ้วน ปี 2558</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal5">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal5')">✕</button>
-    <img src="/mnt/user-data/uploads/681192503_122164456250819575_7226270658929734067_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">ลูกอมทองคำ กรอบทอง — หมายเลข 305</div>
-      <div class="modal-desc">ลูกอมในกรอบทองประดับลวดลายวิจิตร มีหมายเลขกำกับชัดเจน ของหายากมาก</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal6">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal6')">✕</button>
-    <img src="/mnt/user-data/uploads/682553689_122164456268819575_6997492215870172653_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">ลูกอมทองคำ กรอบทอง (ด้านหลัง)</div>
-      <div class="modal-desc">ด้านหลังกรอบลวดลายละเอียด มีตาไก่ 4 มุมสำหรับห้อยสายสังวาลย์ได้หลายแบบ</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal7">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal7')">✕</button>
-    <img src="/mnt/user-data/uploads/682831002_122164455998819575_4677609656034322410_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">หลียนหลวงปู่ใหญ่ เนื้อเงิน เลขที่ 931</div>
-      <div class="modal-desc">เนื้อเงินผิวเงาสวย พร้อมกรอบพลาสติกใสกันกระทบ หมายเลข 931 มีเอกสาร</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal8">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal8')">✕</button>
-    <img src="/mnt/user-data/uploads/683205061_122164455758819575_6439635739494002368_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">พระพุทธยืน กรอบทองวิจิตร ตาไก่ 3 มุม</div>
-      <div class="modal-desc">พระยืนในกรอบทองประดับลวดลาย คุ้มครองผู้ห้อย มีตาไก่ 3 มุมสำหรับห้อยสายพระ</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal9">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal9')">✕</button>
-    <img src="/mnt/user-data/uploads/683607858_122164455506819575_5197003977236841182_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">เขี้ยวสัตว์มงคล กรอบเพชร/คริสตัล (ด้านหน้า)</div>
-      <div class="modal-desc">เขี้ยวสัตว์แท้บรรจุในกรอบประดับเพชร/คริสตัลล้อมรอบ สวยงามหรูหรา ของหายากมาก</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal10">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal10')">✕</button>
-    <img src="/mnt/user-data/uploads/683992999_122164456580819575_8759833152757849170_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">หลียนจตุรทิศ ธรรมจักร เนื้อกะไหล่ทอง</div>
-      <div class="modal-desc">ด้านหน้าประทับเทวดา 4 ทิศ ธรรมจักรกลาง ลงยาดำสง่างาม มีจารึกชัดเจน</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal11">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal11')">✕</button>
-    <img src="/mnt/user-data/uploads/684095137_122164455770819575_6874771278844695925_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">ยันต์ทองมงคล กรอบทองประดับเพชร CZ</div>
-      <div class="modal-desc">ยันต์ทองประดับเพชรสังเคราะห์ CZ ล้อมรอบทั้งองค์ ตาไก่ 3 มุม หรูหราคุณภาพสูง</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal12">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal12')">✕</button>
-    <img src="/mnt/user-data/uploads/684112131_122164456010819575_5102024277259363077_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">หลียนจตุรทิศ ธรรมจักร เนื้อเงิน</div>
-      <div class="modal-desc">เนื้อเงินผิวเงาวาว ด้านหน้าประทับเทวดา 4 ทิศ ธรรมจักรกลาง กรอบพลาสติกใสพร้อมห้อยคล้อง</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal13">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal13')">✕</button>
-    <img src="/mnt/user-data/uploads/684209351_122164455518819575_5027198835035450593_n.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">เขี้ยวสัตว์มงคล กรอบเพชร/คริสตัล (ด้านหลัง)</div>
-      <div class="modal-desc">ด้านหลังเขี้ยวสัตว์แท้ เห็นลวดลายธรรมชาติชัดเจน ของหายากมาก เหมาะสะสมหรือใช้บูชา</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal14">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal14')">✕</button>
-    <img src="/mnt/user-data/uploads/1778479230153_7.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">หลียนหลวงปู่ใหญ่ กะไหล่ทอง ลงยาแดง</div>
-      <div class="modal-desc">รูปเหมือนหลวงปู่นั่งสมาธิ พื้นทองเหลืองลงยาแดงสวยงาม สี่เหลี่ยมข้าวหลามตัด</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal15">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal15')">✕</button>
-    <img src="/mnt/user-data/uploads/1778479230156_1.jpeg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">พระเจ้าองตื้อ เนื้อทองคำ กรอบเงินประดับเพชร</div>
-      <div class="modal-desc">พระนาคปรกเนื้อทองคำ ในกรอบเงินประดับเพชรล้อมรอบ หรูหราระดับพรีเมียม ของหายาก</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal16">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal16')">✕</button>
-    <img src="/mnt/user-data/uploads/1778479230157_2.jpeg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">พระเจ้าองตื้อ เนื้อทองคำ กรอบทองวิจิตร</div>
-      <div class="modal-desc">พระนาคปรกเนื้อทองในกรอบทองคำประดับลวดลายวิจิตรงดงาม งานฝีมือชั้นสูง</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal17">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal17')">✕</button>
-    <img src="/mnt/user-data/uploads/1778479230159_3.jpeg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">พระเจ้าองตื้อ เนื้อเงิน ลงยา 3 สี (แดง-เขียว-ทอง)</div>
-      <div class="modal-desc">ลงยาหลากสี พื้นแดง นาคเขียว พระทองคำ งดงามสวยหายากมาก</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal18">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal18')">✕</button>
-    <img src="/mnt/user-data/uploads/1778479230160_4.jpeg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">พระเจ้าองตื้อ เนื้อเงิน ผิวเงา</div>
-      <div class="modal-desc">เนื้อเงินแท้ผิวเงาสวย นาคพันรอบ เส้นสายคมชัด สวมใส่ได้ทุกวัน</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal19">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal19')">✕</button>
-    <img src="/mnt/user-data/uploads/1778479230161_5.jpeg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">พระเจ้าองตื้อ ลงยา 4 สี ครบเซ็ต</div>
-      <div class="modal-desc">ครบ 4 สี (ดำ/ส้ม/น้ำเงิน/เขียว) ในเซ็ตเดียว สะสมครบทุกรุ่น ของหายากมาก</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modal20">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('modal20')">✕</button>
-    <img src="/mnt/user-data/uploads/1778479230162_5.jpg" class="modal-img" alt="">
-    <div class="modal-body">
-      <div class="modal-title">พระเจ้าองตื้อ เนื้อทองแดง นาคพัน (ไซส์ใหญ่)</div>
-      <div class="modal-desc">เนื้อทองแดงรมดำ นาคพันรอบ เส้นสายละเอียดคมชัด ลุ้น "ล้ำรวยมั่นยืน" ปี 2558</div>
-      <div class="modal-actions">
-        <a href="https://line.me/ti/p/~@phalaos2015" target="_blank" class="btn-large">💬 สอบถาม LINE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Modal open/close
-  function openModal(id) {
-    document.getElementById(id).classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal(id) {
-    document.getElementById(id).classList.remove('active');
-    document.body.style.overflow = '';
-  }
-  // Close on overlay click
-  document.querySelectorAll('.modal-overlay').forEach(el => {
-    el.addEventListener('click', function(e) {
-      if (e.target === this) closeModal(this.id);
-    });
-  });
-  // Swipe down to close on mobile
-  document.querySelectorAll('.modal').forEach(modal => {
-    let startY = 0;
-    modal.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
-    modal.addEventListener('touchend', e => {
-      if (e.changedTouches[0].clientY - startY > 80) closeModal(modal.closest('.modal-overlay').id);
-    }, { passive: true });
-  });
-
-  // Floating LINE button fades in after scrolling past banner
-  const fab = document.getElementById('fab-line');
-  if (fab) {
-    fab.style.opacity = '0';
-    fab.style.transition = 'opacity 0.3s';
-    window.addEventListener('scroll', () => {
-      fab.style.opacity = window.scrollY > 100 ? '1' : '0';
-      fab.style.pointerEvents = window.scrollY > 100 ? 'auto' : 'none';
-    }, { passive: true });
-  }
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
